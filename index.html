@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Unofficial, non-commercial Evangelion fan-made personality quiz. For entertainment purposes only.">
+<title>NERV Personality Quiz — Unofficial Fan Project</title>
+<link rel="stylesheet" href="css/nerv.css">
+</head>
+<body>
+<div class="scanlines"></div>
+<main id="app" class="shell">
+<header class="topbar">
+  <div class="brand"><strong>NERV</strong><span>PERSONNEL PSYCHOLOGICAL ASSESSMENT</span></div>
+  <div class="system-status"><i class="dot orange"></i><i class="dot cyan"></i><i class="dot green"></i> MAGI ONLINE</div>
+</header>
+
+<section id="intro" class="screen active">
+  <div class="eyebrow">UNOFFICIAL FAN PROJECT // ENTERTAINMENT ONLY</div>
+  <h1>NERV PERSONNEL<br><span>PSYCHOLOGICAL ASSESSMENT</span></h1>
+  <p class="terminal-title">MAGI SYSTEM // HUMAN FACTORS DIVISION</p>
+  <p class="lead">Thirty questions across five analysis phases. Your answers remain on your device and are used only to calculate your synchronisation profile.</p>
+  <div class="magi-row">
+    <div><b>MELCHIOR</b><small>THE SELF</small></div>
+    <div><b>BALTHASAR</b><small>RELATIONSHIPS</small></div>
+    <div><b>CASPER</b><small>PRESSURE</small></div>
+  </div>
+  <button id="startBtn" class="primary-btn">BEGIN SYNCHRONISATION <b>▶</b></button>
+</section>
+
+<section id="phaseCard" class="screen flash-screen">
+  <div class="flash-kicker" id="phaseNumber">PHASE 01</div>
+  <h2 id="phaseName">THE SELF</h2>
+  <p id="phaseSubtitle"></p>
+  <div class="flash-terminal" id="phaseTerminal">MELCHIOR</div>
+</section>
+
+<section id="quiz" class="screen">
+  <div class="question-head">
+    <div><span id="phaseLabel"></span> <small id="phaseMini"></small></div>
+    <div id="progressText">QUESTION 01 / 30</div>
+  </div>
+  <div class="terminal-strip">
+    <span>ACTIVE TERMINAL</span><strong id="magiUnit">MELCHIOR</strong>
+  </div>
+  <div class="progress-wrap"><div id="progressBar" class="progress-bar"></div></div>
+
+  <div class="question-card">
+    <div class="q-index" id="qIndex">01</div>
+    <h2 id="qTitle"></h2>
+    <p id="qPrompt"></p>
+    <div id="answers" class="answers"></div>
+  </div>
+  <div class="nav-row">
+    <button id="backBtn" class="ghost-btn">◀ BACK</button>
+    <span class="hint">SELECT YOUR IMMEDIATE INSTINCT</span>
+  </div>
+</section>
+
+<section id="analysis" class="screen flash-screen">
+  <div id="analysisKicker" class="flash-kicker">MAGI SYSTEM</div>
+  <h2 id="analysisText">MAGI INITIALISING</h2>
+  <div class="analysis-grid">
+    <span class="a orange"></span><span class="a cyan"></span><span class="a green"></span>
+  </div>
+  <div id="analysisSub" class="flash-terminal">PLEASE STAND BY</div>
+  <div class="compile-progress" aria-label="MAGI analysis progress">
+    <div class="compile-track"><div id="analysisProgressFill" class="compile-fill"></div></div>
+    <div id="analysisProgressText" class="compile-progress-text">0%</div>
+  </div>
+</section>
+
+<section id="result" class="screen">
+  <div class="result-top">MAGI ANALYSIS COMPLETE <span>/// PERSONNEL MATCH</span></div>
+
+  <div class="hero-result">
+    <div class="result-card-wrap">
+      <img id="primaryCard" class="character-card" alt="">
+    </div>
+    <div class="result-summary">
+      <div class="result-label">PRIMARY SYNCHRONISATION</div>
+      <h2 id="resultName"></h2>
+      <div id="resultTitle" class="result-title"></div>
+      <div class="metric-grid">
+        <div class="metric">
+          <span>CHARACTER COMPATIBILITY</span>
+          <strong id="primaryPct"></strong>
+          <small>How strongly and consistently your answers provide evidence for this character across the full assessment.</small>
+        </div>
+        <div class="metric">
+          <span>EVA SYNC RATE</span>
+          <strong id="syncRate"></strong>
+          <small>Profile confidence: how clearly your primary result leads the alternatives.</small>
+        </div>
+        <div class="metric">
+          <span>PROFILE STRUCTURE</span>
+          <strong id="ambiguity"></strong>
+          <small>How concentrated or layered your strongest character matches are.</small>
+        </div>
+      </div>
+      <p id="resultInterpretation" class="result-interpretation"></p>
+      <div class="calibration-note">
+        <strong>MAGI CALIBRATION</strong>
+        <span>Compatibility is a psychological evidence index: 75% reflects total character evidence and 25% reflects how broadly that evidence appears across all five assessment phases. EVA Sync Rate separately measures how clearly the leading result separates from the rest of your profile.</span>
+      </div>
+      <div id="magiCrossCheck" class="magi-crosscheck" hidden>
+        <div class="crosscheck-head"><span>MAGI PSYCHOLOGICAL CROSS-CHECK</span><strong id="crossCheckVerdict"></strong></div>
+        <p id="crossCheckText"></p>
+        <small>Provisional tester calibration. This independent eight-trait check activates only for effective ties and does not alter the behavioural compatibility ranking.</small>
+      </div>
+      <div class="profile-panel character-core-panel">
+        <div class="section-label">CHARACTER CORE TRAITS</div>
+        <div class="traits" id="resultTraits"></div>
+        <div class="section-label sublabel">TRAITS YOU MOST STRONGLY SHARE</div>
+        <div id="sharedTraits" class="shared-traits"></div>
+      </div>
+
+      <div class="profile-panel why-panel">
+        <div class="section-label">WHY MAGI MATCHED YOU</div>
+        <p id="whyMatchedText"></p>
+        <div id="matchThemes" class="match-themes"></div>
+      </div>
+
+      <blockquote id="resultQuote"></blockquote>
+      <p id="resultBlurb"></p>
+    </div>
+  </div>
+
+  <div class="secondary-grid">
+    <article class="mini-result">
+      <img id="secondCard" alt="">
+      <div><span>SECONDARY SYNCHRONISATION</span><strong id="secondName"></strong><em id="secondPct"></em><small id="secondTraits"></small></div>
+    </article>
+    <article class="mini-result">
+      <img id="thirdCard" alt="">
+      <div><span>TERTIARY SYNCHRONISATION</span><strong id="thirdName"></strong><em id="thirdPct"></em><small id="thirdTraits"></small></div>
+    </article>
+  </div>
+
+  <section class="dimensions">
+    <div class="section-label">YOUR PSYCHOLOGICAL PROFILE</div>
+    <p class="dimension-intro">This profile comes from all 30 answers. It is separate from the character match and explains your broader response pattern.</p>
+    <div id="dimensionBars"></div>
+  </section>
+
+  <div class="result-actions">
+    <button id="exportBtn" class="primary-btn">EXPORT DOSSIER PNG</button>
+    <button id="shareBtn" class="ghost-btn">COPY SHAREABLE RESULT</button>
+    <button id="printBtn" class="ghost-btn">PRINT RESULT</button>
+    <button id="restartBtn" class="ghost-btn">RETAKE ASSESSMENT</button>
+  </div>
+  <p id="shareStatus" class="privacy">Assessment is processed entirely in your browser. No answers are transmitted.</p>
+</section>
+
+<footer class="fan-footer">
+  <strong>UNOFFICIAL EVANGELION FAN PROJECT</strong>
+  <span>Non-commercial · Not affiliated with or endorsed by the Evangelion rights holders · For entertainment purposes only.</span>
+  <details>
+    <summary>About &amp; disclaimer</summary>
+    <p>This is an unofficial, non-commercial fan-made personality quiz inspired by <em>Neon Genesis Evangelion</em> and the wider <em>Evangelion</em> franchise. It is not affiliated with, endorsed by, sponsored by, or associated with the creators, studios, publishers, distributors, or other rights holders of <em>Evangelion</em>.</p>
+    <p><em>Evangelion</em>, NERV, its characters, names, logos, terminology and related intellectual property belong to their respective rights holders. No ownership of those properties is claimed.</p>
+    <p>The quiz questions, character-matching methodology, MAGI scoring system, website implementation and original written analysis were created for this fan project.</p>
+    <p>This quiz is for entertainment only. Its psychological profiles, compatibility scores, EVA Sync Rate and related classifications are fictionalised personality-quiz features and are not psychological, medical or clinical assessments.</p>
+  </details>
+</footer>
+</main>
+<script src="js/quiz.js"></script>
+</body>
+</html>

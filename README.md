@@ -1,4 +1,4 @@
-# NERV Personality Quiz v3.6.1
+# NERV Personality Quiz v3.6
 
 A static, client-side, unofficial Evangelion fan-made personality quiz.
 
@@ -30,3 +30,7 @@ The quiz is for entertainment only. Its psychological profiles and scores are no
 ## Project material
 
 Original quiz text, scoring methodology and source code were created for this fan project. Third-party intellectual property is excluded from any permission or licence that may apply to original project material.
+
+## v3.6 UI/UX pass
+
+The scoring/calibration model is unchanged from v3.5.1. This release improves pacing, progress feedback, result hierarchy, metric explanations, bipolar psychological spectra, keyboard focus, ARIA state/status handling, and reduced-motion support. Fonts are self-hosted; no external font request is required.

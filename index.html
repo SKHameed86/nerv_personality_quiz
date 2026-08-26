@@ -20,7 +20,8 @@
   <div class="eyebrow">UNOFFICIAL FAN PROJECT // ENTERTAINMENT ONLY</div>
   <h1>NERV PERSONNEL<br><span>PSYCHOLOGICAL ASSESSMENT</span></h1>
   <p class="terminal-title">MAGI SYSTEM // HUMAN FACTORS DIVISION</p>
-  <p class="lead">Thirty questions across five analysis phases. Your answers remain on your device and are used only to calculate your synchronisation profile.</p>
+  <p class="lead">Five MAGI analysis phases · 30 questions · Approx. 6–8 minutes. Your answers remain on your device and are used only to calculate your synchronisation profile.</p>
+  <p class="instinct-note">There are no right or wrong answers. Choose the response that feels most naturally like you.</p>
   <div class="magi-row">
     <div><b>MELCHIOR</b><small>THE SELF</small></div>
     <div><b>BALTHASAR</b><small>RELATIONSHIPS</small></div>
@@ -29,7 +30,7 @@
   <button id="startBtn" class="primary-btn">BEGIN SYNCHRONISATION <b>▶</b></button>
 </section>
 
-<section id="phaseCard" class="screen flash-screen">
+<section id="phaseCard" class="screen flash-screen" aria-live="polite">
   <div class="flash-kicker" id="phaseNumber">PHASE 01</div>
   <h2 id="phaseName">THE SELF</h2>
   <p id="phaseSubtitle"></p>
@@ -39,7 +40,7 @@
 <section id="quiz" class="screen">
   <div class="question-head">
     <div><span id="phaseLabel"></span> <small id="phaseMini"></small></div>
-    <div id="progressText">QUESTION 01 / 30</div>
+    <div><span id="phaseProgress">PHASE 1 / 5</span><span class="progress-sep"> · </span><span id="progressText">QUESTION 01 / 30</span></div>
   </div>
   <div class="terminal-strip">
     <span>ACTIVE TERMINAL</span><strong id="magiUnit">MELCHIOR</strong>
@@ -58,13 +59,13 @@
   </div>
 </section>
 
-<section id="analysis" class="screen flash-screen">
+<section id="analysis" class="screen flash-screen" aria-live="polite" aria-busy="true">
   <div id="analysisKicker" class="flash-kicker">MAGI SYSTEM</div>
   <h2 id="analysisText">MAGI INITIALISING</h2>
   <div class="analysis-grid">
     <span class="a orange"></span><span class="a cyan"></span><span class="a green"></span>
   </div>
-  <div id="analysisSub" class="flash-terminal">PLEASE STAND BY</div>
+  <div id="analysisSub" class="flash-terminal" role="status" aria-live="polite">PLEASE STAND BY</div>
   <div class="compile-progress" aria-label="MAGI analysis progress">
     <div class="compile-track"><div id="analysisProgressFill" class="compile-fill"></div></div>
     <div id="analysisProgressText" class="compile-progress-text">0%</div>
@@ -72,14 +73,14 @@
 </section>
 
 <section id="result" class="screen">
-  <div class="result-top">MAGI ANALYSIS COMPLETE <span>/// PERSONNEL MATCH</span></div>
+  <div class="result-top">MAGI ANALYSIS COMPLETE <span>/// PERSONNEL COMPATIBILITY ANALYSIS</span></div>
 
   <div class="hero-result">
     <div class="result-card-wrap">
       <img id="primaryCard" class="character-card" alt="">
     </div>
     <div class="result-summary">
-      <div class="result-label">PRIMARY SYNCHRONISATION</div>
+      <div class="result-label">PRIMARY CHARACTER MATCH</div>
       <h2 id="resultName"></h2>
       <div id="resultTitle" class="result-title"></div>
       <div class="metric-grid">
@@ -91,15 +92,30 @@
         <div class="metric">
           <span>EVA SYNC RATE</span>
           <strong id="syncRate"></strong>
-          <small>Profile confidence: how clearly your primary result leads the alternatives.</small>
+          <small>How distinctly your overall answer pattern resolves into a character profile.</small>
         </div>
         <div class="metric">
           <span>PROFILE STRUCTURE</span>
           <strong id="ambiguity"></strong>
-          <small>How concentrated or layered your strongest character matches are.</small>
+          <small id="structureExplainer">How concentrated or layered your strongest character matches are.</small>
         </div>
       </div>
       <p id="resultInterpretation" class="result-interpretation"></p>
+      <div class="supporting-matches">
+        <div class="section-label">SUPPORTING CHARACTER PATTERNS</div>
+
+        <div class="secondary-grid compact-secondary">
+    <article class="mini-result">
+      <img id="secondCard" alt="">
+      <div><span>SECONDARY SYNCHRONISATION</span><strong id="secondName"></strong><em id="secondPct"></em><small id="secondTraits"></small></div>
+    </article>
+    <article class="mini-result">
+      <img id="thirdCard" alt="">
+      <div><span>TERTIARY SYNCHRONISATION</span><strong id="thirdName"></strong><em id="thirdPct"></em><small id="thirdTraits"></small></div>
+    </article>
+        </div>
+      </div>
+
       <div class="calibration-note">
         <strong>MAGI CALIBRATION</strong>
         <span>Compatibility is a psychological evidence index: 75% reflects total character evidence and 25% reflects how broadly that evidence appears across all five assessment phases. EVA Sync Rate separately measures how clearly the leading result separates from the rest of your profile.</span>
@@ -109,6 +125,7 @@
         <p id="crossCheckText"></p>
         <small>Provisional tester calibration. This independent eight-trait check activates only for effective ties and does not alter the behavioural compatibility ranking.</small>
       </div>
+      <div class="analysis-layer-label">MAGI ANALYSIS // MATCH RATIONALE</div>
       <div class="profile-panel character-core-panel">
         <div class="section-label">CHARACTER CORE TRAITS</div>
         <div class="traits" id="resultTraits"></div>
@@ -127,25 +144,16 @@
     </div>
   </div>
 
-  <div class="secondary-grid">
-    <article class="mini-result">
-      <img id="secondCard" alt="">
-      <div><span>SECONDARY SYNCHRONISATION</span><strong id="secondName"></strong><em id="secondPct"></em><small id="secondTraits"></small></div>
-    </article>
-    <article class="mini-result">
-      <img id="thirdCard" alt="">
-      <div><span>TERTIARY SYNCHRONISATION</span><strong id="thirdName"></strong><em id="thirdPct"></em><small id="thirdTraits"></small></div>
-    </article>
-  </div>
 
   <section class="dimensions">
+    <div class="analysis-layer-label">PSYCHOLOGICAL PROFILE // DEEP ANALYSIS</div>
     <div class="section-label">YOUR PSYCHOLOGICAL PROFILE</div>
-    <p class="dimension-intro">This profile comes from all 30 answers. It is separate from the character match and explains your broader response pattern.</p>
+    <p class="dimension-intro">This profile comes from all 30 answers. Each spectrum shows the direction and relative strength of your broader response pattern; it is separate from the character match.</p>
     <div id="dimensionBars"></div>
   </section>
 
   <div class="result-actions">
-    <button id="exportBtn" class="primary-btn">EXPORT DOSSIER PNG</button>
+    <button id="exportBtn" class="primary-btn">EXPORT DOSSIER</button>
     <button id="shareBtn" class="ghost-btn">COPY SHAREABLE RESULT</button>
     <button id="printBtn" class="ghost-btn">PRINT RESULT</button>
     <button id="restartBtn" class="ghost-btn">RETAKE ASSESSMENT</button>

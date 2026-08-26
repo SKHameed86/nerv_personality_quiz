@@ -34,3 +34,8 @@ Original quiz text, scoring methodology and source code were created for this fa
 ## v3.6 UI/UX pass
 
 The scoring/calibration model is unchanged from v3.5.1. This release improves pacing, progress feedback, result hierarchy, metric explanations, bipolar psychological spectra, keyboard focus, ARIA state/status handling, and reduced-motion support. Fonts are self-hosted; no external font request is required.
+
+
+## Compact result sharing
+
+Shared results use a compact `#r=` fragment. The payload stores only the derived result needed to reconstruct the result page; it does not contain the 30 individual answers. Browsers with Web Share support use the native share sheet, with clipboard copying as the fallback. Older `#result=` links remain readable.

@@ -502,46 +502,119 @@ function wrapText(ctx,text,x,y,maxWidth,lineHeight){
   }
   ctx.fillText(line,x,y);
 }
-function shareResult(){
+function dimensionLabel(d,z){
+  let label='CONTEXT-DEPENDENT';
+  if(z>=1.45)label='DEFINING';
+  else if(z>=0.85)label='PROMINENT';
+  else if(z>=0.35)label='PRESENT';
+  else if(z<=-1.45)label=(d==='Control'||d==='Recognition')?'VERY LOW NEED':'STRONGLY LOW';
+  else if(z<=-0.85)label=(d==='Control'||d==='Recognition')?'LOW NEED':'LOW PRIORITY';
+  else if(z<=-0.35)label='LOW PRIORITY';
+  return label;
+}
+function bytesToBase64Url(bytes){
+  let binary='';
+  bytes.forEach(b=>binary+=String.fromCharCode(b));
+  return btoa(binary).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
+}
+function base64UrlToBytes(text){
+  const b64=text.replaceAll('-','+').replaceAll('_','/')+'==='.slice((text.length+3)%4);
+  const binary=atob(b64);
+  return Uint8Array.from(binary,c=>c.charCodeAt(0));
+}
+function compactSharePayload(){
+  const top=lastResult.ranked.slice(0,3);
+  const profile=personalDimensionProfile();
+  const themes=explanationThemes(top[0].code).slice(0,4);
+  const shared=synchronisedCoreTraits(top[0].code).slice(0,3);
+  const traitNames=Object.keys(CORE_TRAIT_MAPS[top[0].code]||{});
+  const bytes=[3]; // compact share format version
+  top.forEach(x=>{bytes.push(CODES.indexOf(x.code),Math.max(0,Math.min(100,Math.round(x.compatibility))));});
+  bytes.push(Math.max(0,Math.min(255,Math.round(lastResult.sync))));
+  const structures={FOCUSED:0,LAYERED:1,COMPLEX:2};
+  bytes.push((structures[lastResult.structure.label]??1)|(lastResult.berserk?4:0));
+  // Eight z-scores: signed quarter-standard-deviation increments, range -8..+7.75.
+  profile.forEach(x=>bytes.push(Math.max(0,Math.min(255,Math.round(x.z*4)+128))));
+  // Theme byte: low nibble = dimension index, bit 4 = negative pole. 255 terminates.
+  themes.forEach(x=>bytes.push(DIMS.indexOf(x.dimension)|(x.value<0?16:0)));
+  bytes.push(255);
+  // Shared trait byte: low 7 bits = index in this character's canonical trait list; high bit = strong.
+  shared.forEach(x=>{const i=traitNames.indexOf(x.trait);if(i>=0)bytes.push(i|(x.strong?128:0));});
+  return bytesToBase64Url(Uint8Array.from(bytes));
+}
+function sharedWhyText(code,themes){
+  const c=CHARACTERS[code];
+  if(!themes.length)return `Your answers accumulated the strongest evidence for ${c.name} across the five MAGI phases.`;
+  const names=themes.slice(0,3).map(x=>x.toLowerCase());
+  const phrase=names.length===1?names[0]:names.length===2?`${names[0]} and ${names[1]}`:`${names[0]}, ${names[1]} and ${names[2]}`;
+  return `The answers that most strongly supported ${c.name} repeatedly emphasised ${phrase}. These themes are drawn only from responses that actually contributed meaningful evidence to this character match.`;
+}
+async function shareResult(){
   if(!lastResult)return;
-  const r=lastResult.ranked.slice(0,3).map(x=>[x.code,Math.round(x.compatibility)]);
-  const dimensions=personalDimensionProfile().map(({dimension,z,label})=>({dimension,z:+z.toFixed(3),label}));
-  const shared=synchronisedCoreTraits(lastResult.ranked[0].code).map(({trait,strong})=>({trait,strong}));
-  const data={v:2,r,s:lastResult.sync,p:lastResult.structure.label,b:lastResult.berserk,
-    d:dimensions,w:whyMatchedText(lastResult.ranked[0].code),
-    m:explanationThemes(lastResult.ranked[0].code).map(x=>x.name),h:shared};
-  const payload=btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+  const p=lastResult.ranked[0],payload=compactSharePayload();
   const base=location.origin+location.pathname+location.search;
-  const url=base+'#result='+payload;
-  const copied=()=>{$('shareStatus').textContent='Shareable result copied. Opening this link will display this result directly; your individual answers are not included.';};
+  const url=base+'#r='+payload;
+  const text=`My MAGI result: ${CHARACTERS[p.code].name} — ${Math.round(p.compatibility)}% compatibility · ${lastResult.berserk?'400%':lastResult.sync+'%'} EVA Sync · ${lastResult.structure.label.charAt(0)+lastResult.structure.label.slice(1).toLowerCase()} Profile`;
+  if(navigator.share){
+    try{
+      await navigator.share({title:'NERV Personnel Assessment',text,url});
+      $('shareStatus').textContent='Result shared. The compact link contains result data only; your individual answers are not included.';
+      return;
+    }catch(e){if(e?.name==='AbortError')return;}
+  }
+  const copied=()=>{$('shareStatus').textContent='Compact result link copied. Your individual answers are not included.';};
   if(navigator.clipboard&&window.isSecureContext){
     navigator.clipboard.writeText(url).then(copied).catch(()=>prompt('Copy this result link:',url));
-  }else{
-    prompt('Copy this result link:',url);
+  }else prompt('Copy this result link:',url);
+}
+function restoreCompactShared(payload){
+  const b=base64UrlToBytes(payload);let i=0;
+  if(b[i++]!==3)throw new Error('Unknown compact share version');
+  const ranked=[];
+  for(let n=0;n<3;n++){
+    const ci=b[i++],pct=b[i++];
+    if(ci>=CODES.length)throw new Error('Unknown character');
+    ranked.push({code:CODES[ci],raw:0,compatibility:pct});
   }
+  const sync=b[i++],flags=b[i++];
+  const structures=['FOCUSED','LAYERED','COMPLEX'];
+  const structure=structures[flags&3]||'LAYERED',berserk=!!(flags&4);
+  const dimensions=DIMS.map(d=>{const z=(b[i++]-128)/4;return {dimension:d,z,label:dimensionLabel(d,z)};});
+  const themes=[];
+  while(i<b.length&&b[i]!==255){
+    const tb=b[i++],di=tb&15;
+    if(di<DIMS.length){const lang=DIMENSION_LANGUAGE[DIMS[di]];themes.push((tb&16)?lang.neg:lang.pos);}
+  }
+  if(i<b.length&&b[i]===255)i++;
+  const primary=ranked[0].code,traitNames=Object.keys(CORE_TRAIT_MAPS[primary]||{}),shared=[];
+  while(i<b.length){const sb=b[i++],name=traitNames[sb&127];if(name)shared.push({trait:name,strong:!!(sb&128)});}
+  CODES.filter(k=>!ranked.some(r=>r.code===k)).forEach(k=>ranked.push({code:k,raw:0,compatibility:0}));
+  lastResult={ranked,sync,rawClarity:0,structure:{label:structure,effective:0},berserk,
+    sharedSnapshot:{dimensions,why:sharedWhyText(primary,themes),themes,shared}};
+  showResult();
+  $('shareStatus').textContent='Shared MAGI result loaded from a compact link. It contains result data only, not the original question responses.';
+  return true;
+}
+function restoreLegacyShared(payload){
+  const data=JSON.parse(decodeURIComponent(escape(atob(payload))));
+  if(!Array.isArray(data.r)||!data.r.length)throw new Error('Invalid shared result');
+  const ranked=data.r.map(([code,pct])=>({code,raw:0,compatibility:pct}));
+  if(ranked.some(x=>!CHARACTERS[x.code]))throw new Error('Unknown character');
+  CODES.filter(k=>!ranked.some(r=>r.code===k)).forEach(k=>ranked.push({code:k,raw:0,compatibility:0}));
+  lastResult={ranked,sync:Number(data.s)||0,rawClarity:0,structure:{label:data.p||'LAYERED',effective:0},berserk:!!data.b,
+    sharedSnapshot:{dimensions:Array.isArray(data.d)?data.d:[],why:data.w||'',themes:Array.isArray(data.m)?data.m:[],shared:Array.isArray(data.h)?data.h:[]}};
+  showResult();
+  $('shareStatus').textContent='Legacy shared MAGI result loaded. New shares use the shorter compact-link format.';
+  return true;
 }
 function restoreShared(){
-  if(!location.hash.startsWith('#result='))return false;
   try{
-    const data=JSON.parse(decodeURIComponent(escape(atob(location.hash.slice(8)))));
-    if(!Array.isArray(data.r)||!data.r.length)throw new Error('Invalid shared result');
-    const ranked=data.r.map(([code,pct])=>({code,raw:0,compatibility:pct}));
-    if(ranked.some(x=>!CHARACTERS[x.code]))throw new Error('Unknown character');
-    CODES.filter(k=>!ranked.some(r=>r.code===k)).forEach(k=>ranked.push({code:k,raw:0,compatibility:0}));
-    lastResult={
-      ranked,
-      sync:Number(data.s)||0,
-      rawClarity:0,
-      structure:{label:data.p||'LAYERED',effective:0},
-      berserk:!!data.b,
-      sharedSnapshot:{dimensions:Array.isArray(data.d)?data.d:[],why:data.w||'',themes:Array.isArray(data.m)?data.m:[],shared:Array.isArray(data.h)?data.h:[]}
-    };
-    showResult();
-    $('shareStatus').textContent='Shared MAGI result loaded. This link contains result data only, not the original question responses.';
-    return true;
+    if(location.hash.startsWith('#r='))return restoreCompactShared(location.hash.slice(3));
+    if(location.hash.startsWith('#result='))return restoreLegacyShared(location.hash.slice(8));
+    return false;
   }catch(e){
     console.warn('Unable to restore shared result',e);
-    $('shareStatus') && ($('shareStatus').textContent='This shared result link could not be read. You can still take the assessment normally.');
+    $('shareStatus')&&($('shareStatus').textContent='This shared result link could not be read. You can still take the assessment normally.');
     return false;
   }
 }

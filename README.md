@@ -1,4 +1,4 @@
-# NERV Personality Quiz v3.5.1
+# NERV Personality Quiz v3.6.1
 
 A static, client-side, unofficial Evangelion fan-made personality quiz.
 

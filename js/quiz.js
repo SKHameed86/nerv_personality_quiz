@@ -32,7 +32,9 @@ const terminals=[
 
 function show(id){
   screens.forEach(s=>s.classList.toggle('active',s.id===id));
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  const target=document.querySelector('#'+id+' h1, #'+id+' h2, #'+id+' .result-top');
+  if(target){target.setAttribute('tabindex','-1');setTimeout(()=>target.focus({preventScroll:true}),20);}
 }
 function phaseFor(index){return Math.floor(index/6);}
 function setTheme(index){
@@ -49,7 +51,7 @@ function showPhase(index,after){
   $('phaseSubtitle').textContent=p.subtitle;
   $('phaseTerminal').textContent=p.terminal;
   show('phaseCard');
-  setTimeout(after,3000);
+  setTimeout(after,window.matchMedia('(prefers-reduced-motion: reduce)').matches?80:1500);
 }
 function renderQuestion(){
   setTheme(current);
@@ -57,6 +59,7 @@ function renderQuestion(){
   $('phaseLabel').textContent=`PHASE ${String(phaseFor(current)+1).padStart(2,'0')} // ${p.name}`;
   $('phaseMini').textContent=p.subtitle;
   $('magiUnit').textContent=t.name;
+  $('phaseProgress').textContent=`PHASE ${phaseFor(current)+1} / ${PHASES.length}`;
   $('progressText').textContent=`QUESTION ${String(current+1).padStart(2,'0')} / ${QUESTIONS.length}`;
   $('qIndex').textContent=String(current+1).padStart(2,'0');
   $('qTitle').textContent=q.title;
@@ -67,6 +70,7 @@ function renderQuestion(){
   q.answers.forEach((a,i)=>{
     const b=document.createElement('button');
     b.className='answer'+(answers[current]===i?' selected':'');
+    b.setAttribute('aria-pressed',answers[current]===i?'true':'false');
     b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span>${a.text}</span>`;
     b.onclick=()=>selectAnswer(i);
     wrap.appendChild(b);
@@ -83,7 +87,7 @@ function selectAnswer(i){
       if(phaseFor(current)!==oldPhase) showPhase(current,()=>{show('quiz');renderQuestion();});
       else renderQuestion();
     } else calculate();
-  },180);
+  },320);
 }
 
 function compatibilityPercentile(code,score){
@@ -229,8 +233,9 @@ function runAnalysis(){
     $('analysisProgressFill').style.width=pct+'%';
     $('analysisProgressText').textContent=pct+'%';
 
-    if(++i<ANALYSIS_STEPS.length) setTimeout(step,3000);
-    else setTimeout(showResult,3000);
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(++i<ANALYSIS_STEPS.length) setTimeout(step,reduced?80:1050);
+    else setTimeout(showResult,reduced?100:900);
   }
   step();
 }
@@ -388,7 +393,10 @@ function showResult(){
 
   $('primaryPct').textContent=Math.round(p.compatibility)+'%';
   $('syncRate').textContent=lastResult.berserk?'400%':lastResult.sync+'%';
+  $('syncRate').title=lastResult.berserk?'BERSERK SYNCHRONISATION':(lastResult.sync>=75?'HIGH SYNCHRONISATION':lastResult.sync>=50?'MODERATE SYNCHRONISATION':'DIFFUSE SYNCHRONISATION');
   $('ambiguity').textContent=lastResult.structure.label;
+  const structureCopy={FOCUSED:'One character pattern dominates your profile.',LAYERED:'A clear primary pattern with meaningful secondary influences.',COMPLEX:'Several character patterns explain your responses similarly well.'};
+  $('structureExplainer').textContent=structureCopy[lastResult.structure.label]||'How concentrated or layered your strongest character matches are.';
 
   $('resultInterpretation').textContent=
     `${c.name} is your strongest character evidence match. `+
@@ -413,17 +421,19 @@ function showResult(){
     cross.hidden=true;
   }
 
-  $('whyMatchedText').textContent=whyMatchedText(p.code);
+  const snap=lastResult.sharedSnapshot;
+  $('whyMatchedText').textContent=snap?.why || (snap ? 'This shared result preserves the final MAGI outcome without exposing the original quiz answers.' : whyMatchedText(p.code));
   const themeBox=$('matchThemes'); themeBox.innerHTML='';
-  explanationThemes(p.code).forEach(x=>{
-    const el=document.createElement('span');el.className='theme-chip';el.textContent=x.name;themeBox.appendChild(el);
+  const themes=snap?.themes || (snap ? [] : explanationThemes(p.code).map(x=>x.name));
+  themes.forEach(name=>{
+    const el=document.createElement('span');el.className='theme-chip';el.textContent=name;themeBox.appendChild(el);
   });
 
-  const shared=synchronisedCoreTraits(p.code),sharedBox=$('sharedTraits');
+  const shared=snap?.shared || (snap ? [] : synchronisedCoreTraits(p.code)),sharedBox=$('sharedTraits');
   sharedBox.innerHTML='';
   if(shared.length){
     shared.forEach(x=>{
-      const el=document.createElement('span');el.className='sync-trait';el.textContent=(x.strong?'◆ ':'◇ ')+x.trait;sharedBox.appendChild(el);
+      const el=document.createElement('span');el.className='sync-trait';el.textContent=(x.strong?'◆ ':'◇ ')+(x.trait||x);sharedBox.appendChild(el);
     });
   } else {
     sharedBox.textContent='No single canonical trait exceeded the synchronisation threshold; your match is distributed across several motives.';
@@ -439,16 +449,20 @@ function showResult(){
   $('thirdPct').textContent=Math.round(t.compatibility)+'%';
   $('thirdTraits').textContent=CHARACTERS[t.code].traits;
 
-  const profile=personalDimensionProfile(),box=$('dimensionBars');
+  const profile=snap?.dimensions || (snap ? [] : personalDimensionProfile()),box=$('dimensionBars');
   box.innerHTML='';
   profile.forEach(x=>{
     const row=document.createElement('div');
     row.className='dimension profile-dimension';
-    const pole=x.z>=0?DIMENSION_LANGUAGE[x.dimension].pos:DIMENSION_LANGUAGE[x.dimension].neg;
-    row.innerHTML=`<div class="dimension-copy"><label>${x.dimension.toUpperCase()}</label><span>${pole}</span></div><b>${x.label}</b>`;
+    const lang=DIMENSION_LANGUAGE[x.dimension];
+    const pos=Math.max(5,Math.min(95,50+(x.z*22.5)));
+    row.innerHTML=`<div class="dimension-copy"><label>${x.dimension.toUpperCase()}</label></div><div class="trait-spectrum"><span class="trait-pole">${lang.neg}</span><div class="spectrum-track" role="img" aria-label="${x.dimension}: ${x.label}"><i class="spectrum-marker" style="left:${pos}%"></i></div><span class="trait-pole">${lang.pos}</span></div><b>${x.label}</b>`;
     box.appendChild(row);
   });
 
+  if(snap && !profile.length){
+    box.innerHTML='<p class="privacy">Deep trait spectra are unavailable for this legacy shared link. The character result above is preserved.</p>';
+  }
   show('result');
 }
 
@@ -462,18 +476,18 @@ function exportDossier(){
   const img=new Image();
   img.onload=()=>{
     ctx.drawImage(img,38,55,400,533);
-    ctx.fillStyle=c.accent;ctx.font='700 22px Orbitron, sans-serif';ctx.fillText('PRIMARY SYNCHRONISATION',475,95);
-    ctx.fillStyle='#f3f3f3';ctx.font='900 47px Orbitron, sans-serif';wrapText(ctx,c.name,475,160,665,56);
-    ctx.fillStyle='#a5adb1';ctx.font='700 22px Rajdhani, sans-serif';ctx.fillText(c.classification||'',475,230);
-    ctx.fillStyle=c.accent;ctx.font='700 24px Rajdhani, sans-serif';ctx.fillText(c.title.toUpperCase(),475,270);
-    ctx.fillStyle='#f3f3f3';ctx.font='900 64px Orbitron, sans-serif';ctx.fillText(Math.round(p.compatibility)+'%',475,365);
-    ctx.fillStyle='#8f989d';ctx.font='700 18px Rajdhani, sans-serif';ctx.fillText('MAGI COMPATIBILITY',475,398);
-    ctx.fillStyle='#f3f3f3';ctx.font='900 50px Orbitron, sans-serif';ctx.fillText(lastResult.berserk?'400%':lastResult.sync+'%',760,365);
-    ctx.fillStyle='#8f989d';ctx.font='700 18px Rajdhani, sans-serif';ctx.fillText('EVA SYNC RATE',760,398);
+    ctx.fillStyle=c.accent;ctx.font='700 22px NERV Interface, sans-serif';ctx.fillText('PRIMARY SYNCHRONISATION',475,95);
+    ctx.fillStyle='#f3f3f3';ctx.font='900 47px NERV Interface, sans-serif';wrapText(ctx,c.name,475,160,665,56);
+    ctx.fillStyle='#a5adb1';ctx.font='700 22px NERV Interface, sans-serif';ctx.fillText(c.classification||'',475,230);
+    ctx.fillStyle=c.accent;ctx.font='700 24px NERV Interface, sans-serif';ctx.fillText(c.title.toUpperCase(),475,270);
+    ctx.fillStyle='#f3f3f3';ctx.font='900 64px NERV Interface, sans-serif';ctx.fillText(Math.round(p.compatibility)+'%',475,365);
+    ctx.fillStyle='#8f989d';ctx.font='700 18px NERV Interface, sans-serif';ctx.fillText('MAGI COMPATIBILITY',475,398);
+    ctx.fillStyle='#f3f3f3';ctx.font='900 50px NERV Interface, sans-serif';ctx.fillText(lastResult.berserk?'400%':lastResult.sync+'%',760,365);
+    ctx.fillStyle='#8f989d';ctx.font='700 18px NERV Interface, sans-serif';ctx.fillText('EVA SYNC RATE',760,398);
     ctx.fillStyle=c.accent;ctx.font='600 25px Inter, sans-serif';wrapText(ctx,'“'+c.quote+'”',475,470,650,34);
-    ctx.fillStyle='#858e92';ctx.font='700 18px Rajdhani, sans-serif';ctx.fillText('PROFILE STRUCTURE  '+lastResult.structure.label,475,585);
+    ctx.fillStyle='#858e92';ctx.font='700 18px NERV Interface, sans-serif';ctx.fillText('PROFILE STRUCTURE  '+lastResult.structure.label,475,585);
     const a=document.createElement('a');
-    a.download=c.name.replaceAll(' ','_')+'_NERV_v3_5_1_Dossier.png';
+    a.download=c.name.replaceAll(' ','_')+'_NERV_v3_6_Dossier.png';
     a.href=canvas.toDataURL('image/png');a.click();
   };
   img.src=c.image;
@@ -491,29 +505,45 @@ function wrapText(ctx,text,x,y,maxWidth,lineHeight){
 function shareResult(){
   if(!lastResult)return;
   const r=lastResult.ranked.slice(0,3).map(x=>[x.code,Math.round(x.compatibility)]);
-  const payload=btoa(unescape(encodeURIComponent(JSON.stringify({
-    r,s:lastResult.sync,p:lastResult.structure.label,b:lastResult.berserk
-  }))));
-  const url=location.href.split('#')[0]+'#result='+payload;
-  navigator.clipboard?.writeText(url)
-    .then(()=>$('shareStatus').textContent='Shareable result copied to clipboard.')
-    .catch(()=>prompt('Copy this result link:',url));
+  const dimensions=personalDimensionProfile().map(({dimension,z,label})=>({dimension,z:+z.toFixed(3),label}));
+  const shared=synchronisedCoreTraits(lastResult.ranked[0].code).map(({trait,strong})=>({trait,strong}));
+  const data={v:2,r,s:lastResult.sync,p:lastResult.structure.label,b:lastResult.berserk,
+    d:dimensions,w:whyMatchedText(lastResult.ranked[0].code),
+    m:explanationThemes(lastResult.ranked[0].code).map(x=>x.name),h:shared};
+  const payload=btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+  const base=location.origin+location.pathname+location.search;
+  const url=base+'#result='+payload;
+  const copied=()=>{$('shareStatus').textContent='Shareable result copied. Opening this link will display this result directly; your individual answers are not included.';};
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(url).then(copied).catch(()=>prompt('Copy this result link:',url));
+  }else{
+    prompt('Copy this result link:',url);
+  }
 }
 function restoreShared(){
   if(!location.hash.startsWith('#result='))return false;
   try{
     const data=JSON.parse(decodeURIComponent(escape(atob(location.hash.slice(8)))));
+    if(!Array.isArray(data.r)||!data.r.length)throw new Error('Invalid shared result');
     const ranked=data.r.map(([code,pct])=>({code,raw:0,compatibility:pct}));
+    if(ranked.some(x=>!CHARACTERS[x.code]))throw new Error('Unknown character');
     CODES.filter(k=>!ranked.some(r=>r.code===k)).forEach(k=>ranked.push({code:k,raw:0,compatibility:0}));
     lastResult={
       ranked,
-      sync:data.s||0,
+      sync:Number(data.s)||0,
       rawClarity:0,
       structure:{label:data.p||'LAYERED',effective:0},
-      berserk:!!data.b
+      berserk:!!data.b,
+      sharedSnapshot:{dimensions:Array.isArray(data.d)?data.d:[],why:data.w||'',themes:Array.isArray(data.m)?data.m:[],shared:Array.isArray(data.h)?data.h:[]}
     };
-    showResult();return true;
-  }catch(e){return false}
+    showResult();
+    $('shareStatus').textContent='Shared MAGI result loaded. This link contains result data only, not the original question responses.';
+    return true;
+  }catch(e){
+    console.warn('Unable to restore shared result',e);
+    $('shareStatus') && ($('shareStatus').textContent='This shared result link could not be read. You can still take the assessment normally.');
+    return false;
+  }
 }
 
 $('startBtn').onclick=()=>{

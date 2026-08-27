@@ -39,3 +39,13 @@ The scoring/calibration model is unchanged from v3.5.1. This release improves pa
 ## Compact result sharing
 
 Shared results use a compact `#r=` fragment. The payload stores only the derived result needed to reconstruct the result page; it does not contain the 30 individual answers. Browsers with Web Share support use the native share sheet, with clipboard copying as the fallback. Older `#result=` links remain readable.
+
+## v3.6.5 sharing reliability
+
+Compact shared results now use `?r=` rather than `#r=` for newly generated links. Query parameters are more reliably preserved by browsers, redirectors, messaging applications and GitHub Pages navigation. Existing `#r=` compact links and older `#result=` links remain supported.
+
+## v3.6.5 share restoration/cache fix
+
+The main JavaScript asset now has a versioned filename (`quiz-v3.6.5.js`). This prevents a browser or GitHub Pages/CDN cache from pairing a newly deployed `index.html` with an older quiz script that does not understand the compact shared-result format.
+
+New shares continue to use compact `?r=` links. Existing `#r=` and `#result=` links remain supported.

@@ -177,3 +177,105 @@ blockquote{margin:20px 0;border-left:3px solid var(--phase);padding:8px 16px;fon
 @media(max-width:780px){.question-head{gap:10px;align-items:flex-start}.question-head>div:last-child{white-space:normal;text-align:right}.result-card-wrap{position:static}.profile-dimension{grid-template-columns:1fr}.trait-spectrum{grid-template-columns:80px 1fr 80px}.compact-secondary{grid-template-columns:1fr 1fr}.compact-secondary .mini-result{grid-template-columns:62px 1fr}.compact-secondary .mini-result img{width:62px;height:72px}}
 @media(max-width:520px){.compact-secondary{grid-template-columns:1fr}.trait-spectrum{grid-template-columns:70px 1fr 70px}.trait-pole{font-size:9px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+
+/* v3.6.6 — results information hierarchy */
+.character-intro{
+  margin:20px 0 24px;
+  padding:16px 18px;
+  border:1px solid #30363a;
+  border-left:3px solid var(--phase);
+  background:linear-gradient(135deg,rgba(255,255,255,.025),rgba(255,255,255,.008));
+}
+.character-intro blockquote{
+  margin:0 0 12px;
+  padding:0;
+  border:0;
+  font-family:var(--dramatic);
+  font-size:clamp(18px,2vw,24px);
+  line-height:1.5;
+  color:#edf0f1;
+}
+.character-intro p{
+  margin:0;
+  color:#c5cbce;
+  line-height:1.7;
+}
+.supporting-under-primary{
+  margin:16px 0 0;
+  padding:14px;
+  border:1px solid #2b3033;
+  background:#040607;
+}
+.supporting-under-primary .section-label{
+  margin-bottom:9px;
+}
+.supporting-under-primary .compact-secondary{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:9px;
+  margin:0;
+}
+.supporting-under-primary .mini-result{
+  grid-template-columns:68px minmax(0,1fr);
+  gap:10px;
+  padding:8px;
+  min-width:0;
+}
+.supporting-under-primary .mini-result img{
+  width:68px;
+  height:78px;
+  object-fit:cover;
+  object-position:top;
+}
+.supporting-under-primary .mini-result strong{
+  overflow-wrap:anywhere;
+}
+.supporting-under-primary .mini-result em{
+  font-size:21px;
+}
+.supporting-under-primary .mini-result small{
+  font-size:10px;
+}
+.result-card-wrap{
+  max-width:390px;
+}
+@media(max-width:780px){
+  .result-card-wrap{max-width:none}
+  .supporting-under-primary .compact-secondary{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media(max-width:520px){
+  .supporting-under-primary .compact-secondary{
+    grid-template-columns:1fr;
+  }
+}
+
+/* v3.6.7 — explicit MAGI phase-processing feedback */
+.phase-process{
+  width:min(680px,90%);
+  margin:16px auto 10px;
+  padding:10px 14px;
+  border:1px solid var(--phase);
+  font-family:var(--interface);
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--phase);
+  background:rgba(255,255,255,.018);
+}
+.phase-process::after{
+  content:"  ▰ ▰ ▰";
+  display:inline-block;
+  margin-left:8px;
+  animation:magiProcess 1s steps(3,end) infinite;
+}
+@keyframes magiProcess{
+  0%{opacity:.25}
+  50%{opacity:1}
+  100%{opacity:.25}
+}
+@media (prefers-reduced-motion: reduce){
+  .phase-process::after{animation:none;opacity:1}
+}

@@ -40,12 +40,34 @@ The scoring/calibration model is unchanged from v3.5.1. This release improves pa
 
 Shared results use a compact `#r=` fragment. The payload stores only the derived result needed to reconstruct the result page; it does not contain the 30 individual answers. Browsers with Web Share support use the native share sheet, with clipboard copying as the fallback. Older `#result=` links remain readable.
 
-## v3.6.5 sharing reliability
+## v3.6.7 sharing reliability
 
 Compact shared results now use `?r=` rather than `#r=` for newly generated links. Query parameters are more reliably preserved by browsers, redirectors, messaging applications and GitHub Pages navigation. Existing `#r=` compact links and older `#result=` links remain supported.
 
-## v3.6.5 share restoration/cache fix
+## v3.6.7 share restoration/cache fix
 
-The main JavaScript asset now has a versioned filename (`quiz-v3.6.5.js`). This prevents a browser or GitHub Pages/CDN cache from pairing a newly deployed `index.html` with an older quiz script that does not understand the compact shared-result format.
+The main JavaScript asset now has a versioned filename (`quiz-v3.6.7.js`). This prevents a browser or GitHub Pages/CDN cache from pairing a newly deployed `index.html` with an older quiz script that does not understand the compact shared-result format.
 
 New shares continue to use compact `?r=` links. Existing `#r=` and `#result=` links remain supported.
+
+
+## v3.6.7 — result layout refinement
+
+- Character quote and character blurb now appear immediately after the primary result metrics/interpretation, before MAGI Analysis / Match Rationale.
+- Secondary and tertiary character patterns have moved into the left result column directly beneath the primary dossier artwork.
+- On desktop the supporting patterns stack beneath the primary image, making better use of the previously unused space below the portrait.
+- On smaller screens the supporting cards adapt to two columns where space allows, then one column on narrow phones.
+- No scoring, calibration, MAGI Cross-Check, compact sharing, or result-restoration logic has changed.
+
+## v3.6.7 — thematic UX refinement
+
+The 30-question assessment, all answer-to-character score vectors, compatibility calibration,
+EVA Sync calibration, Profile Structure thresholds, eight-trait logic and compact sharing are unchanged.
+
+Changes:
+- all 30 prompts receive light NERV/MAGI scenario framing while preserving their original psychological dilemma;
+- phase cards now state what each MAGI phase is assessing;
+- transitions explicitly report that the previous response pattern was acquired and that MAGI is synchronising;
+- answer guidance now asks for the response closest to the user's first instinct;
+- the result header is framed as a MAGI Personnel Compatibility Record;
+- no question was added, removed or moved, and no answer score was altered.

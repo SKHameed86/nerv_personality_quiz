@@ -1,0 +1,656 @@
+const NERV_BUILD='3.6.7';
+const QUESTIONS=[{"id":1,"phase":"THE SELF","title":"Failure","prompt":"A critical task has failed three times despite your effort. The MAGI system asks which response feels most natural:","answers":[{"text":"Abandon the current method and redesign your approach from the ground up.","scores":{"SH":0,"GE":1,"YU":5,"KF":0,"AS":0,"RE":0,"KA":3,"MI":5,"MA":0,"RI":4,"AO":2,"KW":2,"HY":0,"PP":4,"MR":5,"TJ":1}},{"text":"Work out exactly where the previous attempts failed.","scores":{"SH":1,"GE":3,"YU":2,"KF":4,"AS":0,"RE":2,"KA":3,"MI":2,"MA":5,"RI":4,"AO":5,"KW":0,"HY":5,"PP":0,"MR":1,"TJ":2}},{"text":"Question whether the objective is worth pursuing at all.","scores":{"SH":5,"GE":0,"YU":2,"KF":4,"AS":0,"RE":4,"KA":5,"MI":0,"MA":0,"RI":2,"AO":0,"KW":2,"HY":0,"PP":4,"MR":0,"TJ":0}},{"text":"Try again with only small adjustments, because persistence matters more than changing direction.","scores":{"SH":2,"GE":5,"YU":0,"KF":3,"AS":5,"RE":2,"KA":0,"MI":2,"MA":2,"RI":0,"AO":0,"KW":5,"HY":2,"PP":0,"MR":0,"TJ":4}}]},{"id":2,"phase":"THE SELF","title":"Being Underestimated","prompt":"During an assessment, someone assumes you're less capable than you actually are. Your reaction is closest to:","answers":[{"text":"Make a deliberate effort to demonstrate that they've underestimated you.","scores":{"SH":3,"GE":2,"YU":0,"KF":0,"AS":5,"RE":0,"KA":0,"MI":2,"MA":2,"RI":4,"AO":0,"KW":0,"HY":0,"PP":0,"MR":3,"TJ":3}},{"text":"Carry on as normal and let the quality of what you do speak for itself.","scores":{"SH":2,"GE":5,"YU":5,"KF":5,"AS":1,"RE":3,"KA":3,"MI":0,"MA":5,"RI":4,"AO":5,"KW":2,"HY":5,"PP":2,"MR":2,"TJ":4}},{"text":"Wondering what made them reach that conclusion.","scores":{"SH":5,"GE":0,"YU":3,"KF":2,"AS":2,"RE":5,"KA":3,"MI":0,"MA":3,"RI":2,"AO":0,"KW":5,"HY":2,"PP":0,"MR":0,"TJ":0}},{"text":"Finding the situation faintly amusing.","scores":{"SH":0,"GE":0,"YU":2,"KF":1,"AS":0,"RE":0,"KA":5,"MI":2,"MA":0,"RI":0,"AO":2,"KW":3,"HY":0,"PP":5,"MR":5,"TJ":1}}]},{"id":3,"phase":"THE SELF","title":"Praise","prompt":"After a successful operation, someone gives you sincere praise for what you did well. What is your most natural reaction?","answers":[{"text":"Feel uncomfortable being singled out and wish the attention would move elsewhere.","scores":{"SH":5,"GE":0,"YU":1,"KF":2,"AS":2,"RE":4,"KA":0,"MI":0,"MA":4,"RI":2,"AO":2,"KW":1,"HY":2,"PP":0,"MR":0,"TJ":0}},{"text":"Accept it readily; knowing that my work was recognised is useful feedback.","scores":{"SH":0,"GE":5,"YU":2,"KF":4,"AS":2,"RE":0,"KA":0,"MI":0,"MA":0,"RI":5,"AO":2,"KW":0,"HY":2,"PP":0,"MR":1,"TJ":1}},{"text":"Enjoy the compliment, then move on without thinking much more about it.","scores":{"SH":0,"GE":2,"YU":3,"KF":0,"AS":2,"RE":0,"KA":2,"MI":5,"MA":0,"RI":0,"AO":0,"KW":2,"HY":2,"PP":5,"MR":5,"TJ":4}},{"text":"Become curious about what specifically made them notice or value what I did.","scores":{"SH":3,"GE":0,"YU":5,"KF":2,"AS":0,"RE":5,"KA":2,"MI":0,"MA":0,"RI":2,"AO":0,"KW":5,"HY":0,"PP":0,"MR":2,"TJ":0}}]},{"id":4,"phase":"THE SELF","title":"Responsibility","prompt":"You discover that a decision you made months ago has unexpectedly affected somebody else's life. In a post-operation review, which thought comes closest to your reaction?","answers":[{"text":"I need to understand exactly what happened before I decide what to do.","scores":{"SH":1,"GE":3,"YU":0,"KF":4,"AS":0,"RE":2,"KA":2,"MI":0,"MA":5,"RI":5,"AO":5,"KW":1,"HY":5,"PP":0,"MR":0,"TJ":0}},{"text":"I knew there was a possibility this would happen.","scores":{"SH":0,"GE":5,"YU":2,"KF":4,"AS":2,"RE":0,"KA":5,"MI":2,"MA":0,"RI":3,"AO":2,"KW":0,"HY":0,"PP":0,"MR":2,"TJ":0}},{"text":"I should probably tell them, even if it makes things worse.","scores":{"SH":5,"GE":0,"YU":2,"KF":0,"AS":2,"RE":2,"KA":0,"MI":3,"MA":3,"RI":0,"AO":0,"KW":5,"HY":3,"PP":0,"MR":0,"TJ":2}},{"text":"What matters now is what we do with the situation we've inherited.","scores":{"SH":1,"GE":3,"YU":5,"KF":4,"AS":4,"RE":2,"KA":2,"MI":5,"MA":2,"RI":2,"AO":2,"KW":1,"HY":3,"PP":2,"MR":5,"TJ":4}}]},{"id":5,"phase":"THE SELF","title":"Rules","prompt":"A NERV procedure is clearly making a situation less effective. What is your instinct?","answers":[{"text":"Understand why the rule exists before deciding whether to bend it.","scores":{"SH":0,"GE":2,"YU":4,"KF":5,"AS":0,"RE":3,"KA":4,"MI":0,"MA":3,"RI":5,"AO":3,"KW":2,"HY":2,"PP":2,"MR":2,"TJ":1}},{"text":"Follow it by default; inefficiency alone isn't enough reason to disregard a rule.","scores":{"SH":2,"GE":0,"YU":0,"KF":3,"AS":0,"RE":5,"KA":0,"MI":2,"MA":5,"RI":2,"AO":3,"KW":0,"HY":5,"PP":2,"MR":0,"TJ":2}},{"text":"Work around it without making an issue of it.","scores":{"SH":0,"GE":5,"YU":2,"KF":2,"AS":1,"RE":3,"KA":4,"MI":0,"MA":0,"RI":3,"AO":5,"KW":2,"HY":2,"PP":4,"MR":5,"TJ":0}},{"text":"Break it openly if the situation demands it.","scores":{"SH":0,"GE":2,"YU":4,"KF":0,"AS":5,"RE":0,"KA":3,"MI":5,"MA":0,"RI":0,"AO":0,"KW":2,"HY":0,"PP":0,"MR":3,"TJ":3}}]},{"id":6,"phase":"THE SELF","title":"Competence Without Recognition","prompt":"You become extremely good at something important to the operation, but almost nobody will ever know what you contributed. Which aspect matters most to you?","answers":[{"text":"Fine. The work matters more than being associated with it.","scores":{"SH":3,"GE":3,"YU":4,"KF":5,"AS":0,"RE":2,"KA":3,"MI":2,"MA":3,"RI":2,"AO":4,"KW":2,"HY":5,"PP":4,"MR":2,"TJ":4}},{"text":"I can accept it, but I'd be lying if I said recognition didn't matter.","scores":{"SH":5,"GE":0,"YU":0,"KF":0,"AS":5,"RE":0,"KA":0,"MI":4,"MA":5,"RI":2,"AO":0,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":0}},{"text":"I'd rather use that competence somewhere my contribution can have a visible effect.","scores":{"SH":3,"GE":3,"YU":4,"KF":2,"AS":3,"RE":0,"KA":3,"MI":4,"MA":2,"RI":2,"AO":2,"KW":2,"HY":3,"PP":2,"MR":3,"TJ":2}},{"text":"Being underestimated gives me more freedom than being recognised.","scores":{"SH":0,"GE":5,"YU":2,"KF":3,"AS":1,"RE":0,"KA":5,"MI":0,"MA":0,"RI":0,"AO":4,"KW":0,"HY":0,"PP":4,"MR":5,"TJ":1}}]},{"id":7,"phase":"OTHERS","title":"An Uncomfortable Truth","prompt":"During a debrief, someone you respect tells you something about yourself that you don't particularly want to hear. Your first instinct is to:","answers":[{"text":"Examine whether they're actually right before deciding how you feel about it.","scores":{"SH":0,"GE":3,"YU":4,"KF":5,"AS":0,"RE":3,"KA":3,"MI":2,"MA":5,"RI":5,"AO":5,"KW":3,"HY":5,"PP":0,"MR":2,"TJ":0}},{"text":"Ask why they chose to tell you now.","scores":{"SH":0,"GE":5,"YU":2,"KF":3,"AS":2,"RE":2,"KA":5,"MI":2,"MA":2,"RI":3,"AO":2,"KW":5,"HY":2,"PP":0,"MR":2,"TJ":1}},{"text":"Dismiss it initially, then find yourself thinking about it later.","scores":{"SH":5,"GE":2,"YU":0,"KF":0,"AS":5,"RE":0,"KA":0,"MI":5,"MA":0,"RI":0,"AO":0,"KW":0,"HY":0,"PP":2,"MR":0,"TJ":2}},{"text":"Accept that their perspective is valid even if you don't agree with it.","scores":{"SH":0,"GE":0,"YU":4,"KF":2,"AS":0,"RE":5,"KA":2,"MI":0,"MA":3,"RI":0,"AO":2,"KW":3,"HY":2,"PP":4,"MR":5,"TJ":4}}]},{"id":8,"phase":"OTHERS","title":"The Difficult Person","prompt":"Someone on your assigned team is talented but difficult. Their challenges sometimes make synchronisation exhausting. What would make you most willing to tolerate the friction?","answers":[{"text":"They prevent the group from becoming complacent.","scores":{"SH":0,"GE":4,"YU":0,"KF":2,"AS":2,"RE":0,"KA":0,"MI":4,"MA":0,"RI":4,"AO":0,"KW":0,"HY":0,"PP":0,"MR":2,"TJ":1}},{"text":"They identify problems other people avoid saying aloud.","scores":{"SH":0,"GE":4,"YU":0,"KF":2,"AS":0,"RE":0,"KA":2,"MI":2,"MA":2,"RI":4,"AO":2,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":3}},{"text":"Their challenges force better reasoning and clearer decisions.","scores":{"SH":4,"GE":2,"YU":2,"KF":5,"AS":0,"RE":4,"KA":2,"MI":4,"MA":0,"RI":2,"AO":0,"KW":5,"HY":2,"PP":0,"MR":0,"TJ":0}},{"text":"Their best work emerges when they're given enough independence.","scores":{"SH":4,"GE":0,"YU":5,"KF":0,"AS":0,"RE":4,"KA":0,"MI":0,"MA":0,"RI":0,"AO":0,"KW":3,"HY":0,"PP":4,"MR":5,"TJ":4}}]},{"id":9,"phase":"OTHERS","title":"What People Owe Each Other","prompt":"When another person's choices begin affecting the rest of the team, which principle are you least willing to compromise?","answers":[{"text":"People should ultimately answer for the consequences of choices they make.","scores":{"SH":2,"GE":4,"YU":3,"KF":2,"AS":3,"RE":0,"KA":5,"MI":0,"MA":4,"RI":5,"AO":3,"KW":2,"HY":2,"PP":1,"MR":4,"TJ":4}},{"text":"People shouldn't be expected to carry serious problems entirely alone.","scores":{"SH":5,"GE":2,"YU":3,"KF":0,"AS":2,"RE":3,"KA":3,"MI":2,"MA":4,"RI":0,"AO":1,"KW":5,"HY":2,"PP":3,"MR":3,"TJ":3}},{"text":"A person's right to determine their own path should be interfered with only in exceptional circumstances.","scores":{"SH":2,"GE":0,"YU":5,"KF":2,"AS":5,"RE":5,"KA":3,"MI":0,"MA":4,"RI":0,"AO":5,"KW":4,"HY":2,"PP":5,"MR":5,"TJ":1}},{"text":"Sometimes preventing serious harm justifies acting before someone is ready to accept help.","scores":{"SH":0,"GE":5,"YU":0,"KF":0,"AS":0,"RE":0,"KA":0,"MI":0,"MA":0,"RI":2,"AO":0,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":0}}]},{"id":10,"phase":"OTHERS","title":"The Empty Chair","prompt":"You're waiting for someone who is very late to a scheduled briefing and have no way to know whether they'll arrive. What best describes your response to the uncertainty?","answers":[{"text":"The waiting doesn't bother me; I can redirect my attention until something changes.","scores":{"SH":2,"GE":4,"YU":3,"KF":3,"AS":3,"RE":2,"KA":3,"MI":3,"MA":4,"RI":5,"AO":5,"KW":2,"HY":4,"PP":5,"MR":5,"TJ":4}},{"text":"My mind starts generating possible explanations for their absence.","scores":{"SH":4,"GE":4,"YU":3,"KF":5,"AS":3,"RE":3,"KA":5,"MI":2,"MA":4,"RI":3,"AO":3,"KW":3,"HY":4,"PP":1,"MR":0,"TJ":0}},{"text":"Not knowing whether I'm wasting my time becomes increasingly frustrating.","scores":{"SH":4,"GE":2,"YU":0,"KF":0,"AS":5,"RE":0,"KA":0,"MI":5,"MA":0,"RI":2,"AO":0,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":1}},{"text":"I settle into the uncertainty itself and don't particularly need an answer yet.","scores":{"SH":0,"GE":0,"YU":5,"KF":3,"AS":0,"RE":5,"KA":3,"MI":0,"MA":2,"RI":0,"AO":3,"KW":5,"HY":2,"PP":4,"MR":2,"TJ":2}}]},{"id":11,"phase":"OTHERS","title":"When Someone Is Hurting","prompt":"You realise that someone close to you is struggling during a demanding assignment but hasn't asked for help. What do you do?","answers":[{"text":"Stay close and let them decide whether silence becomes conversation.","scores":{"SH":2,"GE":0,"YU":2,"KF":2,"AS":0,"RE":2,"KA":0,"MI":2,"MA":0,"RI":0,"AO":2,"KW":3,"HY":2,"PP":5,"MR":0,"TJ":2}},{"text":"Take care of something practical that makes their situation easier.","scores":{"SH":0,"GE":4,"YU":0,"KF":4,"AS":0,"RE":0,"KA":2,"MI":2,"MA":0,"RI":5,"AO":5,"KW":0,"HY":2,"PP":3,"MR":0,"TJ":4}},{"text":"Ask directly what kind of support, if any, they want.","scores":{"SH":2,"GE":0,"YU":2,"KF":0,"AS":0,"RE":0,"KA":2,"MI":5,"MA":0,"RI":0,"AO":0,"KW":5,"HY":0,"PP":0,"MR":2,"TJ":1}},{"text":"Step back unless they reach out, while making it clear the door is open.","scores":{"SH":0,"GE":2,"YU":5,"KF":4,"AS":2,"RE":5,"KA":0,"MI":0,"MA":2,"RI":2,"AO":3,"KW":3,"HY":0,"PP":3,"MR":2,"TJ":0}}]},{"id":12,"phase":"OTHERS","title":"A Choice You Don't Understand","prompt":"Someone you care deeply about chooses a path you would never choose yourself, but they seem genuinely happy with it. If MAGI could confirm only one thing, what would matter most?","answers":[{"text":"That they are happy, even if I never fully understand the choice.","scores":{"SH":0,"GE":0,"YU":0,"KF":0,"AS":0,"RE":2,"KA":0,"MI":0,"MA":0,"RI":0,"AO":0,"KW":4,"HY":0,"PP":3,"MR":2,"TJ":4}},{"text":"Understanding what the choice means to them.","scores":{"SH":2,"GE":1,"YU":0,"KF":2,"AS":2,"RE":4,"KA":4,"MI":0,"MA":0,"RI":2,"AO":2,"KW":4,"HY":0,"PP":0,"MR":0,"TJ":0}},{"text":"Knowing the decision is truly theirs rather than something imposed on them.","scores":{"SH":0,"GE":0,"YU":2,"KF":2,"AS":5,"RE":4,"KA":2,"MI":0,"MA":2,"RI":2,"AO":4,"KW":2,"HY":0,"PP":5,"MR":5,"TJ":3}},{"text":"Whether the happiness will survive the consequences of the decision.","scores":{"SH":2,"GE":5,"YU":0,"KF":5,"AS":3,"RE":0,"KA":4,"MI":2,"MA":0,"RI":5,"AO":4,"KW":0,"HY":2,"PP":0,"MR":2,"TJ":1}}]},{"id":13,"phase":"PRESSURE","title":"The Unplanned Variable","prompt":"An operation you've invested heavily in suddenly goes off course. Nobody is immediately blaming you, but the outcome will clearly be worse than expected. What bothers you most?","answers":[{"text":"Knowing that a better decision probably existed, if you'd been able to see it in time.","scores":{"SH":5,"GE":2,"YU":0,"KF":0,"AS":5,"RE":0,"KA":0,"MI":2,"MA":2,"RI":0,"AO":0,"KW":2,"HY":0,"PP":0,"MR":0,"TJ":2}},{"text":"Having to keep moving when you don't yet understand what happened.","scores":{"SH":3,"GE":0,"YU":0,"KF":2,"AS":2,"RE":0,"KA":2,"MI":0,"MA":0,"RI":0,"AO":2,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":0}},{"text":"Watching everyone become preoccupied with blame instead of solving the problem.","scores":{"SH":2,"GE":2,"YU":2,"KF":0,"AS":2,"RE":0,"KA":4,"MI":5,"MA":0,"RI":0,"AO":0,"KW":2,"HY":2,"PP":2,"MR":5,"TJ":4}},{"text":"The possibility that the setback reveals something fundamental about the plan itself.","scores":{"SH":0,"GE":5,"YU":5,"KF":0,"AS":0,"RE":2,"KA":4,"MI":0,"MA":0,"RI":2,"AO":0,"KW":5,"HY":0,"PP":0,"MR":2,"TJ":1}}]},{"id":14,"phase":"PRESSURE","title":"The Unknown","prompt":"NERV offers you a place on an operation involving something completely unfamiliar, with no guarantee that taking part will be worthwhile. Your strongest feeling is:","answers":[{"text":"Curiosity.","scores":{"SH":1,"GE":3,"YU":5,"KF":3,"AS":2,"RE":3,"KA":5,"MI":2,"MA":2,"RI":5,"AO":3,"KW":3,"HY":2,"PP":2,"MR":5,"TJ":0}},{"text":"Caution.","scores":{"SH":3,"GE":5,"YU":0,"KF":5,"AS":0,"RE":5,"KA":0,"MI":0,"MA":5,"RI":3,"AO":5,"KW":0,"HY":5,"PP":0,"MR":0,"TJ":1}},{"text":"Excitement.","scores":{"SH":0,"GE":2,"YU":0,"KF":0,"AS":5,"RE":0,"KA":2,"MI":5,"MA":0,"RI":2,"AO":0,"KW":2,"HY":0,"PP":3,"MR":3,"TJ":1}},{"text":"A desire to know who else is going.","scores":{"SH":5,"GE":0,"YU":0,"KF":1,"AS":2,"RE":2,"KA":0,"MI":2,"MA":2,"RI":0,"AO":0,"KW":5,"HY":3,"PP":5,"MR":2,"TJ":3}}]},{"id":15,"phase":"PRESSURE","title":"The Group Problem","prompt":"An operations team has developed an unspoken disagreement. Everyone remains professional, but coordination is beginning to suffer. What happens next?","answers":[{"text":"You eventually bring the issue into the open.","scores":{"SH":2,"GE":2,"YU":2,"KF":0,"AS":5,"RE":0,"KA":0,"MI":5,"MA":2,"RI":0,"AO":0,"KW":3,"HY":5,"PP":0,"MR":2,"TJ":2}},{"text":"You try to understand each person's position first.","scores":{"SH":5,"GE":0,"YU":2,"KF":5,"AS":0,"RE":5,"KA":2,"MI":2,"MA":5,"RI":2,"AO":2,"KW":5,"HY":2,"PP":0,"MR":0,"TJ":4}},{"text":"You watch for the point at which the disagreement becomes actionable.","scores":{"SH":0,"GE":3,"YU":0,"KF":2,"AS":0,"RE":2,"KA":0,"MI":0,"MA":2,"RI":2,"AO":5,"KW":0,"HY":2,"PP":2,"MR":0,"TJ":0}},{"text":"You suggest changing the environment or task so the disagreement becomes irrelevant.","scores":{"SH":0,"GE":5,"YU":5,"KF":0,"AS":2,"RE":0,"KA":0,"MI":2,"MA":0,"RI":5,"AO":2,"KW":0,"HY":0,"PP":4,"MR":5,"TJ":1}}]},{"id":16,"phase":"PRESSURE","title":"The Sacrifice","prompt":"One member of the team voluntarily offers to accept a serious personal cost that would resolve a crisis for everyone else. Before accepting their offer, what would you need to be most certain of?","answers":[{"text":"That they understand the cost and are choosing freely.","scores":{"SH":4,"GE":1,"YU":2,"KF":0,"AS":2,"RE":5,"KA":2,"MI":0,"MA":2,"RI":0,"AO":0,"KW":5,"HY":2,"PP":0,"MR":2,"TJ":2}},{"text":"That nobody has pressured them into believing they owe everyone this sacrifice.","scores":{"SH":4,"GE":0,"YU":0,"KF":0,"AS":2,"RE":2,"KA":2,"MI":2,"MA":2,"RI":0,"AO":0,"KW":2,"HY":0,"PP":0,"MR":0,"TJ":4}},{"text":"That their sacrifice genuinely solves the problem rather than postponing it.","scores":{"SH":0,"GE":4,"YU":0,"KF":2,"AS":0,"RE":0,"KA":0,"MI":0,"MA":0,"RI":5,"AO":2,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":1}},{"text":"That refusing their offer would not create an even greater cost they themselves wanted to prevent.","scores":{"SH":2,"GE":5,"YU":0,"KF":0,"AS":2,"RE":2,"KA":0,"MI":2,"MA":0,"RI":2,"AO":0,"KW":0,"HY":0,"PP":2,"MR":0,"TJ":0}}]},{"id":17,"phase":"PRESSURE","title":"The Impossible Choice","prompt":"MAGI presents two operational plans. One has a 70% chance of producing a mediocre outcome. The other has a 30% chance of producing something extraordinary and a 70% chance of going badly. You lean towards:","answers":[{"text":"The reliable option. A predictable outcome has value.","scores":{"SH":4,"GE":0,"YU":0,"KF":3,"AS":0,"RE":3,"KA":0,"MI":2,"MA":5,"RI":0,"AO":5,"KW":0,"HY":5,"PP":2,"MR":0,"TJ":1}},{"text":"The risky option. Extraordinary opportunities rarely arrive safely packaged.","scores":{"SH":0,"GE":2,"YU":3,"KF":0,"AS":5,"RE":0,"KA":3,"MI":3,"MA":0,"RI":2,"AO":0,"KW":2,"HY":0,"PP":2,"MR":3,"TJ":2}},{"text":"Waiting for more information, even if that means losing both opportunities.","scores":{"SH":4,"GE":0,"YU":2,"KF":5,"AS":0,"RE":5,"KA":2,"MI":0,"MA":3,"RI":2,"AO":3,"KW":2,"HY":3,"PP":0,"MR":0,"TJ":0}},{"text":"Finding a third option that changes the terms of the choice.","scores":{"SH":0,"GE":2,"YU":5,"KF":3,"AS":3,"RE":2,"KA":5,"MI":5,"MA":2,"RI":5,"AO":3,"KW":5,"HY":2,"PP":0,"MR":5,"TJ":4}}]},{"id":18,"phase":"PRESSURE","title":"The Cost of Control","prompt":"An outcome you care deeply about is slipping beyond your control. You can still influence what happens, but even MAGI cannot guarantee the result. What do you do?","answers":[{"text":"Tighten my control over the parts I can still influence.","scores":{"SH":0,"GE":5,"YU":0,"KF":0,"AS":5,"RE":0,"KA":0,"MI":0,"MA":0,"RI":4,"AO":2,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":2}},{"text":"Prepare for several outcomes rather than trying to force one.","scores":{"SH":0,"GE":4,"YU":4,"KF":2,"AS":2,"RE":3,"KA":4,"MI":2,"MA":2,"RI":4,"AO":5,"KW":3,"HY":5,"PP":4,"MR":5,"TJ":1}},{"text":"Trust the people involved to make choices I cannot make for them.","scores":{"SH":2,"GE":0,"YU":4,"KF":0,"AS":0,"RE":5,"KA":3,"MI":0,"MA":2,"RI":0,"AO":0,"KW":3,"HY":2,"PP":4,"MR":2,"TJ":4}},{"text":"Ask myself whether my need to control the outcome has become part of the problem.","scores":{"SH":5,"GE":1,"YU":3,"KF":0,"AS":2,"RE":3,"KA":4,"MI":0,"MA":2,"RI":3,"AO":0,"KW":5,"HY":0,"PP":2,"MR":3,"TJ":0}}]},{"id":19,"phase":"IDENTITY","title":"Irreversible Change","prompt":"An operation changes something important in your life in a way that cannot be undone. When the initial shock has passed, what most helps you begin moving forward?","answers":[{"text":"Finding something meaningful that can still be built from the new situation.","scores":{"SH":3,"GE":1,"YU":5,"KF":3,"AS":2,"RE":3,"KA":2,"MI":2,"MA":2,"RI":0,"AO":0,"KW":2,"HY":2,"PP":2,"MR":2,"TJ":4}},{"text":"Understanding what has actually changed before reacting.","scores":{"SH":2,"GE":5,"YU":2,"KF":5,"AS":0,"RE":3,"KA":0,"MI":0,"MA":5,"RI":5,"AO":5,"KW":0,"HY":2,"PP":0,"MR":0,"TJ":0}},{"text":"Accepting that resisting the change will not restore the past.","scores":{"SH":5,"GE":0,"YU":2,"KF":3,"AS":0,"RE":5,"KA":0,"MI":2,"MA":2,"RI":0,"AO":2,"KW":5,"HY":2,"PP":3,"MR":2,"TJ":2}},{"text":"Throwing yourself into something new rather than dwelling on what was lost.","scores":{"SH":0,"GE":2,"YU":0,"KF":0,"AS":5,"RE":0,"KA":0,"MI":5,"MA":0,"RI":0,"AO":0,"KW":0,"HY":0,"PP":5,"MR":5,"TJ":1}}]},{"id":20,"phase":"IDENTITY","title":"The Future","prompt":"A long-range NERV assessment asks you to imagine yourself ten years from now. Which aspect matters most?","answers":[{"text":"Having built something that continues after you.","scores":{"SH":0,"GE":5,"YU":2,"KF":4,"AS":0,"RE":0,"KA":0,"MI":2,"MA":0,"RI":4,"AO":0,"KW":0,"HY":2,"PP":0,"MR":0,"TJ":2}},{"text":"Being surrounded by people you trust.","scores":{"SH":5,"GE":1,"YU":0,"KF":0,"AS":2,"RE":2,"KA":0,"MI":5,"MA":2,"RI":0,"AO":0,"KW":4,"HY":5,"PP":4,"MR":0,"TJ":4}},{"text":"Having understood something that once seemed impossible.","scores":{"SH":0,"GE":3,"YU":2,"KF":4,"AS":0,"RE":2,"KA":2,"MI":0,"MA":0,"RI":4,"AO":5,"KW":3,"HY":0,"PP":2,"MR":2,"TJ":0}},{"text":"Knowing that you lived according to your own choices.","scores":{"SH":3,"GE":0,"YU":2,"KF":2,"AS":5,"RE":5,"KA":2,"MI":2,"MA":0,"RI":0,"AO":2,"KW":4,"HY":2,"PP":5,"MR":5,"TJ":1}}]},{"id":21,"phase":"IDENTITY","title":"The Quiet Moment","prompt":"After an extended deployment, you unexpectedly have an entire evening with no obligations and enough energy to do whatever you like. With nobody else influencing the choice, where do you naturally drift?","answers":[{"text":"Going somewhere you've never been.","scores":{"SH":0,"GE":0,"YU":2,"KF":0,"AS":5,"RE":0,"KA":2,"MI":3,"MA":0,"RI":2,"AO":2,"KW":0,"HY":0,"PP":4,"MR":5,"TJ":2}},{"text":"Being with someone you enjoy without needing to do anything.","scores":{"SH":5,"GE":0,"YU":2,"KF":2,"AS":2,"RE":5,"KA":0,"MI":5,"MA":4,"RI":0,"AO":0,"KW":2,"HY":5,"PP":3,"MR":0,"TJ":1}},{"text":"Working on something purely because you're interested in it.","scores":{"SH":0,"GE":5,"YU":5,"KF":5,"AS":2,"RE":2,"KA":2,"MI":0,"MA":4,"RI":5,"AO":2,"KW":0,"HY":2,"PP":0,"MR":2,"TJ":0}},{"text":"Doing absolutely nothing and enjoying the absence of demands.","scores":{"SH":3,"GE":0,"YU":0,"KF":3,"AS":0,"RE":2,"KA":0,"MI":3,"MA":2,"RI":0,"AO":5,"KW":0,"HY":2,"PP":4,"MR":0,"TJ":4}}]},{"id":22,"phase":"IDENTITY","title":"The Old Photograph","prompt":"While reviewing an old personnel archive, you find a photograph of yourself with people you haven't seen in years. After the initial glance, what is most likely to hold your attention?","answers":[{"text":"How much everyone has changed since then.","scores":{"SH":0,"GE":0,"YU":0,"KF":2,"AS":2,"RE":0,"KA":0,"MI":0,"MA":0,"RI":0,"AO":2,"KW":0,"HY":0,"PP":5,"MR":2,"TJ":1}},{"text":"The memories surrounding the moment that the photograph cannot show.","scores":{"SH":5,"GE":3,"YU":5,"KF":2,"AS":2,"RE":4,"KA":5,"MI":4,"MA":2,"RI":2,"AO":2,"KW":5,"HY":2,"PP":1,"MR":2,"TJ":4}},{"text":"The people or relationships that are absent from the frame.","scores":{"SH":2,"GE":5,"YU":2,"KF":2,"AS":0,"RE":4,"KA":2,"MI":4,"MA":0,"RI":5,"AO":0,"KW":2,"HY":0,"PP":0,"MR":0,"TJ":2}},{"text":"What someone's expression suggests they were feeling at the time.","scores":{"SH":2,"GE":0,"YU":2,"KF":0,"AS":5,"RE":2,"KA":2,"MI":2,"MA":5,"RI":0,"AO":2,"KW":2,"HY":5,"PP":0,"MR":2,"TJ":0}}]},{"id":23,"phase":"IDENTITY","title":"Your Greatest Weakness","prompt":"During a confidential psychological assessment, which would be hardest for you to admit?","answers":[{"text":"I need someone.","scores":{"SH":5,"GE":2,"YU":0,"KF":0,"AS":2,"RE":5,"KA":0,"MI":2,"MA":0,"RI":2,"AO":2,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":4}},{"text":"I don't know what I'm doing.","scores":{"SH":0,"GE":0,"YU":2,"KF":5,"AS":0,"RE":2,"KA":5,"MI":0,"MA":5,"RI":0,"AO":5,"KW":1,"HY":2,"PP":2,"MR":2,"TJ":1}},{"text":"I'm afraid of losing control.","scores":{"SH":0,"GE":2,"YU":0,"KF":2,"AS":0,"RE":0,"KA":0,"MI":0,"MA":0,"RI":0,"AO":2,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":0}},{"text":"I don't know whether I'm happy.","scores":{"SH":2,"GE":0,"YU":2,"KF":0,"AS":0,"RE":3,"KA":0,"MI":0,"MA":0,"RI":0,"AO":0,"KW":5,"HY":0,"PP":0,"MR":0,"TJ":2}}]},{"id":24,"phase":"IDENTITY","title":"Classified Information","prompt":"You discover classified information that changes your understanding of a decision already in motion. Nobody knows you have seen it. What is your first priority?","answers":[{"text":"Verify whether the information is accurate before drawing conclusions from it.","scores":{"SH":0,"GE":1,"YU":3,"KF":2,"AS":0,"RE":0,"KA":0,"MI":2,"MA":3,"RI":5,"AO":2,"KW":1,"HY":2,"PP":2,"MR":0,"TJ":2}},{"text":"Work out who already knew it and why it was being withheld.","scores":{"SH":0,"GE":3,"YU":2,"KF":5,"AS":2,"RE":0,"KA":5,"MI":2,"MA":1,"RI":3,"AO":0,"KW":2,"HY":0,"PP":0,"MR":2,"TJ":0}},{"text":"Decide whether staying silent would expose someone to harm or leave a responsibility unmet.","scores":{"SH":5,"GE":0,"YU":5,"KF":0,"AS":4,"RE":5,"KA":0,"MI":5,"MA":5,"RI":0,"AO":0,"KW":5,"HY":5,"PP":2,"MR":5,"TJ":4}},{"text":"Keep it compartmentalised until revealing it would materially change what happens.","scores":{"SH":2,"GE":5,"YU":0,"KF":3,"AS":0,"RE":0,"KA":2,"MI":0,"MA":0,"RI":3,"AO":5,"KW":0,"HY":0,"PP":4,"MR":0,"TJ":1}}]},{"id":25,"phase":"SYNCHRONISATION","title":"A Personal Boundary","prompt":"Someone you trust deeply wants access to something personal you're not ready to share. You believe their concern is genuine. What would you most naturally do?","answers":[{"text":"Give them part of the truth.","scores":{"SH":0,"GE":5,"YU":3,"KF":5,"AS":2,"RE":5,"KA":2,"MI":2,"MA":2,"RI":5,"AO":4,"KW":2,"HY":2,"PP":1,"MR":0,"TJ":1}},{"text":"Refuse, but try not to make them feel rejected.","scores":{"SH":0,"GE":2,"YU":3,"KF":2,"AS":2,"RE":2,"KA":0,"MI":0,"MA":5,"RI":2,"AO":4,"KW":5,"HY":5,"PP":2,"MR":0,"TJ":2}},{"text":"Change the subject until the moment passes.","scores":{"SH":2,"GE":3,"YU":0,"KF":0,"AS":5,"RE":0,"KA":2,"MI":2,"MA":0,"RI":2,"AO":2,"KW":0,"HY":0,"PP":5,"MR":5,"TJ":0}},{"text":"Tell them, because withholding it feels more damaging than revealing it.","scores":{"SH":0,"GE":0,"YU":5,"KF":0,"AS":0,"RE":2,"KA":0,"MI":5,"MA":2,"RI":0,"AO":0,"KW":3,"HY":2,"PP":0,"MR":0,"TJ":4}}]},{"id":26,"phase":"SYNCHRONISATION","title":"When Nobody Is Watching","prompt":"You have an assigned responsibility that nobody will know you failed to complete unless you choose to report it. What matters most?","answers":[{"text":"Doing it properly because someone may eventually depend on it.","scores":{"SH":3,"GE":2,"YU":2,"KF":4,"AS":2,"RE":2,"KA":2,"MI":4,"MA":4,"RI":4,"AO":2,"KW":2,"HY":4,"PP":2,"MR":0,"TJ":4}},{"text":"Being honest about what happened, even if there are consequences.","scores":{"SH":5,"GE":0,"YU":0,"KF":0,"AS":2,"RE":2,"KA":4,"MI":2,"MA":4,"RI":0,"AO":0,"KW":2,"HY":4,"PP":0,"MR":0,"TJ":3}},{"text":"Deciding whether the task still matters before spending effort on it.","scores":{"SH":0,"GE":3,"YU":0,"KF":2,"AS":0,"RE":0,"KA":4,"MI":0,"MA":0,"RI":4,"AO":2,"KW":0,"HY":0,"PP":5,"MR":2,"TJ":0}},{"text":"Finish it simply because I said I would, even if I now doubt whether anyone will benefit.","scores":{"SH":3,"GE":5,"YU":0,"KF":4,"AS":5,"RE":2,"KA":0,"MI":4,"MA":4,"RI":3,"AO":2,"KW":5,"HY":4,"PP":1,"MR":0,"TJ":1}}]},{"id":27,"phase":"SYNCHRONISATION","title":"Authority","prompt":"Your commanding officer gives you an order that you believe is technically correct but ethically questionable. You are most likely to:","answers":[{"text":"Follow it, while documenting your concerns.","scores":{"SH":0,"GE":2,"YU":0,"KF":4,"AS":0,"RE":4,"KA":0,"MI":0,"MA":2,"RI":2,"AO":2,"KW":0,"HY":2,"PP":3,"MR":0,"TJ":1}},{"text":"Challenge the order directly.","scores":{"SH":0,"GE":0,"YU":3,"KF":0,"AS":5,"RE":0,"KA":3,"MI":4,"MA":5,"RI":0,"AO":0,"KW":2,"HY":0,"PP":0,"MR":3,"TJ":4}},{"text":"Find a way to achieve the intended objective without following the questionable part.","scores":{"SH":0,"GE":5,"YU":4,"KF":2,"AS":2,"RE":2,"KA":3,"MI":4,"MA":0,"RI":2,"AO":0,"KW":5,"HY":5,"PP":4,"MR":5,"TJ":2}},{"text":"Ask for clarification about the underlying objective before acting.","scores":{"SH":0,"GE":3,"YU":4,"KF":4,"AS":1,"RE":4,"KA":5,"MI":2,"MA":2,"RI":5,"AO":0,"KW":3,"HY":2,"PP":2,"MR":2,"TJ":0}}]},{"id":28,"phase":"SYNCHRONISATION","title":"Being Misunderstood","prompt":"Someone important to you has formed an inaccurate impression of why you made a difficult operational decision. Correcting them would require revealing something deeply personal. What matters most?","answers":[{"text":"Being understood accurately, even if explaining myself feels exposing.","scores":{"SH":5,"GE":0,"YU":3,"KF":1,"AS":3,"RE":1,"KA":3,"MI":5,"MA":3,"RI":1,"AO":0,"KW":4,"HY":3,"PP":0,"MR":1,"TJ":4}},{"text":"Protecting what is private; they don't need to understand everything about me.","scores":{"SH":2,"GE":5,"YU":1,"KF":3,"AS":5,"RE":3,"KA":3,"MI":1,"MA":1,"RI":5,"AO":5,"KW":0,"HY":1,"PP":4,"MR":3,"TJ":1}},{"text":"Whether their misunderstanding will materially affect what happens next.","scores":{"SH":0,"GE":3,"YU":3,"KF":5,"AS":0,"RE":1,"KA":5,"MI":3,"MA":5,"RI":3,"AO":3,"KW":1,"HY":5,"PP":1,"MR":3,"TJ":2}},{"text":"Whether correcting them would actually change how they feel about the decision.","scores":{"SH":3,"GE":2,"YU":2,"KF":3,"AS":3,"RE":5,"KA":3,"MI":3,"MA":1,"RI":3,"AO":2,"KW":5,"HY":1,"PP":0,"MR":2,"TJ":0}}]},{"id":29,"phase":"SYNCHRONISATION","title":"The Troubling Decision","prompt":"Someone you respect makes a decision you believe is wrong. They don't need your authorisation, but they value your support. What matters most?","answers":[{"text":"Making sure they understand why I think they're wrong, even if it strains the relationship.","scores":{"SH":2,"GE":3,"YU":0,"KF":0,"AS":5,"RE":0,"KA":0,"MI":2,"MA":5,"RI":0,"AO":0,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":2}},{"text":"Helping them deal with the consequences without pretending I agreed with the decision.","scores":{"SH":2,"GE":3,"YU":3,"KF":3,"AS":0,"RE":3,"KA":3,"MI":5,"MA":0,"RI":0,"AO":0,"KW":3,"HY":5,"PP":3,"MR":0,"TJ":4}},{"text":"Understanding what led them there before deciding how strongly to oppose it.","scores":{"SH":0,"GE":5,"YU":3,"KF":5,"AS":0,"RE":3,"KA":5,"MI":0,"MA":0,"RI":5,"AO":2,"KW":3,"HY":2,"PP":0,"MR":0,"TJ":1}},{"text":"Respecting that the choice is theirs unless it places someone else at serious risk.","scores":{"SH":0,"GE":0,"YU":5,"KF":3,"AS":3,"RE":5,"KA":3,"MI":2,"MA":2,"RI":0,"AO":2,"KW":5,"HY":2,"PP":5,"MR":5,"TJ":0}}]},{"id":30,"phase":"SYNCHRONISATION","title":"Final Synchronisation","prompt":"At the end of the assessment, you're given one opportunity to leave a message for someone who may never hear it. What would you most want them to understand?","answers":[{"text":"You were never as alone as you thought.","scores":{"SH":5,"GE":0,"YU":0,"KF":0,"AS":4,"RE":2,"KA":0,"MI":2,"MA":2,"RI":0,"AO":0,"KW":2,"HY":2,"PP":4,"MR":0,"TJ":4}},{"text":"I wanted you to become capable of choosing for yourself.","scores":{"SH":0,"GE":2,"YU":2,"KF":4,"AS":4,"RE":2,"KA":0,"MI":2,"MA":2,"RI":0,"AO":2,"KW":2,"HY":2,"PP":0,"MR":2,"TJ":2}},{"text":"Whatever happened, I don't regret knowing you.","scores":{"SH":2,"GE":4,"YU":2,"KF":4,"AS":4,"RE":0,"KA":2,"MI":2,"MA":2,"RI":2,"AO":2,"KW":2,"HY":5,"PP":4,"MR":2,"TJ":1}},{"text":"There was always more to the story than you could see.","scores":{"SH":0,"GE":4,"YU":2,"KF":4,"AS":0,"RE":2,"KA":2,"MI":0,"MA":0,"RI":5,"AO":5,"KW":0,"HY":0,"PP":0,"MR":0,"TJ":0}}]}];
+const CHARACTERS={"SH":{"name":"SHINJI IKARI","title":"The Hesitant Synchronisation","quote":"I mustn't run away.","traits":"Empathy · Reflection · Sensitivity · Attachment","blurb":"You tend to experience decisions emotionally before you experience them rationally. You may hesitate when the consequences of your choices could hurt someone, but that hesitation does not mean you lack courage. You are particularly sensitive to rejection and expectations, and may underestimate your own resilience.","fingerprint":[0.9,0.3,0.25,0.3,0.45,0.8,0.35,0.4],"classification":"THIRD CHILD","accent":"#8E44FF","image":"assets/characters/SH.png"},"GE":{"name":"GENDO IKARI","title":"The Command Synchronisation","quote":"Get in the robot, Shinji.","traits":"Determination · Control · Strategy · Compartmentalisation","blurb":"You tend to solve uncertainty by creating structure around it. You may keep emotions private when you believe expressing them would weaken your ability to achieve an objective. Others may mistake reserve for indifference when you have simply decided that action matters more than explanation.","fingerprint":[0.15,0.95,0.98,0.75,0.25,0.65,0.08,0.35],"classification":"DIRECTOR OF NERV","accent":"#FF3333","image":"assets/characters/GE.png"},"YU":{"name":"YUI IKARI","title":"The Human Synchronisation","quote":"Anywhere can be paradise…","traits":"Curiosity · Optimism · Independence · Vision","blurb":"You tend to look beyond immediate circumstances and consider what might become possible. You can tolerate uncertainty when it serves a larger purpose, and place considerable faith in people's capacity to change. Your optimism is often a deliberate choice rather than naïveté.","fingerprint":[0.65,0.9,0.3,0.3,0.9,0.75,0.8,0.75],"classification":"CHIEF BIO-ENGINEER","accent":"#F7D7C4","image":"assets/characters/YU.png"},"KF":{"name":"KOUZOU FUYUTSUKI","title":"The Observer Synchronisation","quote":"People are creatures that live by memory.","traits":"Patience · Insight · Loyalty · Restraint","blurb":"You rarely need to be the loudest person in the room. You prefer to observe, understand the forces at work and intervene when your contribution matters. Your loyalty tends to be thoughtful rather than unquestioning.","fingerprint":[0.35,0.6,0.65,0.2,0.55,0.75,0.3,0.5],"classification":"VICE-COMMANDER","accent":"#B8B8B8","image":"assets/characters/KF.png"},"AS":{"name":"ASUKA LANGLEY SORYU","title":"The Combative Synchronisation","quote":"I don't want to lose.","traits":"Drive · Independence · Pride · Resilience","blurb":"You derive confidence from competence, but recognition can matter more than you admit. Being underestimated can be particularly motivating. You value independence, while your strongest relationships may be those where you can stop proving you do not need anyone.","fingerprint":[0.3,0.9,0.65,0.98,0.6,0.55,0.35,0.75],"classification":"SECOND CHILD","accent":"#FF3333","image":"assets/characters/AS.png"},"RE":{"name":"REI AYANAMI","title":"The Quiet Synchronisation","quote":"I don't know what this feeling is.","traits":"Acceptance · Introspection · Composure · Curiosity","blurb":"You do not necessarily need to fill silence with explanations. You can accept circumstances others struggle against while remaining quietly curious about who you are and what you want. Your strength lies partly in observing without immediately judging.","fingerprint":[0.7,0.35,0.4,0.15,0.55,0.6,0.2,0.55],"classification":"FIRST CHILD","accent":"#00D9FF","image":"assets/characters/RE.png"},"KA":{"name":"RYOJI KAJI","title":"The Adaptive Synchronisation","quote":"Humans are always looking for something.","traits":"Adaptability · Curiosity · Emotional intelligence · Pragmatism","blurb":"You are comfortable navigating ambiguity and rarely assume the first explanation is the whole story. You can take difficult situations seriously without allowing them to consume you. You value relationships while understanding the importance of personal freedom.","fingerprint":[0.7,0.85,0.4,0.55,0.85,0.65,0.85,0.95],"classification":"SPECIAL INSPECTOR","accent":"#45D06F","image":"assets/characters/KA.png"},"MI":{"name":"MISATO KATSURAGI","title":"The Improvised Synchronisation","quote":"Sometimes you have to live with the consequences.","traits":"Action · Loyalty · Courage · Spontaneity","blurb":"You can function remarkably well when circumstances become chaotic. You may not always have a perfect plan, but you are willing to act when somebody has to. Beneath decisiveness is a strong need for connection that is not always easy to reconcile with responsibility.","fingerprint":[0.7,0.55,0.55,0.75,0.75,0.9,0.7,0.95],"classification":"TACTICAL OPERATIONS DIRECTOR","accent":"#8A5CFF","image":"assets/characters/MI.png"},"MA":{"name":"MAYA IBUKI","title":"The Conscientious Synchronisation","quote":"I don't think I can do this…","traits":"Empathy · Conscientiousness · Ethics · Reliability","blurb":"You take responsibility seriously, particularly when other people could be affected by your decisions. You notice details others overlook and are inclined to ask whether something should be done, not merely whether it can be done. Reliability is one of your quiet strengths.","fingerprint":[0.8,0.35,0.55,0.3,0.55,0.95,0.6,0.65],"classification":"COMPUTER TECHNICIAN","accent":"#D8C49A","image":"assets/characters/MA.png"},"RI":{"name":"RITSUKO AKAGI","title":"The Analytical Synchronisation","quote":"Science is the power of human beings.","traits":"Analysis · Competence · Logic · Control","blurb":"You prefer understanding to guessing and evidence to assumption. Competence gives you security, and you approach difficult situations by breaking them into manageable systems. Rationality can sometimes become a shield against emotions that are much less controllable.","fingerprint":[0.25,0.55,0.95,0.7,0.65,0.75,0.3,0.45],"classification":"CHIEF SCIENTIST","accent":"#FF8A33","image":"assets/characters/RI.png"},"AO":{"name":"SHIGERU AOBA","title":"The Signal Synchronisation","quote":"No abnormalities detected.","traits":"Observation · Independence · Scepticism · Technical thinking","blurb":"You are comfortable operating slightly outside the spotlight. You notice patterns, inconsistencies and changes without needing to make a spectacle of noticing them. You value independence and prefer clear communication without unnecessary drama.","fingerprint":[0.25,0.75,0.65,0.25,0.6,0.55,0.3,0.65],"classification":"COMPUTER TECHNICIAN","accent":"#8BA58D","image":"assets/characters/AO.png"},"KW":{"name":"KAWORU NAGISA","title":"The Connection Synchronisation","quote":"I was born to meet you.","traits":"Compassion · Acceptance · Authenticity · Connection","blurb":"You tend to look past people's defences and see the person underneath them. You do not necessarily require others to justify themselves before accepting them. Connection, authenticity and understanding matter more to you than conventional expectations.","fingerprint":[0.9,0.45,0.2,0.2,0.9,0.75,0.98,0.8],"classification":"FIFTH CHILD","accent":"#C9D6FF","image":"assets/characters/KW.png"},"HY":{"name":"MAKOTO HYUGA","title":"The Support Synchronisation","quote":"I'm counting on you.","traits":"Loyalty · Communication · Reliability · Supportiveness","blurb":"You are often at your best when helping someone else succeed. You pay attention to what people need, communicate when information matters and remain dependable under stress. You do not need to be in charge to be essential to a team.","fingerprint":[0.65,0.25,0.45,0.2,0.45,0.9,0.65,0.75],"classification":"COMPUTER TECHNICIAN","accent":"#B2A37B","image":"assets/characters/HY.png"},"PP":{"name":"PEN-PEN","title":"The Independent Synchronisation","quote":"…","traits":"Independence · Observation · Comfort · Curiosity","blurb":"You may be more perceptive than people realise. You appreciate comfort, familiar surroundings and control over your own space, while remaining curious about what happens around you. You do not feel compelled to participate in every drama—and that can make you surprisingly clear-sighted.","fingerprint":[0.35,0.9,0.25,0.1,0.7,0.3,0.2,0.7],"classification":"NERV MASCOT","accent":"#E5D6A4","image":"assets/characters/PP.png"},"MR":{"name":"MARI ILLUSTRIOUS MAKINAMI","title":"The Unpredictable Synchronisation","quote":"It's so exciting!","traits":"Curiosity · Spontaneity · Adaptability · Playfulness","blurb":"You are energised by novelty and tend to treat uncertainty as an invitation rather than a warning. You can be playful without being careless and serious without becoming solemn. Rules are useful when they serve a purpose, but you are happy to find another route when they do not.","fingerprint":[0.45,0.9,0.35,0.8,0.98,0.55,0.85,1.0],"classification":"FOURTH CHILD · REBUILD","accent":"#FF4FAD","image":"assets/characters/MR.png"},"TJ":{"name":"TOJI SUZUHARA","title":"The Grounded Synchronisation","quote":"I have my reasons for doing this.","traits":"Loyalty · Directness · Protectiveness · Groundedness","blurb":"You tend to meet difficult situations in a direct, practical way. Loyalty is personal rather than abstract: the people close to you matter, and protecting them can outweigh prestige or recognition. You may react bluntly at first, but you are capable of revising a judgement once you understand the person behind it.","fingerprint":[0.55,0.7,0.35,0.25,0.35,0.9,0.55,0.65],"classification":"FOURTH CHILD","accent":"#4F78B8","image":"assets/characters/TJ.png"}};
+const PHASES=[{"name":"THE SELF","subtitle":"Identity baseline // intrinsic response pattern","color":"#FF6600","terminal":"MELCHIOR"},{"name":"OTHERS","subtitle":"Interpersonal synchronisation // attachment and responsibility","color":"#00FFCC","terminal":"BALTHASAR"},{"name":"PRESSURE","subtitle":"Tactical response analysis // uncertainty and control","color":"#39FF14","terminal":"CASPER"},{"name":"IDENTITY","subtitle":"Continuity analysis // memory, change and future self","color":"#CC44FF","terminal":"MAGI TRIAD"},{"name":"SYNCHRONISATION","subtitle":"Final integration // attachment, principle and choice","color":"#FF3333","terminal":"MAGI TRIAD"}];
+const CODES=["SH","GE","YU","KF","AS","RE","KA","MI","MA","RI","AO","KW","HY","PP","MR","TJ"];
+const COMPATIBILITY_MODEL={absoluteWeight:0.75,breadthWeight:0.25,universalCeiling:150};
+const PHASE_MAX=[[27,30,28,27,26,23,26,26,29,25,26,24,27,24,30,23],[22,27,26,26,24,28,23,23,19,29,26,29,17,28,27,24],[28,27,26,21,27,27,22,24,21,26,24,30,24,19,27,23],[30,27,24,26,26,29,21,26,26,26,27,26,24,25,24,24],[19,29,21,27,29,23,23,25,26,29,20,27,29,27,22,24]];
+const SYNC_LOOKUP_V31=[[0.043094,0.0],[0.384609,0.5],[0.486614,1.0],[0.561815,1.5],[0.624938,2.0],[0.680426,2.5],[0.732507,3.0],[0.779994,3.5],[0.824033,4.0],[0.866209,4.5],[0.905768,5.0],[0.945188,5.5],[0.982065,6.0],[1.018045,6.5],[1.053165,7.0],[1.086456,7.5],[1.119354,8.0],[1.151375,8.5],[1.183065,9.0],[1.214446,9.5],[1.245483,10.0],[1.276262,10.5],[1.305593,11.0],[1.335449,11.5],[1.364782,12.0],[1.393973,12.5],[1.422792,13.0],[1.451236,13.5],[1.47917,14.0],[1.506759,14.5],[1.534077,15.0],[1.561266,15.5],[1.588531,16.0],[1.616047,16.5],[1.643227,17.0],[1.670239,17.5],[1.696732,18.0],[1.72351,18.5],[1.749978,19.0],[1.775691,19.5],[1.801924,20.0],[1.828217,20.5],[1.854419,21.0],[1.880875,21.5],[1.907511,22.0],[1.933725,22.5],[1.959929,23.0],[1.985578,23.5],[2.011427,24.0],[2.037364,24.5],[2.064002,25.0],[2.089971,25.5],[2.115607,26.0],[2.141963,26.5],[2.168208,27.0],[2.193895,27.5],[2.219793,28.0],[2.246023,28.5],[2.272121,29.0],[2.297984,29.5],[2.323288,30.0],[2.349117,30.5],[2.375372,31.0],[2.401581,31.5],[2.427744,32.0],[2.454007,32.5],[2.480549,33.0],[2.506918,33.5],[2.53322,34.0],[2.559806,34.5],[2.587282,35.0],[2.613993,35.5],[2.641208,36.0],[2.667901,36.5],[2.695283,37.0],[2.722079,37.5],[2.748874,38.0],[2.775555,38.5],[2.80246,39.0],[2.829175,39.5],[2.856554,40.0],[2.883549,40.5],[2.910738,41.0],[2.938296,41.5],[2.966589,42.0],[2.994629,42.5],[3.022495,43.0],[3.051219,43.5],[3.080248,44.0],[3.108236,44.5],[3.136098,45.0],[3.165197,45.5],[3.194233,46.0],[3.223369,46.5],[3.252686,47.0],[3.281825,47.5],[3.311688,48.0],[3.341736,48.5],[3.371723,49.0],[3.401571,49.5],[3.431641,50.0],[3.462385,50.5],[3.493553,51.0],[3.524665,51.5],[3.555867,52.0],[3.587135,52.5],[3.618772,53.0],[3.650174,53.5],[3.682101,54.0],[3.714816,54.5],[3.747387,55.0],[3.779746,55.5],[3.81284,56.0],[3.84601,56.5],[3.879143,57.0],[3.913124,57.5],[3.94825,58.0],[3.982536,58.5],[4.017117,59.0],[4.052696,59.5],[4.087161,60.0],[4.122554,60.5],[4.159095,61.0],[4.196295,61.5],[4.233919,62.0],[4.27197,62.5],[4.309005,63.0],[4.346178,63.5],[4.384384,64.0],[4.422372,64.5],[4.461517,65.0],[4.501513,65.5],[4.541568,66.0],[4.583749,66.5],[4.623676,67.0],[4.665367,67.5],[4.707541,68.0],[4.750661,68.5],[4.793988,69.0],[4.837585,69.5],[4.881566,70.0],[4.926719,70.5],[4.971638,71.0],[5.017249,71.5],[5.063511,72.0],[5.11043,72.5],[5.159393,73.0],[5.208565,73.5],[5.257877,74.0],[5.308702,74.5],[5.360812,75.0],[5.411627,75.5],[5.465336,76.0],[5.518788,76.5],[5.573827,77.0],[5.629745,77.5],[5.685914,78.0],[5.743608,78.5],[5.803192,79.0],[5.863613,79.5],[5.925103,80.0],[5.988111,80.5],[6.053175,81.0],[6.117475,81.5],[6.185042,82.0],[6.253239,82.5],[6.324417,83.0],[6.396085,83.5],[6.470944,84.0],[6.5474,84.5],[6.625118,85.0],[6.705138,85.5],[6.790442,86.0],[6.87511,86.5],[6.964715,87.0],[7.058297,87.5],[7.154776,88.0],[7.254607,88.5],[7.354817,89.0],[7.460584,89.5],[7.567481,90.0],[7.680735,90.5],[7.80064,91.0],[7.929616,91.5],[8.061783,92.0],[8.205651,92.5],[8.353415,93.0],[8.513496,93.5],[8.683206,94.0],[8.873022,94.5],[9.068075,95.0],[9.284522,95.5],[9.526886,96.0],[9.796394,96.5],[10.097075,97.0],[10.454886,97.5],[10.878913,98.0],[11.409514,98.5],[12.124775,99.0],[13.293686,99.5],[23.48227,100.0]];
+const PROFILE_THRESHOLDS_V31={"focused_max":3.392283,"complex_min":4.47363,"temperature":4};
+const DIMS=["Sensitivity","Autonomy","Control","Recognition","Curiosity","Responsibility","Openness","Adaptability"];
+const MOTIVATIONAL_SIGNATURES=[[[0,2,0,0,2,0,0,5],[0,0,2,0,5,2,0,1],[0,3,-1,0,2,-1,0,1],[0,0,2,0,-1,4,0,-3]],[[0,3,2,5,0,1,0,0],[0,4,0,-4,0,2,0,1],[0,0,0,-2,5,0,0,0],[0,3,-2,-4,0,0,0,2]],[[2,0,-2,-5,0,0,-3,0],[0,0,0,4,1,1,1,0],[0,1,-1,1,0,0,1,2],[0,0,0,1,5,0,1,0]],[[1,0,0,0,5,3,0,0],[0,0,1,0,-1,2,0,-2],[3,0,-1,0,0,5,4,0],[2,2,-2,0,1,4,1,4]],[[0,2,0,0,5,2,0,2],[0,-2,1,0,-2,4,0,-2],[0,3,0,0,1,1,-1,4],[0,4,4,0,-1,3,1,1]],[[0,2,0,-5,0,4,0,0],[0,0,0,4,0,2,0,0],[0,3,1,4,0,1,0,3],[0,5,-2,-4,1,0,-2,2]],[[0,1,-1,0,5,2,1,2],[2,0,0,0,4,0,2,0],[3,-1,-1,0,1,0,-2,1],[4,2,-2,0,1,0,3,3]],[[0,1,1,0,1,3,0,1],[1,1,0,0,3,4,1,1],[0,0,1,0,5,3,0,2],[0,5,-2,0,1,0,-1,3]],[[1,2,0,0,0,5,0,0],[5,0,-1,0,0,4,4,1],[1,5,-4,0,0,2,0,1],[5,-3,5,0,0,5,1,-1]],[[0,2,-2,0,0,0,0,4],[3,0,0,0,5,0,0,0],[-1,1,3,0,0,1,-1,-2],[0,2,-5,0,0,0,0,3]],[[5,1,-3,0,0,3,3,1],[4,1,1,0,0,5,1,2],[4,4,-1,0,2,4,5,1],[3,5,-4,0,0,2,-1,1]],[[4,4,-2,0,-1,2,2,2],[4,2,-1,0,5,1,3,1],[3,5,-3,0,2,4,1,1],[2,2,2,0,3,4,0,-1]],[[0,0,2,0,3,4,0,-2],[0,0,-1,0,5,2,0,-2],[-1,1,-1,0,0,5,1,4],[0,0,-1,0,5,2,0,3]],[[0,3,-2,0,5,0,1,4],[0,0,1,0,2,2,0,-1],[0,4,-1,1,4,0,2,5],[3,-1,-1,0,2,0,4,1]],[[2,3,2,0,1,4,5,1],[5,1,-2,0,5,3,4,1],[1,0,0,0,3,3,0,2],[0,3,-2,0,3,1,0,5]],[[4,5,-3,0,1,5,2,1],[5,4,-4,0,2,5,2,0],[1,0,2,0,4,5,0,-1],[3,1,2,0,2,5,1,0]],[[0,0,1,0,-1,3,0,-2],[0,4,-1,0,2,0,1,4],[0,1,-3,0,5,1,0,-2],[0,5,-1,0,4,1,0,5]],[[0,1,5,0,0,4,0,-2],[0,2,-3,0,2,3,0,5],[4,5,-5,0,0,2,2,2],[2,2,-5,0,4,2,1,4]],[[2,3,-2,0,2,3,2,5],[0,0,0,0,5,2,0,1],[1,2,-5,0,0,1,0,4],[0,4,-1,0,-2,0,-1,5]],[[1,3,2,2,2,5,1,2],[5,1,-2,0,0,4,4,1],[0,3,0,0,5,2,0,3],[0,5,-3,-2,0,3,0,2]],[[0,5,-2,0,4,0,1,5],[5,1,-4,0,0,2,5,1],[0,4,0,-3,5,2,0,3],[0,4,-5,-5,0,0,-1,2]],[[2,0,-2,0,2,0,1,4],[4,0,-2,0,4,0,4,1],[5,0,-2,0,2,1,3,0],[5,0,-1,0,4,0,3,0]],[[5,-3,-2,0,0,0,5,0],[0,-2,-2,-2,0,0,4,-1],[1,1,-5,0,1,0,4,0],[4,0,-2,0,3,0,5,0]],[[0,1,-1,0,5,5,0,0],[1,0,2,0,5,3,0,0],[5,2,1,0,2,5,2,0],[0,2,3,0,1,3,-4,1]],[[3,2,-1,0,0,2,2,1],[4,4,-2,0,0,2,2,0],[0,3,-2,0,0,0,-5,2],[5,2,-2,0,0,4,5,1]],[[2,1,1,0,0,5,0,0],[2,1,0,0,0,5,5,0],[0,4,-2,0,2,-1,0,4],[0,3,1,0,0,5,0,-2]],[[0,-2,0,0,0,4,-2,-1],[2,5,3,0,0,5,4,0],[1,5,2,0,3,4,1,5],[0,2,-1,0,5,4,2,2]],[[4,3,-1,2,0,2,5,0],[1,5,-2,-3,0,1,-5,0],[0,2,1,0,2,4,-2,2],[3,2,-3,-1,4,1,1,2]],[[2,4,2,0,0,4,4,-1],[5,2,-2,0,0,5,3,3],[4,2,-2,0,5,3,3,2],[4,5,-4,0,1,4,1,2]],[[5,1,-3,0,0,4,5,1],[3,5,1,0,0,4,2,3],[5,2,-4,0,0,3,5,2],[3,0,-1,0,5,1,2,2]]];
+const DIMENSION_BASELINES={"Sensitivity":{"mean":48.499682,"sd":7.180627263608382},"Autonomy":{"mean":55.003568,"sd":8.721080854422576},"Control":{"mean":-23.507898,"sd":9.987009443351699},"Recognition":{"mean":-4.010468,"sd":7.294277374831314},"Curiosity":{"mean":51.25004,"sd":9.885361298323902},"Responsibility":{"mean":67.998822,"sd":6.288466634428142},"Openness":{"mean":31.73787,"sd":9.186221087209908},"Adaptability":{"mean":37.994938,"sd":9.331070698272304}};
+const CORE_TRAIT_MAPS={"SH":{"Empathy":{"Sensitivity":1.0,"Openness":0.35,"Responsibility":0.25},"Reflection":{"Curiosity":0.55,"Sensitivity":0.35,"Control":-0.15},"Sensitivity":{"Sensitivity":1.0},"Attachment":{"Sensitivity":0.55,"Openness":0.45,"Autonomy":-0.25}},"GE":{"Determination":{"Responsibility":0.45,"Control":0.55,"Adaptability":-0.2},"Control":{"Control":1.0},"Strategy":{"Curiosity":0.4,"Control":0.45,"Adaptability":0.3},"Compartmentalisation":{"Openness":-0.75,"Control":0.35,"Sensitivity":-0.2}},"YU":{"Curiosity":{"Curiosity":1.0},"Optimism":{"Adaptability":0.55,"Openness":0.25,"Control":-0.2},"Independence":{"Autonomy":1.0},"Vision":{"Curiosity":0.35,"Adaptability":0.45,"Responsibility":0.2}},"KF":{"Patience":{"Control":-0.4,"Adaptability":0.25,"Responsibility":0.25},"Insight":{"Curiosity":0.65,"Sensitivity":0.25},"Loyalty":{"Responsibility":0.55,"Sensitivity":0.25,"Autonomy":-0.15},"Restraint":{"Control":-0.25,"Openness":-0.45,"Recognition":-0.15}},"AS":{"Drive":{"Recognition":0.45,"Control":0.35,"Responsibility":0.25},"Independence":{"Autonomy":1.0},"Pride":{"Recognition":0.7,"Autonomy":0.3},"Resilience":{"Adaptability":0.55,"Responsibility":0.25,"Control":0.2}},"RE":{"Acceptance":{"Control":-0.6,"Adaptability":0.4},"Introspection":{"Curiosity":0.45,"Sensitivity":0.3,"Openness":-0.15},"Composure":{"Control":-0.25,"Sensitivity":-0.2,"Adaptability":0.35},"Curiosity":{"Curiosity":1.0}},"KA":{"Adaptability":{"Adaptability":1.0},"Curiosity":{"Curiosity":1.0},"Emotional intelligence":{"Sensitivity":0.65,"Openness":0.35},"Pragmatism":{"Responsibility":0.35,"Adaptability":0.45,"Control":-0.2}},"MI":{"Action":{"Adaptability":0.45,"Responsibility":0.4,"Control":0.2},"Loyalty":{"Responsibility":0.5,"Sensitivity":0.4},"Courage":{"Responsibility":0.4,"Autonomy":0.25,"Adaptability":0.25},"Spontaneity":{"Adaptability":0.7,"Control":-0.35,"Curiosity":0.2}},"MA":{"Empathy":{"Sensitivity":1.0},"Conscientiousness":{"Responsibility":0.85,"Control":0.15},"Ethics":{"Responsibility":0.65,"Sensitivity":0.25,"Autonomy":0.15},"Reliability":{"Responsibility":0.8,"Adaptability":-0.1}},"RI":{"Analysis":{"Curiosity":0.85,"Control":0.25},"Competence":{"Responsibility":0.35,"Control":0.35,"Recognition":0.25},"Logic":{"Curiosity":0.55,"Sensitivity":-0.3,"Control":0.25},"Control":{"Control":1.0}},"AO":{"Observation":{"Curiosity":0.55,"Sensitivity":0.15},"Independence":{"Autonomy":1.0},"Scepticism":{"Curiosity":0.65,"Openness":-0.2},"Technical thinking":{"Curiosity":0.75,"Control":0.2}},"KW":{"Compassion":{"Sensitivity":0.85,"Openness":0.35},"Acceptance":{"Control":-0.55,"Sensitivity":0.25,"Adaptability":0.3},"Authenticity":{"Openness":0.65,"Autonomy":0.35},"Connection":{"Sensitivity":0.6,"Openness":0.6,"Autonomy":-0.15}},"HY":{"Loyalty":{"Responsibility":0.55,"Sensitivity":0.3},"Communication":{"Openness":0.6,"Sensitivity":0.25,"Responsibility":0.2},"Reliability":{"Responsibility":0.85},"Supportiveness":{"Sensitivity":0.55,"Responsibility":0.55}},"PP":{"Independence":{"Autonomy":1.0},"Observation":{"Curiosity":0.45,"Sensitivity":0.15},"Comfort":{"Control":-0.35,"Adaptability":-0.15,"Recognition":-0.25},"Curiosity":{"Curiosity":0.8}},"MR":{"Curiosity":{"Curiosity":1.0},"Spontaneity":{"Adaptability":0.75,"Control":-0.35},"Adaptability":{"Adaptability":1.0},"Playfulness":{"Recognition":0.2,"Curiosity":0.3,"Adaptability":0.5}},"TJ":{"Loyalty":{"Responsibility":0.6,"Sensitivity":0.35,"Autonomy":-0.1},"Directness":{"Openness":0.55,"Autonomy":0.35,"Recognition":-0.15},"Protectiveness":{"Sensitivity":0.6,"Responsibility":0.6,"Control":0.15},"Groundedness":{"Responsibility":0.35,"Adaptability":0.3,"Control":-0.25,"Recognition":-0.2}}};
+const CORE_TRAIT_BASELINES={"SH":{"Empathy":{"mean":0.922536313533783,"sd":0.14756397902965546,"p75":1.0266163349151611,"p90":1.1022593975067139,"p95":1.1430834531784058},"Reflection":{"mean":0.8958826065063477,"sd":0.13564155995845795,"p75":0.9882892966270447,"p90":1.0641833543777466,"p95":1.109716773033142},"Sensitivity":{"mean":0.6828060746192932,"sd":0.10683902353048325,"p75":0.7557312846183777,"p90":0.8146765828132629,"p95":0.8494128584861755},"Attachment":{"mean":0.673617422580719,"sd":0.17996066808700562,"p75":0.7998241186141968,"p90":0.8908069729804993,"p95":0.9405823945999146}},"GE":{"Determination":{"mean":0.30926984548568726,"sd":0.15311773121356964,"p75":0.41409140825271606,"p90":0.5059548020362854,"p95":0.5578896999359131},"Control":{"mean":0.03902300447225571,"sd":0.13366280496120453,"p75":0.13049401342868805,"p90":0.21178287267684937,"p95":0.2586178779602051},"Strategy":{"mean":0.48043620586395264,"sd":0.10384400188922882,"p75":0.5509741902351379,"p90":0.6130724549293518,"p95":0.6499476432800293},"Compartmentalisation":{"mean":-0.24109648168087006,"sd":0.16654011607170105,"p75":-0.1298145055770874,"p90":-0.027834847569465637,"p95":0.035899028182029724}},"YU":{"Curiosity":{"mean":0.6249468922615051,"sd":0.1146315336227417,"p75":0.7031338810920715,"p90":0.7723657488822937,"p95":0.8138312101364136},"Optimism":{"mean":0.7052053213119507,"sd":0.08327929675579071,"p75":0.7617456912994385,"p90":0.8106245994567871,"p95":0.8401957750320435},"Independence":{"mean":0.6128382086753845,"sd":0.07714271545410156,"p75":0.6650797724723816,"p90":0.7110334634780884,"p95":0.7391849160194397},"Vision":{"mean":0.9458713531494141,"sd":0.08447858691215515,"p75":1.004437804222107,"p90":1.0500465631484985,"p95":1.076840877532959}},"KF":{"Patience":{"mean":0.4982434809207916,"sd":0.09080918878316879,"p75":0.5575562715530396,"p90":0.6157834529876709,"p95":0.6508945822715759},"Insight":{"mean":0.8399302363395691,"sd":0.11487199366092682,"p75":0.9204912781715393,"p90":0.9802582859992981,"p95":1.0141562223434448},"Loyalty":{"mean":0.6027147173881531,"sd":0.07608164846897125,"p75":0.6539537310600281,"p90":0.6993529200553894,"p95":0.7265077829360962},"Restraint":{"mean":-0.03182081878185272,"sd":0.15953132510185242,"p75":0.07396745681762695,"p90":0.17408771812915802,"p95":0.23427684605121613}},"AS":{"Drive":{"mean":0.3175904154777527,"sd":0.31521812081336975,"p75":0.5480563044548035,"p90":0.735190212726593,"p95":0.8235830068588257},"Independence":{"mean":0.6244080662727356,"sd":0.10278500616550446,"p75":0.6972127556800842,"p90":0.7509893178939819,"p95":0.7811371684074402},"Pride":{"mean":0.36693787574768066,"sd":0.3650777041912079,"p75":0.6355963945388794,"p90":0.8448768854141235,"p95":0.9390157461166382},"Resilience":{"mean":0.4780067205429077,"sd":0.12464913725852966,"p75":0.5594941973686218,"p90":0.6396453976631165,"p95":0.6890084743499756}},"RE":{"Acceptance":{"mean":0.5145335793495178,"sd":0.11501718312501907,"p75":0.5953899025917053,"p90":0.6581522822380066,"p95":0.693194568157196},"Introspection":{"mean":0.7511866092681885,"sd":0.11477118730545044,"p75":0.831477165222168,"p90":0.8944519758224487,"p95":0.9301223158836365},"Composure":{"mean":0.14499370753765106,"sd":0.11639104038476944,"p75":0.22442668676376343,"p90":0.29169780015945435,"p95":0.3321587145328522},"Curiosity":{"mean":0.5941296815872192,"sd":0.1389428973197937,"p75":0.6916807889938354,"p90":0.7696527242660522,"p95":0.8139480948448181}},"KA":{"Adaptability":{"mean":0.4308059811592102,"sd":0.10687477886676788,"p75":0.5046269297599792,"p90":0.5676641464233398,"p95":0.6028626561164856},"Curiosity":{"mean":0.6627991795539856,"sd":0.11699812114238739,"p75":0.7463291883468628,"p90":0.8084883689880371,"p95":0.8431199789047241},"Emotional intelligence":{"mean":0.619709312915802,"sd":0.131379172205925,"p75":0.7101337313652039,"p90":0.7872276306152344,"p95":0.8323732614517212},"Pragmatism":{"mean":0.7067728042602539,"sd":0.10615328699350357,"p75":0.7812532186508179,"p90":0.8420834541320801,"p95":0.877562403678894}},"MI":{"Action":{"mean":0.6937865614891052,"sd":0.10547007620334625,"p75":0.7667125463485718,"p90":0.8269569277763367,"p95":0.8620328307151794},"Loyalty":{"mean":0.9117650389671326,"sd":0.11495475471019745,"p75":0.9942827224731445,"p90":1.0516148805618286,"p95":1.083890438079834},"Courage":{"mean":0.9261741638183594,"sd":0.10691449046134949,"p75":1.0019690990447998,"p90":1.0588102340698242,"p95":1.0915207862854004},"Spontaneity":{"mean":0.5164226293563843,"sd":0.14104261994361877,"p75":0.6143010854721069,"p90":0.6961311101913452,"p95":0.7423218488693237}},"MA":{"Empathy":{"mean":0.6217888593673706,"sd":0.1163109838962555,"p75":0.7016727328300476,"p90":0.7729953527450562,"p95":0.813749372959137},"Conscientiousness":{"mean":0.6048938632011414,"sd":0.0779452994465828,"p75":0.6568720936775208,"p90":0.7051184177398682,"p95":0.7345152497291565},"Ethics":{"mean":0.8925303816795349,"sd":0.07308188825845718,"p75":0.9417034387588501,"p90":0.9862465262413025,"p95":1.0130226612091064},"Reliability":{"mean":0.6127520203590393,"sd":0.07046739757061005,"p75":0.659206748008728,"p90":0.7034494876861572,"p95":0.7315614223480225}},"RI":{"Analysis":{"mean":0.6712781190872192,"sd":0.09330331534147263,"p75":0.7354250550270081,"p90":0.7869042754173279,"p95":0.8169130086898804},"Competence":{"mean":0.2783253788948059,"sd":0.24030788242816925,"p75":0.45369938015937805,"p90":0.6101952195167542,"p95":0.6861422657966614},"Logic":{"mean":0.3443186581134796,"sd":0.10593759268522263,"p75":0.418005108833313,"p90":0.47664347290992737,"p95":0.5099653601646423},"Control":{"mean":-0.07718490064144135,"sd":0.11661621928215027,"p75":-0.0026721591129899025,"p90":0.07592565566301346,"p95":0.12518109381198883}},"AO":{"Observation":{"mean":0.7203998565673828,"sd":0.1420794278383255,"p75":0.8195537328720093,"p90":0.8996686935424805,"p95":0.9467820525169373},"Independence":{"mean":0.5059630274772644,"sd":0.11402203887701035,"p75":0.5858038663864136,"p90":0.6488489508628845,"p95":0.6856457591056824},"Scepticism":{"mean":0.562056303024292,"sd":0.13821423053741455,"p75":0.6572562456130981,"p90":0.730923593044281,"p95":0.775202751159668},"Technical thinking":{"mean":0.5289913415908813,"sd":0.14084628224372864,"p75":0.627548336982727,"p90":0.706055223941803,"p95":0.7500367760658264}},"KW":{"Compassion":{"mean":0.8354853987693787,"sd":0.09732017666101456,"p75":0.9032012820243835,"p90":0.9583605527877808,"p95":0.990159809589386},"Acceptance":{"mean":0.6874160170555115,"sd":0.10757209360599518,"p75":0.7631213665008545,"p90":0.8226093053817749,"p95":0.8563244342803955},"Authenticity":{"mean":0.7377091646194458,"sd":0.08473813533782959,"p75":0.7947841882705688,"p90":0.8474366068840027,"p95":0.8793498873710632},"Connection":{"mean":0.7447935938835144,"sd":0.11086165904998779,"p75":0.822181224822998,"p90":0.8851495385169983,"p95":0.9200701117515564}},"HY":{"Loyalty":{"mean":0.9006525874137878,"sd":0.0819704681634903,"p75":0.9571200609207153,"p90":1.005288004875183,"p95":1.0334067344665527},"Communication":{"mean":0.891158401966095,"sd":0.15619154274463654,"p75":1.003767967224121,"p90":1.0787230730056763,"p95":1.1174858808517456},"Reliability":{"mean":0.6609213352203369,"sd":0.06564152985811234,"p75":0.705134391784668,"p90":0.7452606558799744,"p95":0.7696030735969543},"Supportiveness":{"mean":0.9405152797698975,"sd":0.09716805815696716,"p75":1.008829951286316,"p90":1.0627508163452148,"p95":1.093164324760437}},"PP":{"Independence":{"mean":0.5701201558113098,"sd":0.10160525888204575,"p75":0.6408823132514954,"p90":0.6975931525230408,"p95":0.7302601933479309},"Observation":{"mean":0.5405595898628235,"sd":0.10629566013813019,"p75":0.6080317497253418,"p90":0.6642581224441528,"p95":0.7019208669662476},"Comfort":{"mean":0.4113222062587738,"sd":0.22806154191493988,"p75":0.5737719535827637,"p90":0.6670569181442261,"p95":0.7184216380119324},"Curiosity":{"mean":0.3522244989871979,"sd":0.11177860200405121,"p75":0.42498624324798584,"p90":0.47997069358825684,"p95":0.5165256261825562}},"MR":{"Curiosity":{"mean":0.43322205543518066,"sd":0.11661318689584732,"p75":0.5087644457817078,"p90":0.5802580118179321,"p95":0.6242794990539551},"Spontaneity":{"mean":0.6905855536460876,"sd":0.0801980271935463,"p75":0.745324969291687,"p90":0.7877046465873718,"p95":0.8123550415039062},"Adaptability":{"mean":0.6216471791267395,"sd":0.08885640650987625,"p75":0.682649552822113,"p90":0.7321308255195618,"p95":0.7612627744674683},"Playfulness":{"mean":0.6473309993743896,"sd":0.17051716148853302,"p75":0.7572046518325806,"p90":0.8825833201408386,"p95":0.9548512697219849}}};
+const BASELINE_CDFS={"SH":{"0":0.0,"1":0.0,"2":0.0,"3":1e-08,"4":3e-08,"5":1e-07,"6":2.8e-07,"7":7.8e-07,"8":1.99e-06,"9":4.84e-06,"10":1.119e-05,"11":2.47e-05,"12":5.26e-05,"13":0.00010761,"14":0.00021355,"15":0.00041003,"16":0.00076533,"17":0.00139041,"18":0.00246024,"19":0.00425318,"20":0.00717949,"21":0.01186492,"22":0.01919837,"23":0.03045299,"24":0.0474042,"25":0.07243173,"26":0.10878259,"27":0.16059533,"28":0.23329097,"29":0.333591,"30":0.46978916,"31":0.65201535,"32":0.89199903,"33":1.20373982,"34":1.60268068,"35":2.1063666,"36":2.73366452,"37":3.50436644,"38":4.43943659,"39":5.55883293,"40":6.88287303,"41":8.42915505,"42":10.21344298,"43":12.24812223,"44":14.54045612,"45":17.09440417,"46":19.90615453,"47":22.96809984,"48":26.26483274,"49":29.77540894,"50":33.47391582,"51":37.32719153,"52":41.30071325,"53":45.35346398,"54":49.4449167,"55":53.53230426,"56":57.57304575,"57":61.52809532,"58":65.35825445,"59":69.03161405,"60":72.51792589,"61":75.79410419,"62":78.84232613,"63":81.64935011,"64":84.20987296,"65":86.52111668,"66":88.58772706,"67":90.41681888,"68":92.01966986,"69":93.41086759,"70":94.60566689,"71":95.62241313,"72":96.47842699,"73":97.19228213,"74":97.78160883,"75":98.26303285,"76":98.65270268,"77":98.96453946,"78":99.21183488,"79":99.4057798,"80":99.55632975,"81":99.67206087,"82":99.75995564,"83":99.82613541,"84":99.87533139,"85":99.91155422,"86":99.93792959,"87":99.9568928,"88":99.97041326,"89":99.97990616,"90":99.986518,"91":99.99105877,"92":99.99413833,"93":99.99620882,"94":99.99757458,"95":99.99847099,"96":99.99904771,"97":99.99941488,"98":99.99964616,"99":99.99978835,"100":99.99987585,"101":99.999928,"102":99.99995898,"103":99.99997707,"104":99.99998731,"105":99.99999318,"106":99.99999636,"107":99.99999811,"108":99.99999904,"109":99.99999952,"110":99.99999977,"111":99.99999989,"112":99.99999995,"113":99.99999998,"114":99.99999999,"115":100.0,"116":100.0,"117":100.0,"118":100.0,"119":100.0,"120":100.0,"121":100.0,"122":100.0,"123":100.0,"124":100.0,"126":100.0},"GE":{"0":0.0,"1":0.0,"2":0.0,"3":0.0,"4":0.0,"5":0.0,"6":0.0,"7":0.0,"8":0.0,"9":1e-08,"10":2e-08,"11":5e-08,"12":1.3e-07,"13":3e-07,"14":6.7e-07,"15":1.47e-06,"16":3.12e-06,"17":6.44e-06,"18":1.295e-05,"19":2.537e-05,"20":4.852e-05,"21":9.068e-05,"22":0.00016582,"23":0.00029694,"24":0.00052121,"25":0.00089742,"26":0.00151689,"27":0.00251865,"28":0.00411066,"29":0.00659832,"30":0.01042229,"31":0.01620752,"32":0.02482526,"33":0.03746989,"34":0.05575173,"35":0.08180638,"36":0.11841995,"37":0.16916837,"38":0.23856664,"39":0.33222292,"40":0.45698861,"41":0.62109495,"42":0.83426378,"43":1.10777797,"44":1.45449834,"45":1.88881041,"46":2.42648943,"47":3.08447179,"48":3.88052508,"49":4.83281792,"50":5.95938913,"51":7.27753379,"52":8.80311999,"53":10.54986481,"54":12.52860382,"55":14.7465842,"56":17.2068321,"57":19.9076213,"58":22.84209109,"59":25.99803956,"60":29.35791271,"61":32.89901479,"62":36.59392188,"63":40.41110994,"64":44.31575529,"65":48.27068336,"66":52.23742568,"67":56.17731949,"68":60.05262422,"69":63.82757278,"70":67.46933525,"71":70.94883933,"72":74.2414133,"73":77.32724784,"74":80.19163693,"75":82.82503336,"76":85.22290196,"77":87.38540891,"78":89.31697517,"79":91.02571203,"80":92.52280099,"81":93.82182279,"82":94.93809535,"83":95.88803381,"84":96.68855895,"85":97.35658272,"86":97.90856328,"87":98.36015795,"88":98.72595538,"89":99.01929468,"90":99.25216195,"91":99.43514805,"92":99.57746795,"93":99.6870168,"94":99.77046217,"95":99.8333553,"96":99.8802534,"97":99.91484818,"98":99.94008891,"99":99.95830153,"100":99.97129578,"101":99.98046137,"102":99.98685184,"103":99.99125502,"104":99.99425272,"105":99.99626869,"106":99.99760762,"107":99.99848563,"108":99.99905391,"109":99.99941687,"110":99.99964553,"111":99.99978759,"112":99.99987457,"113":99.99992705,"114":99.99995824,"115":99.99997648,"116":99.99998697,"117":99.99999291,"118":99.99999621,"119":99.99999802,"120":99.99999898,"121":99.99999949,"122":99.99999975,"123":99.99999988,"124":99.99999994,"125":99.99999997,"126":99.99999999,"127":100.0,"128":100.0,"129":100.0,"130":100.0,"131":100.0,"132":100.0,"133":100.0,"134":100.0,"135":100.0,"136":100.0,"137":100.0,"138":100.0,"139":100.0,"140":100.0},"YU":{"0":0.0,"2":0.0,"3":0.0,"4":0.0,"5":0.0,"6":0.0,"7":0.0,"8":0.0,"9":1e-08,"10":2e-08,"11":6e-08,"12":1.5e-07,"13":3.5e-07,"14":8.1e-07,"15":1.86e-06,"16":4e-06,"17":8.56e-06,"18":1.759e-05,"19":3.546e-05,"20":6.963e-05,"21":0.00013322,"22":0.00025023,"23":0.00045782,"24":0.00082329,"25":0.00144725,"26":0.00249793,"27":0.00422979,"28":0.00702868,"29":0.01148339,"30":0.018423,"31":0.0290852,"32":0.04514781,"33":0.06898742,"34":0.10377915,"35":0.15373681,"36":0.22442021,"37":0.32278996,"38":0.45778922,"39":0.64015354,"40":0.88306253,"41":1.20189295,"42":1.61442974,"43":2.14089931,"44":2.80321721,"45":3.62543051,"46":4.63194669,"47":5.84798046,"48":7.29744396,"49":9.00254013,"50":10.98245421,"51":13.25139443,"52":15.81889575,"53":18.68659958,"54":21.849853,"55":25.29485038,"56":29.00007544,"57":32.93593555,"58":37.0646286,"59":41.34317911,"60":45.72184911,"61":50.14914181,"62":54.57060423,"63":58.93289792,"64":63.1849272,"65":67.27889174,"66":71.17385463,"67":74.83402026,"68":78.23278876,"69":81.35031782,"70":84.17553466,"71":86.70509117,"72":88.94207173,"73":90.89691693,"74":92.58380577,"75":94.02216135,"76":95.23332041,"77":96.24054721,"78":97.06807092,"79":97.73906233,"80":98.27668513,"81":98.70171603,"82":99.03353389,"83":99.28930937,"84":99.48372061,"85":99.62973916,"86":99.73779365,"87":99.81674335,"88":99.87364254,"89":99.91402207,"90":99.94234088,"91":99.96186077,"92":99.97514451,"93":99.98404723,"94":99.98990909,"95":99.9937251,"96":99.99615648,"97":99.99768633,"98":99.99863198,"99":99.999204,"100":99.99954666,"101":99.99974603,"102":99.99986075,"103":99.99992533,"104":99.99996065,"105":99.99997987,"106":99.99998988,"107":99.99999506,"108":99.99999766,"109":99.99999891,"110":99.99999952,"111":99.99999979,"112":99.99999991,"113":99.99999996,"114":99.99999999,"115":100.0,"116":100.0,"117":100.0,"118":100.0,"119":100.0,"120":100.0,"121":100.0,"122":100.0,"123":100.0,"124":100.0},"KF":{"0":0.0,"1":0.0,"2":0.0,"3":0.0,"4":0.0,"5":0.0,"6":0.0,"7":0.0,"8":0.0,"9":0.0,"10":1e-08,"11":3e-08,"12":7e-08,"13":1.7e-07,"14":3.9e-07,"15":8.5e-07,"16":1.83e-06,"17":3.82e-06,"18":7.79e-06,"19":1.549e-05,"20":3.013e-05,"21":5.731e-05,"22":0.00010679,"23":0.00019499,"24":0.00034926,"25":0.00061401,"26":0.00106006,"27":0.00179871,"28":0.00300033,"29":0.00492364,"30":0.00795071,"31":0.01264085,"32":0.01979388,"33":0.0305372,"34":0.04643415,"35":0.06960791,"36":0.10291082,"37":0.1500822,"38":0.21597722,"39":0.30675196,"40":0.43010981,"41":0.59550529,"42":0.81431296,"43":1.10002626,"44":1.46822644,"45":1.93669963,"46":2.52512628,"47":3.25495054,"48":4.14882625,"49":5.23001371,"50":6.52173008,"51":8.0459381,"52":9.82274171,"53":11.86873484,"54":14.1964261,"55":16.81271543,"56":19.71817014,"57":22.90638696,"58":26.36301891,"59":30.06648418,"60":33.98704218,"61":38.08859383,"62":42.32854952,"63":46.65980796,"64":51.03215524,"65":55.39347028,"66":59.69268596,"67":63.87996381,"68":67.91018723,"69":71.742742,"70":75.34390707,"71":78.68718159,"72":81.75340664,"73":84.53195882,"74":87.018783,"75":89.21773369,"76":91.13794582,"77":92.79412141,"78":94.20482468,"79":95.39112475,"80":96.37637864,"81":97.18387026,"82":97.83738358,"83":98.35920994,"84":98.77041938,"85":99.09018971,"86":99.33534726,"87":99.52087518,"88":99.65917671,"89":99.76090464,"90":99.83461245,"91":99.887223,"92":99.92425346,"93":99.94986707,"94":99.96735294,"95":99.97906846,"96":99.98680249,"97":99.99182287,"98":99.99501671,"99":99.99702328,"100":99.99825155,"101":99.99899487,"102":99.99943349,"103":99.99968704,"104":99.99983162,"105":99.9999109,"106":99.99995439,"107":99.99997707,"108":99.99998883,"109":99.99999474,"110":99.99999756,"111":99.99999894,"112":99.99999953,"113":99.99999981,"114":99.99999993,"115":99.99999997,"116":99.99999999,"117":100.0,"118":100.0,"119":100.0,"120":100.0,"121":100.0,"122":100.0,"123":100.0,"124":100.0},"AS":{"0":0.0,"1":0.0,"2":0.0,"3":0.0,"4":0.0,"5":1e-08,"6":3e-08,"7":9e-08,"8":2.7e-07,"9":7.1e-07,"10":1.82e-06,"11":4.43e-06,"12":1.026e-05,"13":2.293e-05,"14":4.903e-05,"15":0.00010164,"16":0.0002032,"17":0.00039454,"18":0.00074375,"19":0.0013636,"20":0.00243816,"21":0.00424926,"22":0.00724108,"23":0.01205889,"24":0.01966603,"25":0.03142099,"26":0.0492221,"27":0.07569145,"28":0.1142698,"29":0.16957648,"30":0.24740039,"31":0.3551557,"32":0.50189829,"33":0.69850431,"34":0.95804876,"35":1.29522342,"36":1.72720683,"37":2.27239167,"38":2.95098894,"39":3.78421457,"40":4.79307057,"41":5.99939199,"42":7.42219326,"43":9.08000706,"44":10.98719701,"45":13.15413376,"46":15.58777352,"47":18.28672626,"48":21.24705094,"49":24.45512837,"50":27.89276681,"51":31.53604144,"52":35.35231661,"53":39.30904962,"54":43.36425803,"55":47.47759008,"56":51.60570712,"57":55.7033267,"58":59.73139189,"59":63.64689802,"60":67.41642957,"61":71.00766042,"62":74.39343014,"63":77.55577007,"64":80.4769927,"65":83.15102145,"66":85.57329647,"67":87.74559434,"68":89.67593116,"69":91.37245181,"70":92.85060992,"71":94.12485302,"72":95.21267541,"73":96.1329058,"74":96.90270213,"75":97.54133904,"76":98.06531586,"77":98.49115783,"78":98.83405702,"79":99.10699102,"80":99.32252165,"81":99.49071647,"82":99.62075863,"83":99.72034815,"84":99.79568729,"85":99.85225742,"86":99.89418288,"87":99.92497498,"88":99.94736483,"89":99.9634289,"90":99.97487693,"91":99.9829138,"92":99.98850722,"93":99.99235858,"94":99.99497044,"95":99.9967321,"96":99.99789893,"97":99.99866566,"98":99.99916363,"99":99.99948119,"100":99.99968313,"101":99.99980856,"102":99.99988596,"103":99.99993312,"104":99.99996117,"105":99.99997791,"106":99.99998756,"107":99.99999311,"108":99.99999626,"109":99.99999799,"110":99.99999895,"111":99.99999946,"112":99.99999972,"113":99.99999986,"114":99.99999993,"115":99.99999997,"116":99.99999999,"117":99.99999999,"118":100.0,"119":100.0,"120":100.0,"121":100.0,"122":100.0,"123":100.0,"124":100.0,"125":100.0,"126":100.0,"127":100.0,"128":100.0,"129":100.0,"130":100.0,"132":100.0},"RE":{"0":0.0,"2":0.0,"3":0.0,"4":0.0,"5":0.0,"6":0.0,"7":1e-08,"8":2e-08,"9":6e-08,"10":1.6e-07,"11":4e-07,"12":9.2e-07,"13":2.19e-06,"14":4.73e-06,"15":1.033e-05,"16":2.133e-05,"17":4.324e-05,"18":8.542e-05,"19":0.00016316,"20":0.00030741,"21":0.00056018,"22":0.00100567,"23":0.00176029,"24":0.00302063,"25":0.00509005,"26":0.00839055,"27":0.01362108,"28":0.02166469,"29":0.03392234,"30":0.05220418,"31":0.07901052,"32":0.11781989,"33":0.17280022,"34":0.24993961,"35":0.35600545,"36":0.50007332,"37":0.69281955,"38":0.94656088,"39":1.27691923,"40":1.69955581,"41":2.23456362,"42":2.9013958,"43":3.72198966,"44":4.71957323,"45":5.91435601,"46":7.33070436,"47":8.98484334,"48":10.89586238,"49":13.07548417,"50":15.5299472,"51":18.26490456,"52":21.2703112,"53":24.54045376,"54":28.05222969,"55":31.78194055,"56":35.69941772,"57":39.76199001,"58":43.93488056,"59":48.16510622,"60":52.41140217,"61":56.62396494,"62":60.75509759,"63":64.76688274,"64":68.61270247,"65":72.26618324,"66":75.69373218,"67":78.87625977,"68":81.80044092,"69":84.45387463,"70":86.84077059,"71":88.95942853,"72":90.8228995,"73":92.44286502,"74":93.83463984,"75":95.01981342,"76":96.01482596,"77":96.84358301,"78":97.52460726,"79":98.07828339,"80":98.52406749,"81":98.8776415,"82":99.15618158,"83":99.37211016,"84":99.53800431,"85":99.66398468,"86":99.75817705,"87":99.82819626,"88":99.87923042,"89":99.91619385,"90":99.94256192,"91":99.96108292,"92":99.97402445,"93":99.9828464,"94":99.98884851,"95":99.99284426,"96":99.99546812,"97":99.99718094,"98":99.99826427,"99":99.99895311,"100":99.99937653,"101":99.99963481,"102":99.99979072,"103":99.99988113,"104":99.99993449,"105":99.99996422,"106":99.99998095,"107":99.99999011,"108":99.9999949,"109":99.9999975,"110":99.99999877,"111":99.99999942,"112":99.99999973,"113":99.99999988,"114":99.99999995,"115":99.99999998,"116":99.99999999,"117":100.0,"118":100.0,"119":100.0,"120":100.0,"121":100.0,"122":100.0,"123":100.0,"124":100.0,"125":100.0,"127":100.0},"KA":{"0":0.0,"2":0.0,"3":0.0,"4":0.0,"5":0.0,"6":0.0,"7":1e-08,"8":2e-08,"9":7e-08,"10":1.6e-07,"11":4.1e-07,"12":9.5e-07,"13":2.17e-06,"14":4.77e-06,"15":1.013e-05,"16":2.112e-05,"17":4.239e-05,"18":8.374e-05,"19":0.00016054,"20":0.00030151,"21":0.00055401,"22":0.00099484,"23":0.00175448,"24":0.00302706,"25":0.00513232,"26":0.00853512,"27":0.01394429,"28":0.02239517,"29":0.03534218,"30":0.05489529,"31":0.08385624,"32":0.12614235,"33":0.18682084,"34":0.27255274,"35":0.39185706,"36":0.55519727,"37":0.77572583,"38":1.06870744,"39":1.45260742,"40":1.94805039,"41":2.57842503,"42":3.36920908,"43":4.34685629,"44":5.53941339,"45":6.97302321,"46":8.67385173,"47":10.66318895,"48":12.95913462,"49":15.57308775,"50":18.50866188,"51":21.76269394,"52":25.31989689,"53":29.15927168,"54":33.24620237,"55":37.54121741,"56":41.99449107,"57":46.55129148,"58":51.15399073,"59":55.74004212,"60":60.25242133,"61":64.63112068,"62":68.82709776,"63":72.79315175,"64":76.4935185,"65":79.90062901,"66":82.99495043,"67":85.76991857,"68":88.22285472,"69":90.36442783,"70":92.20706244,"71":93.7720926,"72":95.08292757,"73":96.16518757,"74":97.04740243,"75":97.75513889,"76":98.31607952,"77":98.75339101,"78":99.08983145,"79":99.34481224,"80":99.53490196,"81":99.67488131,"82":99.77594106,"83":99.84808329,"84":99.89856402,"85":99.93336698,"86":99.95699198,"87":99.972674,"88":99.98298406,"89":99.98957325,"90":99.99374424,"91":99.99631865,"92":99.99787479,"93":99.99880422,"94":99.99933798,"95":99.99964481,"96":99.99981278,"97":99.99990425,"98":99.99995247,"99":99.99997684,"100":99.99998929,"101":99.99999506,"102":99.99999788,"103":99.9999991,"104":99.99999964,"105":99.99999986,"106":99.99999995,"107":99.99999998,"108":99.99999999,"109":100.0,"110":100.0,"111":100.0,"112":100.0,"113":100.0,"114":100.0,"115":100.0},"MI":{"0":0.0,"2":0.0,"3":0.0,"4":0.0,"5":0.0,"6":0.0,"7":0.0,"8":3e-08,"9":5e-08,"10":2.2e-07,"11":3.7e-07,"12":1.32e-06,"13":2.41e-06,"14":6.9e-06,"15":1.314e-05,"16":3.174e-05,"17":6.132e-05,"18":0.00013046,"19":0.00025015,"20":0.00048485,"21":0.00090614,"22":0.0016413,"23":0.00295374,"24":0.00508679,"25":0.00876114,"26":0.014493,"27":0.02386194,"28":0.03810721,"29":0.06010907,"30":0.09283631,"31":0.14082635,"32":0.21042023,"33":0.30817846,"34":0.44557707,"35":0.6320997,"36":0.88501844,"37":1.21876873,"38":1.65482329,"39":2.21524016,"40":2.92219735,"41":3.80615653,"42":4.88701032,"43":6.19905248,"44":7.75983324,"45":9.59682132,"46":11.7270184,"47":14.15934115,"48":16.90860234,"49":19.96070583,"50":23.31896472,"51":26.95283148,"52":30.84106619,"53":34.94794424,"54":39.2225919,"55":43.62895153,"56":48.09788635,"57":52.58803004,"58":57.03408062,"59":61.38417971,"60":65.59323168,"61":69.60542921,"62":73.39599352,"63":76.92241976,"64":80.17035178,"65":83.12412774,"66":85.77436002,"67":88.13040844,"68":90.1920317,"69":91.98038124,"70":93.50973546,"71":94.80178867,"72":95.88256645,"73":96.77203446,"74":97.49847356,"75":98.08228172,"76":98.54637677,"77":98.91128565,"78":99.19336235,"79":99.40999081,"80":99.57327971,"81":99.69519256,"82":99.78510374,"83":99.85019544,"84":99.89709257,"85":99.93012739,"86":99.95321533,"87":99.96912969,"88":99.9798656,"89":99.9870964,"90":99.99182779,"91":99.99490692,"92":99.99688013,"93":99.99811024,"94":99.99888087,"95":99.99934485,"96":99.99962369,"97":99.9997886,"98":99.99988228,"99":99.99993652,"100":99.99996611,"101":99.99998231,"102":99.99999107,"103":99.99999549,"104":99.99999784,"105":99.99999897,"106":99.99999952,"107":99.99999979,"108":99.99999991,"109":99.99999996,"110":99.99999998,"111":99.99999999,"112":100.0,"113":100.0,"114":100.0,"115":100.0,"116":100.0,"117":100.0,"118":100.0,"119":100.0,"121":100.0},"MA":{"0":0.0,"1":0.0,"2":0.0,"3":0.0,"4":0.0,"5":1e-08,"6":4e-08,"7":1e-07,"8":3.5e-07,"9":8.2e-07,"10":2.27e-06,"11":5.19e-06,"12":1.24e-05,"13":2.725e-05,"14":5.862e-05,"15":0.00012231,"16":0.00024387,"17":0.00048067,"18":0.00090396,"19":0.00168335,"20":0.00301519,"21":0.00532359,"22":0.00912824,"23":0.0153555,"24":0.02527263,"25":0.04070653,"26":0.06441839,"27":0.09977278,"28":0.15206257,"29":0.2272188,"30":0.33413113,"31":0.48282913,"32":0.68646854,"33":0.96094955,"34":1.32372058,"35":1.79754341,"36":2.40377966,"37":3.17063973,"38":4.12301182,"39":5.28972793,"40":6.69828465,"41":8.37116833,"42":10.33493459,"43":12.60028324,"44":15.18461541,"45":18.08603169,"46":21.30164542,"47":24.81936109,"48":28.60909066,"49":32.64860006,"50":36.88545484,"51":41.28211018,"52":45.77943784,"53":50.32029042,"54":54.8536845,"55":59.31004341,"56":63.64931579,"57":67.80947003,"58":71.75470736,"59":75.44949646,"60":78.86013883,"61":81.9799276,"62":84.78687895,"63":87.28977011,"64":89.48974276,"65":91.39830224,"66":93.03851828,"67":94.42362341,"68":95.58491119,"69":96.54231014,"70":97.32264624,"71":97.95206454,"72":98.45035196,"73":98.84273691,"74":99.14551862,"75":99.377015,"76":99.55184022,"77":99.68122946,"78":99.77670215,"79":99.84537706,"80":99.89448492,"81":99.9290568,"82":99.95286094,"83":99.96925491,"84":99.98017164,"85":99.98743892,"86":99.99217405,"87":99.99518347,"88":99.99710663,"89":99.99827843,"90":99.99899993,"91":99.99942984,"92":99.99967894,"93":99.99982542,"94":99.99990542,"95":99.99995063,"96":99.99997474,"97":99.99998723,"98":99.9999939,"99":99.99999704,"100":99.99999867,"101":99.99999941,"102":99.99999974,"103":99.9999999,"104":99.99999996,"105":99.99999998,"106":99.99999999,"107":100.0,"108":100.0,"109":100.0,"110":100.0,"111":100.0,"112":100.0,"114":100.0},"RI":{"0":0.0,"2":0.0,"3":0.0,"4":0.0,"5":0.0,"6":1e-08,"7":1e-08,"8":5e-08,"9":1.1e-07,"10":3.2e-07,"11":7e-07,"12":1.69e-06,"13":3.68e-06,"14":7.96e-06,"15":1.666e-05,"16":3.343e-05,"17":6.644e-05,"18":0.00012632,"19":0.00023777,"20":0.00043253,"21":0.00077419,"22":0.00135225,"23":0.00231489,"24":0.00388879,"25":0.00639918,"26":0.01035627,"27":0.01644211,"28":0.02568804,"29":0.03944994,"30":0.05963422,"31":0.08875682,"32":0.13009545,"33":0.18795895,"34":0.26764167,"35":0.37592863,"36":0.5208629,"37":0.71228309,"38":0.9616134,"39":1.28203214,"40":1.68856335,"41":2.19752917,"42":2.82700474,"43":3.59559369,"44":4.52287497,"45":5.62805215,"46":6.9297123,"47":8.44511255,"48":10.18878527,"49":12.17282681,"50":14.40467872,"51":16.8879595,"52":19.62059966,"53":22.59521247,"54":25.79885398,"55":29.21229781,"56":32.81173117,"57":36.5674062,"58":40.44624792,"59":44.41121863,"60":48.42323485,"61":52.44232022,"62":56.42792411,"63":60.34165468,"64":64.14647067,"65":67.80951039,"66":71.30151533,"67":74.59809094,"68":77.68034383,"69":80.53405739,"70":83.15120204,"71":85.52805429,"72":87.66621855,"73":89.57128566,"74":91.25232269,"75":92.72178334,"76":93.99376404,"77":95.08453155,"78":96.01083094,"79":96.78994773,"80":97.43907246,"81":97.9745369,"82":98.41214575,"83":98.76618567,"84":99.04989153,"85":99.27501854,"86":99.45184053,"87":99.58943377,"88":99.69535283,"89":99.7761182,"90":99.83706842,"91":99.88257227,"92":99.91623066,"93":99.9408306,"94":99.95864278,"95":99.97139615,"96":99.9804209,"97":99.98675041,"98":99.99112754,"99":99.99412746,"100":99.9961583,"101":99.99751442,"102":99.99841304,"103":99.99899805,"104":99.99937569,"105":99.99961628,"106":99.99976683,"107":99.99986063,"108":99.99991768,"109":99.9999521,"110":99.99997262,"111":99.99998451,"112":99.99999143,"113":99.99999532,"114":99.99999749,"115":99.99999868,"116":99.99999932,"117":99.99999966,"118":99.99999983,"119":99.99999992,"120":99.99999996,"121":99.99999998,"122":99.99999999,"123":100.0,"124":100.0,"125":100.0,"126":100.0,"127":100.0,"128":100.0,"129":100.0,"130":100.0,"131":100.0,"132":100.0,"133":100.0,"134":100.0,"135":100.0},"AO":{"0":0.0,"1":0.0,"2":0.0,"3":0.0,"4":0.0,"5":1e-08,"6":3e-08,"7":7e-08,"8":2.3e-07,"9":5.7e-07,"10":1.48e-06,"11":3.58e-06,"12":8.22e-06,"13":1.875e-05,"14":3.96e-05,"15":8.399e-05,"16":0.00016745,"17":0.00033033,"18":0.00062803,"19":0.00116226,"20":0.00211017,"21":0.00370427,"22":0.00641736,"23":0.01078212,"24":0.01783689,"25":0.02883376,"26":0.0456918,"27":0.07121419,"28":0.10858431,"29":0.16328647,"30":0.24057054,"31":0.34936931,"32":0.49880404,"33":0.70087083,"34":0.9711855,"35":1.32365777,"36":1.78163326,"37":2.36121923,"38":3.08998556,"39":3.98957361,"40":5.08325102,"41":6.40129931,"42":7.95536474,"43":9.77925918,"44":11.87515585,"45":14.26354518,"46":16.94760239,"47":19.91659168,"48":23.17898407,"49":26.69275465,"50":30.45713832,"51":34.42145574,"52":38.55218252,"53":42.81406044,"54":47.13632396,"55":51.4982601,"56":55.81968946,"57":60.07109596,"58":64.19977631,"59":68.15369451,"60":71.91768665,"61":75.43498857,"62":78.70615973,"63":81.70134851,"64":84.41403278,"65":86.8519713,"66":89.00379188,"67":90.89651809,"68":92.53179298,"69":93.933069,"70":95.12209453,"71":96.11363888,"72":96.93828388,"73":97.61039299,"74":98.15506381,"75":98.59108873,"76":98.93433035,"77":99.20396424,"78":99.41097335,"79":99.56940979,"80":99.68884836,"81":99.77742252,"82":99.84301477,"83":99.89031436,"84":99.92442339,"85":99.94856017,"86":99.96536346,"87":99.97705782,"88":99.98494081,"89":99.990278,"90":99.99380521,"91":99.99609795,"92":99.99759079,"93":99.99852437,"94":99.99911487,"95":99.99947645,"96":99.99969413,"97":99.99982589,"98":99.99990141,"99":99.99994574,"100":99.99997057,"101":99.99998425,"102":99.99999188,"103":99.9999958,"104":99.99999792,"105":99.99999899,"106":99.99999951,"107":99.99999978,"108":99.9999999,"109":99.99999996,"110":99.99999998,"111":99.99999999,"112":100.0,"113":100.0,"114":100.0,"115":100.0,"116":100.0,"117":100.0,"118":100.0,"119":100.0,"120":100.0,"121":100.0,"123":100.0},"KW":{"0":0.0,"1":0.0,"2":0.0,"3":0.0,"4":0.0,"5":0.0,"6":0.0,"7":0.0,"8":1e-08,"9":2e-08,"10":5e-08,"11":1.3e-07,"12":3.2e-07,"13":7.5e-07,"14":1.71e-06,"15":3.77e-06,"16":8.06e-06,"17":1.672e-05,"18":3.372e-05,"19":6.627e-05,"20":0.00012696,"21":0.00023756,"22":0.00043445,"23":0.00077738,"24":0.00136226,"25":0.00233936,"26":0.00394057,"27":0.0065142,"28":0.010576,"29":0.01687266,"30":0.02646452,"31":0.04083335,"32":0.06200231,"33":0.0926958,"34":0.13650276,"35":0.1980712,"36":0.28331704,"37":0.39960864,"38":0.55599063,"39":0.76331239,"40":1.03436999,"41":1.38394896,"42":1.82874626,"43":2.38727761,"44":3.07950079,"45":3.9264702,"46":4.94971489,"47":6.17051658,"48":7.60916355,"49":9.28389349,"50":11.210091,"51":13.39918367,"52":15.85781161,"53":18.58705844,"54":21.58172452,"55":24.83013072,"56":28.31377363,"57":32.00771256,"58":35.88088858,"59":39.8969403,"60":44.01529865,"61":48.19221043,"62":52.38243405,"63":56.54033127,"64":60.62164372,"65":64.58469564,"66":68.39158024,"67":72.00948019,"68":75.41097093,"69":78.57506024,"70":81.48698904,"71":84.13834945,"72":86.5269341,"73":88.65579763,"74":90.5331396,"75":92.17099533,"76":93.58467916,"77":94.79190493,"78":95.81167642,"79":96.66393502,"80":97.36844516,"81":97.9445158,"82":98.41045686,"83":98.78313135,"84":99.07797389,"85":99.30860437,"86":99.48699797,"87":99.62343525,"88":99.72656816,"89":99.80365335,"90":99.86057823,"91":99.9021274,"92":99.93209357,"93":99.95343584,"94":99.96845866,"95":99.97889422,"96":99.98605447,"97":99.99090425,"98":99.99414369,"99":99.99628109,"100":99.99767013,"101":99.99856108,"102":99.99912436,"103":99.99947478,"104":99.99969005,"105":99.99981985,"106":99.99989703,"107":99.99994218,"108":99.99996805,"109":99.99998271,"110":99.9999908,"111":99.99999521,"112":99.99999756,"113":99.99999878,"114":99.99999941,"115":99.99999972,"116":99.99999987,"117":99.99999994,"118":99.99999997,"119":99.99999999,"120":100.0,"121":100.0,"122":100.0,"123":100.0,"124":100.0,"125":100.0,"126":100.0,"127":100.0,"128":100.0,"129":100.0,"130":100.0,"131":100.0},"HY":{"0":0.0,"2":0.0,"3":0.0,"4":0.0,"5":0.0,"6":4e-08,"7":6e-08,"8":3.5e-07,"9":5.6e-07,"10":2.34e-06,"11":4.08e-06,"12":1.291e-05,"13":2.4e-05,"14":6.11e-05,"15":0.00011764,"16":0.00025463,"17":0.00049203,"18":0.00095077,"19":0.00179404,"20":0.00321232,"21":0.00580755,"22":0.00987497,"23":0.01695,"24":0.02772775,"25":0.04515992,"26":0.07139749,"27":0.11086834,"28":0.16939322,"29":0.25247323,"30":0.37230264,"31":0.53577972,"32":0.76226779,"33":1.06325628,"34":1.46150665,"35":1.97939883,"36":2.63582775,"37":3.46809649,"38":4.48761439,"39":5.7390405,"40":7.23367502,"41":9.0019458,"42":11.06848429,"43":13.42898457,"44":16.12086234,"45":19.10929304,"46":22.4159726,"47":26.00682588,"48":29.85097313,"49":33.9395425,"50":38.18744688,"51":42.59314703,"52":47.06517371,"53":51.5647378,"54":56.04494614,"55":60.41777945,"56":64.67804445,"57":68.73538881,"58":72.57900497,"59":76.17185092,"60":79.4726415,"61":82.49861663,"62":85.20789235,"63":87.62675606,"64":89.75290253,"65":91.5926697,"66":93.18127882,"67":94.51915168,"68":95.64507508,"69":96.57616149,"70":97.33455896,"71":97.95148608,"72":98.43977106,"73":98.82682241,"74":99.12776316,"75":99.3580608,"76":99.5344183,"77":99.66530003,"78":99.76282803,"79":99.83400062,"80":99.88498731,"81":99.92167969,"82":99.94711114,"83":99.96486311,"84":99.97698614,"85":99.98506807,"86":99.99051789,"87":99.99402372,"88":99.99630289,"89":99.99775309,"90":99.99864433,"91":99.99920501,"92":99.99953663,"93":99.99973557,"94":99.9998528,"95":99.9999182,"96":99.99995636,"97":99.9999768,"98":99.99998795,"99":99.99999399,"100":99.99999696,"101":99.99999856,"102":99.99999932,"103":99.99999968,"104":99.99999986,"105":99.99999994,"106":99.99999998,"107":99.99999999,"108":100.0,"109":100.0,"110":100.0,"111":100.0,"112":100.0,"113":100.0,"114":100.0,"115":100.0,"116":100.0,"118":100.0},"PP":{"0":0.0,"1":0.0,"2":0.0,"3":1e-08,"4":3e-08,"5":9e-08,"6":2.5e-07,"7":6.8e-07,"8":1.72e-06,"9":4.18e-06,"10":9.65e-06,"11":2.139e-05,"12":4.557e-05,"13":9.373e-05,"14":0.00018653,"15":0.0003601,"16":0.00067562,"17":0.00123405,"18":0.00219798,"19":0.00382199,"20":0.00649701,"21":0.01080717,"22":0.0176092,"23":0.02812925,"24":0.04408827,"25":0.06785051,"26":0.10259728,"27":0.15252788,"28":0.22306738,"29":0.32109745,"30":0.45515986,"31":0.63566099,"32":0.87500779,"33":1.18769569,"34":1.59029623,"35":2.1013232,"36":2.74099102,"37":3.53077782,"38":4.49290024,"39":5.64956242,"40":7.02215161,"41":8.63026408,"42":10.49071183,"43":12.61651472,"44":15.01590235,"45":17.69151374,"46":20.63964523,"47":23.84987826,"48":27.30482412,"49":30.98030989,"50":34.84578012,"51":38.86504179,"52":42.9973145,"53":47.1984085,"54":51.42222333,"55":55.62214186,"56":59.75263797,"57":63.77063024,"58":67.6368315,"59":71.31682036,"60":74.78185993,"61":78.00950809,"62":80.98380524,"63":83.69534498,"64":86.14090675,"65":88.32302771,"66":90.24927212,"67":91.93145225,"68":93.38475772,"69":94.62683488,"70":95.67696261,"71":96.55519723,"72":97.28171252,"73":97.87615693,"74":98.35720745,"75":98.74219729,"76":99.04688183,"77":99.28531392,"78":99.46978762,"79":99.61088984,"80":99.71757085,"81":99.79729007,"82":99.85615799,"83":99.89910975,"84":99.93006938,"85":99.95211027,"86":99.96760661,"87":99.97836258,"88":99.98573245,"89":99.99071521,"90":99.99403906,"91":99.99622571,"92":99.99764406,"93":99.99855085,"94":99.99912195,"95":99.99947626,"96":99.99969256,"97":99.99982254,"98":99.99989931,"99":99.9999439,"100":99.99996932,"101":99.99998355,"102":99.99999136,"103":99.99999555,"104":99.99999777,"105":99.9999989,"106":99.99999948,"107":99.99999976,"108":99.99999989,"109":99.99999995,"110":99.99999998,"111":99.99999999,"112":100.0,"113":100.0,"114":100.0,"115":100.0,"116":100.0,"117":100.0,"118":100.0,"119":100.0,"120":100.0,"121":100.0,"122":100.0,"123":100.0},"MR":{"0":0.0,"1":0.0,"2":0.0,"3":1e-08,"4":6e-08,"5":1.6e-07,"6":5.7e-07,"7":1.45e-06,"8":3.98e-06,"9":9.59e-06,"10":2.247e-05,"11":5.048e-05,"12":0.00010689,"13":0.00022215,"14":0.00043795,"15":0.00084497,"16":0.00157196,"17":0.00284275,"18":0.00501618,"19":0.00859239,"20":0.01442143,"21":0.0235869,"22":0.03779125,"23":0.0592998,"24":0.09111788,"25":0.13755119,"26":0.20360702,"27":0.29638392,"28":0.42407132,"29":0.59682539,"30":0.82732766,"31":1.12887898,"32":1.51876554,"33":2.01409042,"34":2.63465767,"35":3.40195673,"36":4.3353762,"37":5.45858356,"38":6.78943128,"39":8.34745419,"40":10.14911577,"41":12.20342239,"42":14.52220223,"43":17.10327212,"44":19.94561383,"45":23.03977192,"46":26.36591972,"47":29.90771887,"48":33.63095015,"49":37.50668719,"50":41.49735707,"51":45.55905205,"52":49.65623604,"53":53.73937974,"54":57.77157797,"55":61.71199624,"56":65.52096106,"57":69.17168852,"58":72.63009891,"59":75.87827879,"60":78.8981199,"61":81.67639783,"62":84.21171037,"63":86.49886437,"64":88.54531936,"65":90.35812174,"66":91.94752634,"67":93.33017934,"68":94.51916143,"69":95.53358404,"70":96.39042262,"71":97.10674951,"72":97.7010883,"73":98.18838989,"74":98.58490154,"75":98.9042587,"76":99.1587811,"77":99.36015505,"78":99.51749428,"79":99.63952388,"80":99.73317355,"81":99.80425395,"82":99.85782946,"83":99.89766461,"84":99.92707261,"85":99.94854304,"86":99.96403207,"87":99.97513401,"88":99.98297036,"89":99.98846403,"90":99.99226985,"91":99.99487117,"92":99.99663928,"93":99.9978196,"94":99.99860255,"95":99.99911524,"96":99.99944565,"97":99.99965775,"98":99.9997909,"99":99.99987403,"100":99.99992519,"101":99.99995605,"102":99.99997465,"103":99.99998554,"104":99.99999189,"105":99.99999553,"106":99.99999756,"107":99.9999987,"108":99.99999932,"109":99.99999965,"110":99.99999982,"111":99.99999991,"112":99.99999996,"113":99.99999998,"114":99.99999999,"115":100.0,"116":100.0,"117":100.0,"118":100.0,"119":100.0,"120":100.0,"121":100.0,"122":100.0,"123":100.0,"124":100.0,"125":100.0,"126":100.0,"127":100.0,"128":100.0,"129":100.0}};
+const BASELINE_STATS={"SH":{"mean":54.75,"sd":9.67923,"min":0,"max":126},"GE":{"mean":66.0,"sd":10.0,"min":0,"max":140},"YU":{"mean":61.5,"sd":8.958236,"min":0,"max":124},"KF":{"mean":64.25,"sd":9.072624,"min":0,"max":124},"AS":{"mean":56.25,"sd":9.607939,"min":0,"max":132},"RE":{"mean":60.0,"sd":9.340771,"min":0,"max":127},"KA":{"mean":58.25,"sd":8.62047,"min":0,"max":115},"MI":{"mean":57.0,"sd":8.838835,"min":0,"max":121},"MA":{"mean":53.5,"sd":8.724964,"min":0,"max":114},"RI":{"mean":61.0,"sd":9.867877,"min":0,"max":135},"AO":{"mean":55.25,"sd":9.107003,"min":0,"max":123},"KW":{"mean":62.0,"sd":9.467048,"min":0,"max":131},"HY":{"mean":53.25,"sd":8.806957,"min":0,"max":118},"PP":{"mean":54.25,"sd":9.384162,"min":0,"max":123},"MR":{"mean":52.75,"sd":9.67923,"min":0,"max":129}};
+const SYNC_LOOKUP=[[0.037055,0.0],[0.752961,0.5],[0.980803,1.0],[1.152607,1.5],[1.295482,2.0],[1.419139,2.5],[1.534221,3.0],[1.638763,3.5],[1.737261,4.0],[1.831884,4.5],[1.919521,5.0],[2.003675,5.5],[2.086422,6.0],[2.166011,6.5],[2.244177,7.0],[2.3198,7.5],[2.392191,8.0],[2.464752,8.5],[2.534586,9.0],[2.605154,9.5],[2.67191,10.0],[2.737668,10.5],[2.803871,11.0],[2.869872,11.5],[2.934673,12.0],[2.999019,12.5],[3.062272,13.0],[3.125995,13.5],[3.187654,14.0],[3.24963,14.5],[3.31032,15.0],[3.372623,15.5],[3.43332,16.0],[3.49406,16.5],[3.55416,17.0],[3.614207,17.5],[3.673053,18.0],[3.732848,18.5],[3.791025,19.0],[3.849725,19.5],[3.907977,20.0],[3.966221,20.5],[4.025221,21.0],[4.08321,21.5],[4.139963,22.0],[4.198496,22.5],[4.256655,23.0],[4.314624,23.5],[4.371445,24.0],[4.428778,24.5],[4.487246,25.0],[4.545586,25.5],[4.604315,26.0],[4.662864,26.5],[4.721158,27.0],[4.777742,27.5],[4.836325,28.0],[4.89456,28.5],[4.952517,29.0],[5.010581,29.5],[5.069997,30.0],[5.128446,30.5],[5.186761,31.0],[5.245307,31.5],[5.303749,32.0],[5.362156,32.5],[5.42168,33.0],[5.481727,33.5],[5.540658,34.0],[5.600348,34.5],[5.659855,35.0],[5.720173,35.5],[5.781134,36.0],[5.842191,36.5],[5.902631,37.0],[5.96407,37.5],[6.024896,38.0],[6.08646,38.5],[6.150122,39.0],[6.212609,39.5],[6.276188,40.0],[6.338648,40.5],[6.400734,41.0],[6.466018,41.5],[6.529717,42.0],[6.593216,42.5],[6.658892,43.0],[6.723226,43.5],[6.788609,44.0],[6.854329,44.5],[6.919721,45.0],[6.986048,45.5],[7.053622,46.0],[7.120036,46.5],[7.185932,47.0],[7.252726,47.5],[7.321995,48.0],[7.390131,48.5],[7.459569,49.0],[7.529776,49.5],[7.598947,50.0],[7.669331,50.5],[7.74075,51.0],[7.813272,51.5],[7.88507,52.0],[7.957345,52.5],[8.030329,53.0],[8.104178,53.5],[8.177859,54.0],[8.255523,54.5],[8.331122,55.0],[8.406567,55.5],[8.484707,56.0],[8.560243,56.5],[8.638611,57.0],[8.717416,57.5],[8.797084,58.0],[8.877935,58.5],[8.958886,59.0],[9.042206,59.5],[9.125506,60.0],[9.20853,60.5],[9.293339,61.0],[9.381006,61.5],[9.469223,62.0],[9.555982,62.5],[9.641627,63.0],[9.731317,63.5],[9.821203,64.0],[9.91326,64.5],[10.006711,65.0],[10.101622,65.5],[10.196884,66.0],[10.291624,66.5],[10.388794,67.0],[10.486964,67.5],[10.588216,68.0],[10.69121,68.5],[10.796819,69.0],[10.899697,69.5],[11.005087,70.0],[11.112325,70.5],[11.223588,71.0],[11.332937,71.5],[11.445817,72.0],[11.56086,72.5],[11.674405,73.0],[11.793489,73.5],[11.912735,74.0],[12.033178,74.5],[12.157983,75.0],[12.285065,75.5],[12.415073,76.0],[12.548135,76.5],[12.682427,77.0],[12.821446,77.5],[12.962215,78.0],[13.106746,78.5],[13.253422,79.0],[13.403265,79.5],[13.553977,80.0],[13.706057,80.5],[13.860978,81.0],[14.022268,81.5],[14.193701,82.0],[14.362743,82.5],[14.539091,83.0],[14.715353,83.5],[14.902846,84.0],[15.094587,84.5],[15.284902,85.0],[15.484746,85.5],[15.693788,86.0],[15.909448,86.5],[16.131704,87.0],[16.364109,87.5],[16.602204,88.0],[16.854076,88.5],[17.116507,89.0],[17.388335,89.5],[17.673969,90.0],[17.978922,90.5],[18.301631,91.0],[18.634268,91.5],[18.976425,92.0],[19.338043,92.5],[19.731198,93.0],[20.151268,93.5],[20.597448,94.0],[21.091882,94.5],[21.622724,95.0],[22.2092,95.5],[22.858208,96.0],[23.590127,96.5],[24.427038,97.0],[25.408986,97.5],[26.620613,98.0],[28.135079,98.5],[30.219029,99.0],[33.669489,99.5],[60.739815,100.0]];
+const PROFILE_THRESHOLDS={"focused_max":2.856542,"complex_min":4.166186,"temperature":8.0};
+const ANALYSIS_STEPS=[["MAGI INITIALISING","SYSTEM BOOT SEQUENCE"],["PSYCHOLOGICAL CROSS-CHECK","VERIFYING RESPONSE CONSISTENCY"],["MELCHIOR ANALYSIS","THE SELF // IDENTITY VECTOR"],["BALTHASAR ANALYSIS","RELATIONAL PATTERN ANALYSIS"],["CASPER ANALYSIS","PRESSURE RESPONSE ANALYSIS"],["PATTERN BLUE DETECTED","PROFILE CLUSTER IDENTIFIED"],["CALIBRATING COMPATIBILITY","CHARACTER-SPECIFIC BASELINE NORMALISATION"],["FINAL SYNCHRONISATION","PROFILE RESOLUTION ANALYSIS"],["RESULT","ANALYSIS COMPLETE"]];
+
+let current=0;
+let answers=Array(QUESTIONS.length).fill(null);
+let rawScores=Object.fromEntries(CODES.map(k=>[k,0]));
+let lastResult=null;
+
+const $=id=>document.getElementById(id);
+const screens=[...document.querySelectorAll('.screen')];
+const terminals=[
+  {name:'MELCHIOR',color:'#FF6600'},
+  {name:'BALTHASAR',color:'#00FFCC'},
+  {name:'CASPER',color:'#39FF14'}
+];
+
+function show(id){
+  screens.forEach(s=>s.classList.toggle('active',s.id===id));
+  window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  const target=document.querySelector('#'+id+' h1, #'+id+' h2, #'+id+' .result-top');
+  if(target){target.setAttribute('tabindex','-1');setTimeout(()=>target.focus({preventScroll:true}),20);}
+}
+function phaseFor(index){return Math.floor(index/6);}
+function setTheme(index){
+  const p=PHASES[phaseFor(index)];
+  const t=terminals[index%3];
+  document.documentElement.style.setProperty('--phase',p.color);
+  document.documentElement.style.setProperty('--accent',t.color);
+}
+function showPhase(index,after){
+  const p=PHASES[phaseFor(index)];
+  const phaseNo=phaseFor(index)+1;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.style.setProperty('--phase',p.color);
+  $('phaseNumber').textContent=`PHASE ${String(phaseNo).padStart(2,'0')}`;
+  $('phaseName').textContent=p.name;
+  $('phaseSubtitle').textContent=p.subtitle;
+  $('phaseTerminal').textContent=phaseNo===1 ? `${p.terminal} // BEGIN ASSESSMENT` : `MAGI // SYNCHRONISING RESPONSE PATTERN`;
+  $('phaseProcess').hidden=phaseNo===1;
+  $('phaseProcess').textContent=phaseNo===1 ? '' : `PHASE ${String(phaseNo-1).padStart(2,'0')} COMPLETE  ///  RESPONSE PATTERN ACQUIRED`;
+  show('phaseCard');
+  setTimeout(()=>{
+    if(phaseNo>1) $('phaseTerminal').textContent=`${p.terminal} // NEXT ASSESSMENT PHASE READY`;
+  },reduced?20:650);
+  setTimeout(after,reduced?100:1650);
+}
+function renderQuestion(){
+  setTheme(current);
+  const q=QUESTIONS[current],p=PHASES[phaseFor(current)],t=terminals[current%3];
+  $('phaseLabel').textContent=`PHASE ${String(phaseFor(current)+1).padStart(2,'0')} // ${p.name}`;
+  $('phaseMini').textContent=p.subtitle;
+  $('magiUnit').textContent=t.name;
+  $('phaseProgress').textContent=`PHASE ${phaseFor(current)+1} / ${PHASES.length}`;
+  $('progressText').textContent=`QUESTION ${String(current+1).padStart(2,'0')} / ${QUESTIONS.length}`;
+  $('qIndex').textContent=String(current+1).padStart(2,'0');
+  $('qTitle').textContent=q.title;
+  $('qPrompt').textContent=q.prompt;
+  $('progressBar').style.width=`${((current+1)/QUESTIONS.length)*100}%`;
+
+  const wrap=$('answers');wrap.innerHTML='';
+  q.answers.forEach((a,i)=>{
+    const b=document.createElement('button');
+    b.className='answer'+(answers[current]===i?' selected':'');
+    b.setAttribute('aria-pressed',answers[current]===i?'true':'false');
+    b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span>${a.text}</span>`;
+    b.onclick=()=>selectAnswer(i);
+    wrap.appendChild(b);
+  });
+  $('backBtn').style.visibility=current?'visible':'hidden';
+}
+function selectAnswer(i){
+  answers[current]=i;
+  renderQuestion();
+  setTimeout(()=>{
+    if(current<QUESTIONS.length-1){
+      const oldPhase=phaseFor(current);
+      current++;
+      if(phaseFor(current)!==oldPhase) showPhase(current,()=>{show('quiz');renderQuestion();});
+      else renderQuestion();
+    } else calculate();
+  },320);
+}
+
+function compatibilityPercentile(code,score){
+  const table=BASELINE_CDFS[code];
+  if(Object.prototype.hasOwnProperty.call(table,String(score))) return table[String(score)];
+  const keys=Object.keys(table).map(Number).sort((a,b)=>a-b);
+  if(score<keys[0]) return 0;
+  if(score>=keys[keys.length-1]) return 100;
+  let lo=keys[0];
+  for(const k of keys){
+    if(k>score) break;
+    lo=k;
+  }
+  return table[String(lo)];
+}
+
+function syncPercentile(rawClarity){
+  if(rawClarity<=SYNC_LOOKUP[0][0]) return 0;
+  if(rawClarity>=SYNC_LOOKUP[SYNC_LOOKUP.length-1][0]) return 100;
+  for(let i=1;i<SYNC_LOOKUP.length;i++){
+    const [x2,p2]=SYNC_LOOKUP[i],[x1,p1]=SYNC_LOOKUP[i-1];
+    if(rawClarity<=x2){
+      if(x2===x1) return p2;
+      const t=(rawClarity-x1)/(x2-x1);
+      return p1+t*(p2-p1);
+    }
+  }
+  return 100;
+}
+
+function profileStructure(ranked){
+  const top=ranked.slice(0,5).map(r=>r.compatibility);
+  const mx=top[0];
+  const tau=PROFILE_THRESHOLDS.temperature;
+  const w=top.map(x=>Math.exp((x-mx)/tau));
+  const sum=w.reduce((a,b)=>a+b,0);
+  const p=w.map(x=>x/sum);
+  const entropy=-p.reduce((s,x)=>s+(x>0?x*Math.log(x):0),0);
+  const effective=Math.exp(entropy);
+  let label='LAYERED';
+  if(effective<=PROFILE_THRESHOLDS.focused_max) label='FOCUSED';
+  else if(effective>=PROFILE_THRESHOLDS.complex_min) label='COMPLEX';
+  return {label,effective};
+}
+
+
+function syncPercentileV31(rawClarity){
+  const table=SYNC_LOOKUP_V31;
+  if(rawClarity<=table[0][0]) return 0;
+  if(rawClarity>=table[table.length-1][0]) return 100;
+  for(let i=1;i<table.length;i++){
+    const [x2,p2]=table[i],[x1,p1]=table[i-1];
+    if(rawClarity<=x2){
+      if(x2===x1) return p2;
+      const t=(rawClarity-x1)/(x2-x1);
+      return p1+t*(p2-p1);
+    }
+  }
+  return 100;
+}
+
+function profileStructureV31(ranked){
+  const top=ranked.slice(0,5).map(r=>r.compatibility);
+  const mx=top[0];
+  const tau=PROFILE_THRESHOLDS_V31.temperature;
+  const w=top.map(x=>Math.exp((x-mx)/tau));
+  const sum=w.reduce((a,b)=>a+b,0);
+  const p=w.map(x=>x/sum);
+  const entropy=-p.reduce((s,x)=>s+(x>0?x*Math.log(x):0),0);
+  const effective=Math.exp(entropy);
+  let label='LAYERED';
+  if(effective<=PROFILE_THRESHOLDS_V31.focused_max) label='FOCUSED';
+  else if(effective>=PROFILE_THRESHOLDS_V31.complex_min) label='COMPLEX';
+  return {label,effective};
+}
+
+function calculate(){
+  rawScores=Object.fromEntries(CODES.map(k=>[k,0]));
+  const phaseScores=Array.from({length:5},()=>Object.fromEntries(CODES.map(k=>[k,0])));
+
+  answers.forEach((ans,qi)=>{
+    const sc=QUESTIONS[qi].answers[ans].scores;
+    const ph=Math.floor(qi/6);
+    CODES.forEach(ch=>{
+      const value=sc[ch]||0;
+      rawScores[ch]+=value;
+      phaseScores[ph][ch]+=value;
+    });
+  });
+
+  const ranked=CODES.map((ch,ci)=>{
+    const absolute=rawScores[ch]/COMPATIBILITY_MODEL.universalCeiling;
+    let breadth=0;
+    for(let ph=0;ph<5;ph++){
+      const max=PHASE_MAX[ph][ci]||1;
+      breadth+=phaseScores[ph][ch]/max;
+    }
+    breadth/=5;
+    const compatibility=100*(
+      COMPATIBILITY_MODEL.absoluteWeight*absolute+
+      COMPATIBILITY_MODEL.breadthWeight*breadth
+    );
+    return {code:ch,raw:rawScores[ch],breadth,compatibility};
+  }).sort((a,b)=>b.compatibility-a.compatibility || b.raw-a.raw || a.code.localeCompare(b.code));
+
+  const top=ranked.slice(0,5).map(x=>x.compatibility);
+  const rawClarity=
+    .50*(top[0]-top[1])+
+    .30*(top[0]-top[2])+
+    .20*(top[0]-((top[1]+top[2]+top[3]+top[4])/4));
+
+  const sync=Math.round(syncPercentileV31(rawClarity));
+  const structure=profileStructureV31(ranked);
+  const crossCheck=magiCrossCheck(ranked);
+
+  const berserk = ranked[0].compatibility>=85 &&
+                  sync>=99.9 &&
+                  structure.effective<=1.75;
+
+  lastResult={ranked,sync,rawClarity,structure,crossCheck,berserk};
+  runAnalysis();
+}
+
+function runAnalysis(){
+  show('analysis');
+  let i=0;
+  $('analysisProgressFill').style.width='0%';
+  $('analysisProgressText').textContent='0%';
+
+  function step(){
+    const [title,sub]=ANALYSIS_STEPS[i];
+    $('analysisText').textContent=title;
+    $('analysisSub').textContent=sub;
+
+    document.documentElement.style.setProperty('--phase',
+      title.includes('BALTHASAR')?'#00FFCC':
+      title.includes('CASPER')?'#39FF14':
+      title.includes('PATTERN BLUE')?'#3D8BFF':
+      title.includes('MELCHIOR')?'#FF6600':
+      title.includes('COMPATIBILITY')?'#CC44FF':'#FF3333');
+
+    const pct=Math.round(((i+1)/ANALYSIS_STEPS.length)*100);
+    $('analysisProgressFill').style.width=pct+'%';
+    $('analysisProgressText').textContent=pct+'%';
+
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(++i<ANALYSIS_STEPS.length) setTimeout(step,reduced?80:1050);
+    else setTimeout(showResult,reduced?100:900);
+  }
+  step();
+}
+
+
+const DIMENSION_LANGUAGE={
+  Sensitivity:{pos:'INTERPERSONAL SENSITIVITY',neg:'EMOTIONAL DISTANCE'},
+  Autonomy:{pos:'INDEPENDENT AGENCY',neg:'DEFERENCE & RELIANCE'},
+  Control:{pos:'DIRECTED CONTROL',neg:'ACCEPTANCE OF LIMITS'},
+  Recognition:{pos:'RECOGNITION DRIVE',neg:'LOW RECOGNITION NEED'},
+  Curiosity:{pos:'CONTEXTUAL UNDERSTANDING',neg:'PREFERENCE FOR SETTLED ANSWERS'},
+  Responsibility:{pos:'RESPONSIBILITY & ACCOUNTABILITY',neg:'FLEXIBLE OBLIGATION'},
+  Openness:{pos:'RELATIONAL OPENNESS',neg:'PRIVACY & CONTAINMENT'},
+  Adaptability:{pos:'ADAPTIVE AGENCY',neg:'PERSISTENCE & CONTINUITY'}
+};
+function distinctiveness(qi,ai,code){
+  const vals=CODES.map(c=>QUESTIONS[qi].answers[ai].scores[c]||0);
+  const ci=CODES.indexOf(code),s=vals[ci];
+  const others=vals.filter((_,i)=>i!==ci);
+  const mean=others.reduce((a,b)=>a+b,0)/others.length;
+  return Math.max(0,Math.min(1,(s-mean+5)/10));
+}
+function explanationWeight(qi,ai,code){
+  const s=QUESTIONS[qi].answers[ai].scores[code]||0;
+  return Math.pow(s/5,2)*(0.85+0.15*distinctiveness(qi,ai,code));
+}
+function personalDimensionProfile(){
+  const raw=Object.fromEntries(DIMS.map(d=>[d,0]));
+  answers.forEach((ai,qi)=>{
+    MOTIVATIONAL_SIGNATURES[qi][ai].forEach((v,di)=>raw[DIMS[di]]+=v);
+  });
+  return DIMS.map(d=>{
+    const b=DIMENSION_BASELINES[d],z=(raw[d]-b.mean)/(b.sd||1);
+    let label='CONTEXT-DEPENDENT';
+    if(z>=1.45)label='DEFINING';
+    else if(z>=0.85)label='PROMINENT';
+    else if(z>=0.35)label='PRESENT';
+    else if(z<=-1.45)label=(d==='Control'?'VERY LOW NEED':d==='Recognition'?'VERY LOW NEED':'STRONGLY LOW');
+    else if(z<=-0.85)label=(d==='Control'||d==='Recognition')?'LOW NEED':'LOW PRIORITY';
+    else if(z<=-0.35)label='LOW PRIORITY';
+    return {dimension:d,raw:raw[d],z,label};
+  });
+}
+function characterAlignment(code){
+  const num=Array(DIMS.length).fill(0),den=Array(DIMS.length).fill(0);
+  answers.forEach((ai,qi)=>{
+    const w=explanationWeight(qi,ai,code),vec=MOTIVATIONAL_SIGNATURES[qi][ai];
+    vec.forEach((v,di)=>{
+      if(v!==0){num[di]+=w*v;den[di]+=w;}
+    });
+  });
+  return num.map((v,i)=>den[i]?v/den[i]:0);
+}
+function explanationThemes(code){
+  const a=characterAlignment(code);
+  return a.map((v,i)=>({dimension:DIMS[i],value:v,abs:Math.abs(v)}))
+    .filter(x=>x.abs>=0.8)
+    .sort((x,y)=>y.abs-x.abs)
+    .slice(0,4)
+    .map(x=>({name:x.value>=0?DIMENSION_LANGUAGE[x.dimension].pos:DIMENSION_LANGUAGE[x.dimension].neg,
+             dimension:x.dimension,value:x.value}));
+}
+function traitVector(map){
+  const v=DIMS.map(d=>map[d]||0);
+  const n=Math.sqrt(v.reduce((s,x)=>s+x*x,0))||1;
+  return v.map(x=>x/n);
+}
+function synchronisedCoreTraits(code){
+  const align=characterAlignment(code),maps=CORE_TRAIT_MAPS[code]||{};
+  const result=[];
+  Object.entries(maps).forEach(([trait,map])=>{
+    const tv=traitVector(map);
+    const raw=align.reduce((s,x,i)=>s+x*tv[i],0)/5;
+    const b=CORE_TRAIT_BASELINES[code]?.[trait];
+    const z=b?(raw-b.mean)/(b.sd||1):null;
+    let synced=false,strong=false;
+    if(b){strong=raw>=0.30&&z>=1.0;synced=strong||(raw>=0.18&&z>=0.45);}
+    else {strong=raw>=0.42;synced=strong||raw>=0.28;}
+    if(synced)result.push({trait,raw,z,strong});
+  });
+  return result.sort((a,b)=>(b.strong-a.strong)||(b.raw-a.raw)).slice(0,3);
+}
+function whyMatchedText(code){
+  const c=CHARACTERS[code],themes=explanationThemes(code);
+  if(!themes.length)return `Your answers accumulated the strongest evidence for ${c.name} across the five MAGI phases.`;
+  const names=themes.slice(0,3).map(x=>x.name.toLowerCase());
+  const phrase=names.length===1?names[0]:names.length===2?`${names[0]} and ${names[1]}`:`${names[0]}, ${names[1]} and ${names[2]}`;
+  return `The answers that most strongly supported ${c.name} repeatedly emphasised ${phrase}. These themes are drawn only from responses that actually contributed meaningful evidence to this character match.`;
+}
+
+
+// v3.5 provisional MAGI psychological cross-check.
+// This does not alter character compatibility or ranking. It activates only
+// for genuine/user-visible ties and independently compares the top two
+// candidates against the eight-dimensional motivational profile.
+const MAGI_CROSSCHECK={
+  gapTrigger:0.75,
+  inconclusiveMargin:2.0,
+  strongMargin:5.0
+};
+function psychologicalCharacterVector(code){
+  const maps=CORE_TRAIT_MAPS[code]||{};
+  const v=Array(DIMS.length).fill(0);
+  const traits=Object.values(maps);
+  if(!traits.length)return v;
+  traits.forEach(map=>DIMS.forEach((d,i)=>v[i]+=(map[d]||0)));
+  // Average across canonical core traits, then unit-normalise.
+  for(let i=0;i<v.length;i++)v[i]/=traits.length;
+  const n=Math.sqrt(v.reduce((a,x)=>a+x*x,0))||1;
+  return v.map(x=>x/n);
+}
+function psychologicalUserVector(){
+  const p=personalDimensionProfile();
+  const v=p.map(x=>x.z);
+  const n=Math.sqrt(v.reduce((a,x)=>a+x*x,0))||1;
+  return v.map(x=>x/n);
+}
+function psychologicalSimilarity(code,userVector){
+  const cv=psychologicalCharacterVector(code);
+  const cosine=cv.reduce((a,x,i)=>a+x*userVector[i],0);
+  return 50*(Math.max(-1,Math.min(1,cosine))+1);
+}
+function magiCrossCheck(ranked){
+  const [p,s]=ranked;
+  const gap=p.compatibility-s.compatibility;
+  const displayedTie=Math.round(p.compatibility)===Math.round(s.compatibility);
+  const active=gap<=MAGI_CROSSCHECK.gapTrigger||displayedTie;
+  if(!active)return {active:false,gap,displayedTie};
+  const uv=psychologicalUserVector();
+  const primarySimilarity=psychologicalSimilarity(p.code,uv);
+  const secondarySimilarity=psychologicalSimilarity(s.code,uv);
+  const signedMargin=primarySimilarity-secondarySimilarity;
+  const margin=Math.abs(signedMargin);
+  let verdict='INCONCLUSIVE';
+  if(margin>=MAGI_CROSSCHECK.inconclusiveMargin){
+    verdict=signedMargin>0?'CONFIRMED':'DIVIDED';
+  }
+  return {active:true,gap,displayedTie,verdict,margin,
+          strength:margin>=MAGI_CROSSCHECK.strongMargin?'STRONG':margin>=MAGI_CROSSCHECK.inconclusiveMargin?'SUPPORTING':'NEUTRAL',
+          primarySimilarity,secondarySimilarity};
+}
+
+function showResult(){
+  const ranked=lastResult.ranked,[p,s,t]=ranked,c=CHARACTERS[p.code];
+  document.documentElement.style.setProperty('--phase',c.accent);
+  document.documentElement.style.setProperty('--accent',c.accent);
+
+  $('primaryCard').src=c.image;
+  $('primaryCard').alt=c.name;
+  $('resultName').textContent=c.name;
+  $('resultTitle').textContent=c.title;
+  $('resultQuote').textContent=`“${c.quote}”`;
+  $('resultBlurb').textContent=c.blurb;
+  $('resultTraits').textContent=c.traits;
+
+  $('primaryPct').textContent=Math.round(p.compatibility)+'%';
+  $('syncRate').textContent=lastResult.berserk?'400%':lastResult.sync+'%';
+  $('syncRate').title=lastResult.berserk?'BERSERK SYNCHRONISATION':(lastResult.sync>=75?'HIGH SYNCHRONISATION':lastResult.sync>=50?'MODERATE SYNCHRONISATION':'DIFFUSE SYNCHRONISATION');
+  $('ambiguity').textContent=lastResult.structure.label;
+  const structureCopy={FOCUSED:'One character pattern dominates your profile.',LAYERED:'A clear primary pattern with meaningful secondary influences.',COMPLEX:'Several character patterns explain your responses similarly well.'};
+  $('structureExplainer').textContent=structureCopy[lastResult.structure.label]||'How concentrated or layered your strongest character matches are.';
+
+  $('resultInterpretation').textContent=
+    `${c.name} is your strongest character evidence match. `+
+    `Compatibility measures how much evidence you accumulated and how consistently it appeared across all five phases. `+
+    `EVA Sync Rate separately measures how clearly this result leads your other strong profiles.`;
+
+
+  const cross=$('magiCrossCheck'),cc=lastResult.crossCheck;
+  if(cc&&cc.active){
+    cross.hidden=false;
+    $('crossCheckVerdict').textContent=cc.verdict;
+    $('crossCheckVerdict').dataset.verdict=cc.verdict;
+    const pn=CHARACTERS[p.code].name,sn=CHARACTERS[s.code].name;
+    if(cc.verdict==='CONFIRMED'){
+      $('crossCheckText').textContent=`The behavioural result is effectively tied with ${sn}. An independent eight-trait psychological cross-check also favours ${pn}, supporting the primary result.`;
+    }else if(cc.verdict==='DIVIDED'){
+      $('crossCheckText').textContent=`The behavioural result narrowly favours ${pn}, while the independent eight-trait psychological cross-check favours ${sn}. The primary result is preserved, but the MAGI analyses are divided.`;
+    }else{
+      $('crossCheckText').textContent=`${pn} and ${sn} are effectively tied. The independent eight-trait psychological cross-check is also too close to distinguish them reliably.`;
+    }
+  }else{
+    cross.hidden=true;
+  }
+
+  const snap=lastResult.sharedSnapshot;
+  $('whyMatchedText').textContent=snap?.why || (snap ? 'This shared result preserves the final MAGI outcome without exposing the original quiz answers.' : whyMatchedText(p.code));
+  const themeBox=$('matchThemes'); themeBox.innerHTML='';
+  const themes=snap?.themes || (snap ? [] : explanationThemes(p.code).map(x=>x.name));
+  themes.forEach(name=>{
+    const el=document.createElement('span');el.className='theme-chip';el.textContent=name;themeBox.appendChild(el);
+  });
+
+  const shared=snap?.shared || (snap ? [] : synchronisedCoreTraits(p.code)),sharedBox=$('sharedTraits');
+  sharedBox.innerHTML='';
+  if(shared.length){
+    shared.forEach(x=>{
+      const el=document.createElement('span');el.className='sync-trait';el.textContent=(x.strong?'◆ ':'◇ ')+(x.trait||x);sharedBox.appendChild(el);
+    });
+  } else {
+    sharedBox.textContent='No single canonical trait exceeded the synchronisation threshold; your match is distributed across several motives.';
+  }
+
+  $('secondCard').src=CHARACTERS[s.code].image;
+  $('secondName').textContent=CHARACTERS[s.code].name;
+  $('secondPct').textContent=Math.round(s.compatibility)+'%';
+  $('secondTraits').textContent=CHARACTERS[s.code].traits;
+
+  $('thirdCard').src=CHARACTERS[t.code].image;
+  $('thirdName').textContent=CHARACTERS[t.code].name;
+  $('thirdPct').textContent=Math.round(t.compatibility)+'%';
+  $('thirdTraits').textContent=CHARACTERS[t.code].traits;
+
+  const profile=snap?.dimensions || (snap ? [] : personalDimensionProfile()),box=$('dimensionBars');
+  box.innerHTML='';
+  profile.forEach(x=>{
+    const row=document.createElement('div');
+    row.className='dimension profile-dimension';
+    const lang=DIMENSION_LANGUAGE[x.dimension];
+    const pos=Math.max(5,Math.min(95,50+(x.z*22.5)));
+    row.innerHTML=`<div class="dimension-copy"><label>${x.dimension.toUpperCase()}</label></div><div class="trait-spectrum"><span class="trait-pole">${lang.neg}</span><div class="spectrum-track" role="img" aria-label="${x.dimension}: ${x.label}"><i class="spectrum-marker" style="left:${pos}%"></i></div><span class="trait-pole">${lang.pos}</span></div><b>${x.label}</b>`;
+    box.appendChild(row);
+  });
+
+  if(snap && !profile.length){
+    box.innerHTML='<p class="privacy">Deep trait spectra are unavailable for this legacy shared link. The character result above is preserved.</p>';
+  }
+  show('result');
+}
+
+function exportDossier(){
+  if(!lastResult)return;
+  const p=lastResult.ranked[0],c=CHARACTERS[p.code],canvas=document.createElement('canvas');
+  canvas.width=1200;canvas.height=675;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#020304';ctx.fillRect(0,0,1200,675);
+  ctx.strokeStyle=c.accent;ctx.lineWidth=4;ctx.strokeRect(18,18,1164,639);
+  const img=new Image();
+  img.onload=()=>{
+    ctx.drawImage(img,38,55,400,533);
+    ctx.fillStyle=c.accent;ctx.font='700 22px NERV Interface, sans-serif';ctx.fillText('PRIMARY SYNCHRONISATION',475,95);
+    ctx.fillStyle='#f3f3f3';ctx.font='900 47px NERV Interface, sans-serif';wrapText(ctx,c.name,475,160,665,56);
+    ctx.fillStyle='#a5adb1';ctx.font='700 22px NERV Interface, sans-serif';ctx.fillText(c.classification||'',475,230);
+    ctx.fillStyle=c.accent;ctx.font='700 24px NERV Interface, sans-serif';ctx.fillText(c.title.toUpperCase(),475,270);
+    ctx.fillStyle='#f3f3f3';ctx.font='900 64px NERV Interface, sans-serif';ctx.fillText(Math.round(p.compatibility)+'%',475,365);
+    ctx.fillStyle='#8f989d';ctx.font='700 18px NERV Interface, sans-serif';ctx.fillText('MAGI COMPATIBILITY',475,398);
+    ctx.fillStyle='#f3f3f3';ctx.font='900 50px NERV Interface, sans-serif';ctx.fillText(lastResult.berserk?'400%':lastResult.sync+'%',760,365);
+    ctx.fillStyle='#8f989d';ctx.font='700 18px NERV Interface, sans-serif';ctx.fillText('EVA SYNC RATE',760,398);
+    ctx.fillStyle=c.accent;ctx.font='600 25px Inter, sans-serif';wrapText(ctx,'“'+c.quote+'”',475,470,650,34);
+    ctx.fillStyle='#858e92';ctx.font='700 18px NERV Interface, sans-serif';ctx.fillText('PROFILE STRUCTURE  '+lastResult.structure.label,475,585);
+    const a=document.createElement('a');
+    a.download=c.name.replaceAll(' ','_')+'_NERV_v3_6_Dossier.png';
+    a.href=canvas.toDataURL('image/png');a.click();
+  };
+  img.src=c.image;
+}
+function wrapText(ctx,text,x,y,maxWidth,lineHeight){
+  const words=text.split(' ');let line='';
+  for(let n=0;n<words.length;n++){
+    const test=line+words[n]+' ';
+    if(ctx.measureText(test).width>maxWidth&&n>0){
+      ctx.fillText(line,x,y);line=words[n]+' ';y+=lineHeight;
+    }else line=test;
+  }
+  ctx.fillText(line,x,y);
+}
+function dimensionLabel(d,z){
+  let label='CONTEXT-DEPENDENT';
+  if(z>=1.45)label='DEFINING';
+  else if(z>=0.85)label='PROMINENT';
+  else if(z>=0.35)label='PRESENT';
+  else if(z<=-1.45)label=(d==='Control'||d==='Recognition')?'VERY LOW NEED':'STRONGLY LOW';
+  else if(z<=-0.85)label=(d==='Control'||d==='Recognition')?'LOW NEED':'LOW PRIORITY';
+  else if(z<=-0.35)label='LOW PRIORITY';
+  return label;
+}
+function bytesToBase64Url(bytes){
+  let binary='';
+  bytes.forEach(b=>binary+=String.fromCharCode(b));
+  return btoa(binary).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
+}
+function base64UrlToBytes(text){
+  const b64=text.replaceAll('-','+').replaceAll('_','/')+'==='.slice((text.length+3)%4);
+  const binary=atob(b64);
+  return Uint8Array.from(binary,c=>c.charCodeAt(0));
+}
+function compactSharePayload(){
+  const top=lastResult.ranked.slice(0,3);
+  const profile=personalDimensionProfile();
+  const themes=explanationThemes(top[0].code).slice(0,4);
+  const shared=synchronisedCoreTraits(top[0].code).slice(0,3);
+  const traitNames=Object.keys(CORE_TRAIT_MAPS[top[0].code]||{});
+  const bytes=[3]; // compact share format version
+  top.forEach(x=>{bytes.push(CODES.indexOf(x.code),Math.max(0,Math.min(100,Math.round(x.compatibility))));});
+  bytes.push(Math.max(0,Math.min(255,Math.round(lastResult.sync))));
+  const structures={FOCUSED:0,LAYERED:1,COMPLEX:2};
+  bytes.push((structures[lastResult.structure.label]??1)|(lastResult.berserk?4:0));
+  // Eight z-scores: signed quarter-standard-deviation increments, range -8..+7.75.
+  profile.forEach(x=>bytes.push(Math.max(0,Math.min(255,Math.round(x.z*4)+128))));
+  // Theme byte: low nibble = dimension index, bit 4 = negative pole. 255 terminates.
+  themes.forEach(x=>bytes.push(DIMS.indexOf(x.dimension)|(x.value<0?16:0)));
+  bytes.push(255);
+  // Shared trait byte: low 7 bits = index in this character's canonical trait list; high bit = strong.
+  shared.forEach(x=>{const i=traitNames.indexOf(x.trait);if(i>=0)bytes.push(i|(x.strong?128:0));});
+  return bytesToBase64Url(Uint8Array.from(bytes));
+}
+function sharedWhyText(code,themes){
+  const c=CHARACTERS[code];
+  if(!themes.length)return `Your answers accumulated the strongest evidence for ${c.name} across the five MAGI phases.`;
+  const names=themes.slice(0,3).map(x=>x.toLowerCase());
+  const phrase=names.length===1?names[0]:names.length===2?`${names[0]} and ${names[1]}`:`${names[0]}, ${names[1]} and ${names[2]}`;
+  return `The answers that most strongly supported ${c.name} repeatedly emphasised ${phrase}. These themes are drawn only from responses that actually contributed meaningful evidence to this character match.`;
+}
+async function shareResult(){
+  if(!lastResult)return;
+  const p=lastResult.ranked[0],payload=compactSharePayload();
+  const shareUrl=new URL(location.href);
+  shareUrl.hash='';
+  shareUrl.searchParams.set('r',payload);
+  const url=shareUrl.toString();
+  const text=`My MAGI result: ${CHARACTERS[p.code].name} — ${Math.round(p.compatibility)}% compatibility · ${lastResult.berserk?'400%':lastResult.sync+'%'} EVA Sync · ${lastResult.structure.label.charAt(0)+lastResult.structure.label.slice(1).toLowerCase()} Profile`;
+  if(navigator.share){
+    try{
+      await navigator.share({title:'NERV Personnel Assessment',text,url});
+      $('shareStatus').textContent='Result shared. The compact link contains result data only; your individual answers are not included.';
+      return;
+    }catch(e){if(e?.name==='AbortError')return;}
+  }
+  const copied=()=>{$('shareStatus').textContent='Compact result link copied. Your individual answers are not included.';};
+  if(navigator.clipboard&&window.isSecureContext){
+    navigator.clipboard.writeText(url).then(copied).catch(()=>prompt('Copy this result link:',url));
+  }else prompt('Copy this result link:',url);
+}
+function restoreCompactShared(payload){
+  const b=base64UrlToBytes(payload);let i=0;
+  if(b[i++]!==3)throw new Error('Unknown compact share version');
+  const ranked=[];
+  for(let n=0;n<3;n++){
+    const ci=b[i++],pct=b[i++];
+    if(ci>=CODES.length)throw new Error('Unknown character');
+    ranked.push({code:CODES[ci],raw:0,compatibility:pct});
+  }
+  const sync=b[i++],flags=b[i++];
+  const structures=['FOCUSED','LAYERED','COMPLEX'];
+  const structure=structures[flags&3]||'LAYERED',berserk=!!(flags&4);
+  const dimensions=DIMS.map(d=>{const z=(b[i++]-128)/4;return {dimension:d,z,label:dimensionLabel(d,z)};});
+  const themes=[];
+  while(i<b.length&&b[i]!==255){
+    const tb=b[i++],di=tb&15;
+    if(di<DIMS.length){const lang=DIMENSION_LANGUAGE[DIMS[di]];themes.push((tb&16)?lang.neg:lang.pos);}
+  }
+  if(i<b.length&&b[i]===255)i++;
+  const primary=ranked[0].code,traitNames=Object.keys(CORE_TRAIT_MAPS[primary]||{}),shared=[];
+  while(i<b.length){const sb=b[i++],name=traitNames[sb&127];if(name)shared.push({trait:name,strong:!!(sb&128)});}
+  CODES.filter(k=>!ranked.some(r=>r.code===k)).forEach(k=>ranked.push({code:k,raw:0,compatibility:0}));
+  lastResult={ranked,sync,rawClarity:0,structure:{label:structure,effective:0},berserk,
+    sharedSnapshot:{dimensions,why:sharedWhyText(primary,themes),themes,shared}};
+  showResult();
+  $('shareStatus').textContent='Shared MAGI result loaded from a compact link. It contains result data only, not the original question responses.';
+  return true;
+}
+function restoreLegacyShared(payload){
+  const data=JSON.parse(decodeURIComponent(escape(atob(payload))));
+  if(!Array.isArray(data.r)||!data.r.length)throw new Error('Invalid shared result');
+  const ranked=data.r.map(([code,pct])=>({code,raw:0,compatibility:pct}));
+  if(ranked.some(x=>!CHARACTERS[x.code]))throw new Error('Unknown character');
+  CODES.filter(k=>!ranked.some(r=>r.code===k)).forEach(k=>ranked.push({code:k,raw:0,compatibility:0}));
+  lastResult={ranked,sync:Number(data.s)||0,rawClarity:0,structure:{label:data.p||'LAYERED',effective:0},berserk:!!data.b,
+    sharedSnapshot:{dimensions:Array.isArray(data.d)?data.d:[],why:data.w||'',themes:Array.isArray(data.m)?data.m:[],shared:Array.isArray(data.h)?data.h:[]}};
+  showResult();
+  $('shareStatus').textContent='Legacy shared MAGI result loaded. New shares use the shorter compact-link format.';
+  return true;
+}
+function restoreShared(){
+  try{
+    const params=new URLSearchParams(location.search);
+    const compact=params.get('r');
+    if(compact)return restoreCompactShared(compact);
+    // Backwards compatibility with v3.6.3 compact fragment links.
+    if(location.hash.startsWith('#r='))return restoreCompactShared(location.hash.slice(3));
+    // Backwards compatibility with v3.6.1/2 verbose result links.
+    if(location.hash.startsWith('#result='))return restoreLegacyShared(location.hash.slice(8));
+    return false;
+  }catch(e){
+    console.warn('Unable to restore shared result',e);
+    $('shareStatus')&&($('shareStatus').textContent='This shared result link could not be read. You can still take the assessment normally.');
+    return false;
+  }
+}
+
+$('startBtn').onclick=()=>{
+  current=0;answers=Array(QUESTIONS.length).fill(null);
+  showPhase(0,()=>{show('quiz');renderQuestion();});
+};
+$('backBtn').onclick=()=>{if(current>0){current--;renderQuestion();}};
+$('restartBtn').onclick=()=>{
+  const clean=new URL(location.href);
+  clean.searchParams.delete('r');
+  clean.hash='';
+  history.replaceState(null,'',clean.pathname+clean.search);
+  current=0;answers=Array(QUESTIONS.length).fill(null);
+  showPhase(0,()=>{show('quiz');renderQuestion();});
+};
+$('printBtn').onclick=()=>window.print();
+$('exportBtn').onclick=exportDossier;
+$('shareBtn').onclick=shareResult;
+
+restoreShared();
+window.addEventListener('hashchange',()=>restoreShared());
+window.addEventListener('popstate',()=>restoreShared());

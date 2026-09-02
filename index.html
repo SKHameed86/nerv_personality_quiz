@@ -34,6 +34,7 @@
   <div class="flash-kicker" id="phaseNumber">PHASE 01</div>
   <h2 id="phaseName">THE SELF</h2>
   <p id="phaseSubtitle"></p>
+  <div id="phaseProcess" class="phase-process" role="status" aria-live="polite" hidden></div>
   <div class="flash-terminal" id="phaseTerminal">MELCHIOR</div>
 </section>
 
@@ -55,7 +56,7 @@
   </div>
   <div class="nav-row">
     <button id="backBtn" class="ghost-btn">◀ BACK</button>
-    <span class="hint">SELECT YOUR IMMEDIATE INSTINCT</span>
+    <span class="hint">SELECT THE RESPONSE CLOSEST TO YOUR FIRST INSTINCT</span>
   </div>
 </section>
 
@@ -73,11 +74,24 @@
 </section>
 
 <section id="result" class="screen">
-  <div class="result-top">MAGI ANALYSIS COMPLETE <span>/// PERSONNEL COMPATIBILITY ANALYSIS</span></div>
+  <div class="result-top">MAGI PERSONNEL COMPATIBILITY RECORD <span>/// PSYCHOLOGICAL PATTERN IDENTIFIED</span></div>
 
   <div class="hero-result">
     <div class="result-card-wrap">
       <img id="primaryCard" class="character-card" alt="">
+      <div class="supporting-matches supporting-under-primary">
+        <div class="section-label">SUPPORTING CHARACTER PATTERNS</div>
+        <div class="secondary-grid compact-secondary">
+          <article class="mini-result">
+            <img id="secondCard" alt="">
+            <div><span>SECONDARY SYNCHRONISATION</span><strong id="secondName"></strong><em id="secondPct"></em><small id="secondTraits"></small></div>
+          </article>
+          <article class="mini-result">
+            <img id="thirdCard" alt="">
+            <div><span>TERTIARY SYNCHRONISATION</span><strong id="thirdName"></strong><em id="thirdPct"></em><small id="thirdTraits"></small></div>
+          </article>
+        </div>
+      </div>
     </div>
     <div class="result-summary">
       <div class="result-label">PRIMARY CHARACTER MATCH</div>
@@ -101,19 +115,9 @@
         </div>
       </div>
       <p id="resultInterpretation" class="result-interpretation"></p>
-      <div class="supporting-matches">
-        <div class="section-label">SUPPORTING CHARACTER PATTERNS</div>
-
-        <div class="secondary-grid compact-secondary">
-    <article class="mini-result">
-      <img id="secondCard" alt="">
-      <div><span>SECONDARY SYNCHRONISATION</span><strong id="secondName"></strong><em id="secondPct"></em><small id="secondTraits"></small></div>
-    </article>
-    <article class="mini-result">
-      <img id="thirdCard" alt="">
-      <div><span>TERTIARY SYNCHRONISATION</span><strong id="thirdName"></strong><em id="thirdPct"></em><small id="thirdTraits"></small></div>
-    </article>
-        </div>
+      <div class="character-intro">
+        <blockquote id="resultQuote"></blockquote>
+        <p id="resultBlurb"></p>
       </div>
 
       <div class="calibration-note">
@@ -139,8 +143,6 @@
         <div id="matchThemes" class="match-themes"></div>
       </div>
 
-      <blockquote id="resultQuote"></blockquote>
-      <p id="resultBlurb"></p>
     </div>
   </div>
 
@@ -173,6 +175,6 @@
   </details>
 </footer>
 </main>
-<script src="js/quiz-v3.6.5.js"></script>
+<script src="js/quiz-v3.6.7.js"></script>
 </body>
 </html>
